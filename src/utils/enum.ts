@@ -1,8 +1,7 @@
 enum ACCEPTED_LANGUAGES {
   FR = 'fr',
   EN = 'en',
-  ES = 'es',
-  NL = 'nl'
+  ES = 'es'
 }
 
 export { ACCEPTED_LANGUAGES }

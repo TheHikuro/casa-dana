@@ -9,10 +9,9 @@
     "lint": "prettier . --write",
     "preview": "vite preview",
     "prepare": "husky",
-    "gen:i18n": "node ts-node/esm src/i18n/generate_traductions.ts"
+    "gen:i18n": "node src/i18n/generate_traductions.ts"
   },
   "dependencies": {
-    "nodemon": "^3.1.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.5.2",
@@ -42,6 +41,7 @@
     "react-i18next": "^15.0.1",
     "react-router-dom": "^6.26.1",
     "ts-node": "^10.9.2",
+    "tsx": "^4.17.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"

@@ -1,73 +1,157 @@
-import * as fs from 'fs'
-import * as path from 'path'
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'fs'
+import { join, dirname } from 'path'
+import { fileURLToPath } from 'url'
 
-/**
- * @description
- * This script reads the localization keys and values from a JSON file and generates a TypeScript file with the keys.
- */
+// Type Definitions
 interface I18nKeys {
   [key: string]: string | I18nKeys
 }
 
-/**
- * @description
- * Read the localization keys from a JSON file.
- * @param filePath
- * @returns
- */
-const readLocaleKeys = (filePath: string): I18nKeys => {
-  const content: string = fs.readFileSync(filePath, 'utf-8')
-  const json: I18nKeys = JSON.parse(content)
-  return transformToKeys(json)
-}
+// Get the current directory in ES module context
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
-/**
- * @description
- * Transform the localization object into a flat object with keys.
- * @param obj
- * @param parentKey
- * @returns
- */
-function transformToKeys(obj: any, parentKey = ''): I18nKeys {
-  return Object.keys(obj).reduce((acc, key) => {
-    const propName = `${parentKey}${parentKey ? '.' : ''}${key}`
-    if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
-      acc[key] = transformToKeys(obj[key], propName)
-    } else {
-      acc[key] = propName
-    }
+const __keys_name = 'CASADANA_KEYS'
+
+// Paths to the localization files
+const languages = ['fr', 'en', 'es']
+const localeFilePaths = languages.reduce<Record<string, string>>(
+  (acc, lang) => {
+    acc[lang] = join(__dirname, `./locales/${lang}/common.json`)
     return acc
-  }, {} as I18nKeys)
+  },
+  {}
+)
+const outputPath = join(__dirname, `./${__keys_name}.ts`)
+
+// Read and parse a JSON file
+function readJsonFile(filePath: string): I18nKeys {
+  if (!existsSync(filePath)) {
+    console.error(`File does not exist: ${filePath}`)
+    process.exit(1)
+  }
+
+  const content = readFileSync(filePath, 'utf-8').trim()
+
+  if (content === '') {
+    console.error(`File is empty: ${filePath}`)
+    process.exit(1)
+  }
+
+  try {
+    return JSON.parse(content)
+  } catch (error) {
+    console.error(`Error parsing JSON in file: ${filePath}`)
+    console.error(error)
+    process.exit(1)
+  }
 }
 
-/**
- * @description
- * Generate the TypeScript file with the i18n keys.
- * @param keys
- * @param outputPath
- */
-const generateTypescriptFile = (keys: I18nKeys, outputPath: string): void => {
-  let content: string = 'export const CASADANA_KEYS = '
-  content += JSON.stringify(keys, null, 2).replace(/"([^"]+)":/g, '$1:') // Remove quotes from property names
-  fs.writeFileSync(outputPath, content, 'utf-8')
-  console.log(`Generated TypeScript file with i18n keys at: ${outputPath}`)
+// Generate the TypeScript keys file
+function generateKeysFile(keys: I18nKeys, outputPath: string): void {
+  const content = `export const ${__keys_name} = ${JSON.stringify(keys, null, 2).replace(/"([^"]+)":/g, '$1:')};`
+  mkdirSync(dirname(outputPath), { recursive: true })
+  writeFileSync(outputPath, content, 'utf-8')
 }
 
-/**
- * @description
- * Path to the localization file.
- */
-const localeFilePath: string = path.join(__dirname, './locales/fr/common.json')
+// Update all language JSON files with missing keys
+function updateMissingKeys(allLangKeys: Record<string, I18nKeys>): void {
+  languages.forEach((lang) => {
+    let isUpdated = false
 
-/**
- * @description
- * Path to the output file.
- */
-const outputPath: string = path.join(__dirname, './CASADANA_KEYS.ts')
+    function recurseCheckAndUpdate(
+      referenceObj: I18nKeys,
+      targetObj: I18nKeys
+    ): void {
+      Object.keys(referenceObj).forEach((key) => {
+        if (!targetObj[key]) {
+          targetObj[key] = `${referenceObj[key] as string}!Missing!`
+          isUpdated = true
+        } else if (
+          typeof referenceObj[key] === 'object' &&
+          !Array.isArray(referenceObj[key]) &&
+          referenceObj[key] !== null
+        ) {
+          if (
+            !targetObj[key] ||
+            typeof targetObj[key] !== 'object' ||
+            Array.isArray(targetObj[key])
+          ) {
+            targetObj[key] = {}
+          }
+          recurseCheckAndUpdate(
+            referenceObj[key] as I18nKeys,
+            targetObj[key] as I18nKeys
+          )
+        }
+      })
+    }
 
-/**
- * @description
- * Read the localization keys and generate the TypeScript file.
- */
-const localeKeys: I18nKeys = readLocaleKeys(localeFilePath)
-generateTypescriptFile(localeKeys, outputPath)
+    // Use the first language as the reference for missing keys
+    const referenceLang = languages[0] // In this case, 'fr'
+    if (lang !== referenceLang) {
+      recurseCheckAndUpdate(allLangKeys[referenceLang], allLangKeys[lang])
+      if (isUpdated) {
+        writeFileSync(
+          localeFilePaths[lang],
+          JSON.stringify(allLangKeys[lang], null, 2),
+          'utf-8'
+        )
+        console.log(`${lang.toUpperCase()} JSON updated with missing keys.`)
+      }
+    }
+  })
+}
+
+function main(): void {
+  const allLangKeys: Record<string, I18nKeys> = {}
+
+  // Read all language files
+  languages.forEach((lang) => {
+    allLangKeys[lang] = readJsonFile(localeFilePaths[lang])
+  })
+
+  // Identify and update missing keys in all languages
+  updateMissingKeys(allLangKeys)
+
+  // Generate TypeScript file with keys from the reference language (e.g., 'fr')
+  const referenceLang = languages[0] // In this case, 'fr'
+  const nestedKeys = transformToNestedKeys(allLangKeys[referenceLang])
+  generateKeysFile(nestedKeys, outputPath)
+  console.log(`Generated TypeScript file with i18n keys at: ${outputPath} ✅`)
+}
+
+// Transform the object into a flat object with keys
+function transformToNestedKeys(obj: I18nKeys): I18nKeys {
+  const result: I18nKeys = {}
+
+  Object.keys(obj).forEach((fullKey) => {
+    const parts = fullKey.split('.')
+    let current: I18nKeys | string = result
+
+    parts.forEach((part, index) => {
+      const isLastPart = index === parts.length - 1
+
+      if (isLastPart) {
+        ;(current as I18nKeys)[part] = fullKey
+      } else {
+        if (typeof (current as I18nKeys)[part] === 'string') {
+          ;(current as I18nKeys)[part] = { _value: (current as I18nKeys)[part] }
+        }
+
+        if (
+          !(current as I18nKeys)[part] ||
+          typeof (current as I18nKeys)[part] !== 'object'
+        ) {
+          ;(current as I18nKeys)[part] = {}
+        }
+
+        current = (current as I18nKeys)[part]
+      }
+    })
+  })
+
+  return result
+}
+
+main()
