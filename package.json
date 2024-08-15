@@ -9,7 +9,7 @@
     "lint": "prettier . --write",
     "preview": "vite preview",
     "prepare": "husky",
-    "gen:i18n": "node src/i18n/generate_traductions.ts"
+    "gen:i18n": "pnpx tsx src/i18n/script/generate_traductions.ts"
   },
   "dependencies": {
     "react": "^18.3.1",

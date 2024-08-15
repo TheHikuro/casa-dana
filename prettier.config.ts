@@ -1,5 +1,7 @@
-/** @type {import('prettier').Config & import('prettier-plugin-tailwindcss').PluginOptions} */
-const config = {
+import type { Config } from 'prettier'
+import type { PluginOptions } from 'prettier-plugin-tailwindcss'
+
+const config: Config & PluginOptions = {
   plugins: ['prettier-plugin-tailwindcss'],
   singleQuote: true,
   trailingComma: 'none',
@@ -9,5 +11,7 @@ const config = {
   printWidth: 120,
   tabWidth: 2
 }
+
+config.exclude = ['src/i18n/locales/**/*.json']
 
 export default config

@@ -1,11 +1,11 @@
 import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import ICU from 'i18next-icu'
-import { ACCEPTED_LANGUAGES } from './utils/enum'
+import { ACCEPTED_LANGUAGES } from '../../utils/enum'
 
-import fr from './i18n/locales/fr/common.json'
-import en from './i18n/locales/en/common.json'
-import es from './i18n/locales/es/common.json'
+import fr from '../locales/fr/common.json'
+import en from '../locales/en/common.json'
+import es from '../locales/es/common.json'
 
 export const handleChangeLanguage = (language: ACCEPTED_LANGUAGES) => {
   i18next.changeLanguage(language)

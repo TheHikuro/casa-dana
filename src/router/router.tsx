@@ -30,7 +30,7 @@ const ProtectedRoute = ({
   else return <Navigate to={redirect} />
 }
 
-function Router() {
+export function Router() {
   return (
     <Routes>
       <Route
@@ -45,5 +45,3 @@ function Router() {
     </Routes>
   )
 }
-
-export default Router

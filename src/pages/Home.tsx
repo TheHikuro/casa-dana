@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { CASADANA_KEYS } from '../i18n/CASADANA_KEYS'
+import { CASADANA_KEYS } from '../i18n/keys/CASADANA_KEYS'
 import { ACCEPTED_LANGUAGES } from '../utils/enum'
 import i18next from 'i18next'
 

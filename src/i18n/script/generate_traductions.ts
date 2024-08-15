@@ -17,12 +17,12 @@ const __keys_name = 'CASADANA_KEYS'
 const languages = ['fr', 'en', 'es']
 const localeFilePaths = languages.reduce<Record<string, string>>(
   (acc, lang) => {
-    acc[lang] = join(__dirname, `./locales/${lang}/common.json`)
+    acc[lang] = join(__dirname, `../locales/${lang}/common.json`)
     return acc
   },
   {}
 )
-const outputPath = join(__dirname, `./${__keys_name}.ts`)
+const outputPath = join(__dirname, `../keys/${__keys_name}.ts`)
 
 // Read and parse a JSON file
 function readJsonFile(filePath: string): I18nKeys {
