@@ -1,5 +1,12 @@
 {
   "title": "Bienvenue sur le site de la Casa Dana",
   "name": "Cana Dana",
-  "test.test": "Ceci est un test"
+  "full_name": "Casa DaNa à Los Alcazares",
+  "description": "Découvrez notre charmante maison Espagnol de location à Los Alcazares, idéale pour accueillir jusqu'à six personnes.  À seulement 1,6 km de la plage, vous trouverez de nombreuses activités à proximité pour agrémenter votre séjour.",
+  "options.people": "Pour 4 ou 6 personnes",
+  "options.location": "A 1,6 km de la plage",
+  "options.activity": "Diverse activités à proximité",
+  "options.noises": "Un quartier calme et bien situé",
+  "options.avaible": "Location hors saison également",
+  "options.description": "Ville non surpeuplée de touriste "
 }

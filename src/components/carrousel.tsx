@@ -6,14 +6,14 @@ interface CarouselImgProps {
 
 export function CarouselImg({ img }: CarouselImgProps) {
   return (
-    <div className="relative h-72">
+    <div className="relative h-72 w-full">
       <Carousel
-        className="rounded-xl"
+        className="rounded-none"
         placeholder={undefined}
         onPointerEnterCapture={undefined}
         onPointerLeaveCapture={undefined}
         navigation={({ setActiveIndex, activeIndex, length }) => (
-          <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
+          <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2 justify-center">
             {new Array(length).fill('').map((_, i) => (
               <span
                 key={i}
