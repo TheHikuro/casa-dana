@@ -1,5 +1,6 @@
 import { Fragment, PropsWithChildren, Suspense, lazy } from 'react'
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
+import { HomeSkeleton } from '../components/home-skeleton'
 
 const Home = lazy(() => import('../pages/home/Home'))
 
@@ -24,7 +25,7 @@ const ProtectedRoute = ({
   if (condition)
     return (
       <Fragment>
-        <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+        <Suspense fallback={<HomeSkeleton />}>{children}</Suspense>
       </Fragment>
     )
   else return <Navigate to={redirect} />

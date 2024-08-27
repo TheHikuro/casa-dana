@@ -25,29 +25,29 @@ export function CasaDana() {
       <div className="pt-5 space-y-5 h-full">
         <div>
           <span className="font-medium text-xl">
-            {t(CASADANA_KEYS.full_name)}
+            {t(CASADANA_KEYS.casa_dana.full_name)}
           </span>
         </div>
         <div className="flex justify-between text-center  space-x-2">
           <div className="text-xs flex flex-col justify-center items-center space-y-1 border shadow-inner py-1 rounded-md">
-            <span>Chambre 1</span>
+            <span>{t(CASADANA_KEYS.casa_dana.listing.bedroom.first)}</span>
             <IoBedOutline className="w-7 h-7" />
           </div>
           <div className="text-xs flex flex-col justify-center items-center space-y-1 border shadow-inner py-1 rounded-md">
-            <span>Chambre 2</span>
+            <span>{t(CASADANA_KEYS.casa_dana.listing.bedroom.second)}</span>
             <div className="flex space-x-2 justify-center">
               <LuBedSingle className="w-7 h-7" />
               <LuBedSingle className="w-7 h-7" />
             </div>
           </div>
           <div className="text-xs flex flex-col justify-center items-center space-y-1 border shadow-inner py-1 rounded-md">
-            <span>Salon</span>
+            <span>{t(CASADANA_KEYS.casa_dana.listing.living_room)}</span>
             <LuSofa className="w-7 h-7" />
           </div>
         </div>
         <div className="w-full ">
           <span className="text-justify w-full flex">
-            {t(CASADANA_KEYS.description)}
+            {t(CASADANA_KEYS.casa_dana.description)}
           </span>
         </div>
       </div>

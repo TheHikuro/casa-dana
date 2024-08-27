@@ -10,8 +10,8 @@ export function LosAlcazares() {
   const img = [Los1, Los2, Los3, Los4, Los5]
   return (
     <div className="space-y-3">
-      <h2 className="text-lg font-medium">Los Alcazares</h2>
-      <div className="flex space-x-5">
+      <h2 className="text-xl font-medium">Los Alcazares</h2>
+      <div className="flex space-x-5 overflow-x-scroll">
         {img.map((img, index) => (
           <img
             src={img}

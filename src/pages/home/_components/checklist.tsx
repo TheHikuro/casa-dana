@@ -4,12 +4,12 @@ import { CASADANA_KEYS } from '../../../i18n/keys/CASADANA_KEYS'
 
 export function Checklist() {
   const checkList = [
-    CASADANA_KEYS.checklist.first,
-    CASADANA_KEYS.checklist.second,
-    CASADANA_KEYS.checklist.third,
-    CASADANA_KEYS.checklist.fourth,
-    CASADANA_KEYS.checklist.fifth,
-    CASADANA_KEYS.checklist.sixth
+    CASADANA_KEYS.casa_dana.checklist.first,
+    CASADANA_KEYS.casa_dana.checklist.second,
+    CASADANA_KEYS.casa_dana.checklist.third,
+    CASADANA_KEYS.casa_dana.checklist.fourth,
+    CASADANA_KEYS.casa_dana.checklist.fifth,
+    CASADANA_KEYS.casa_dana.checklist.sixth
   ]
   return (
     <div className="flex flex-col">
