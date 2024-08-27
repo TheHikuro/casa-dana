@@ -3,12 +3,16 @@ export const CASADANA_KEYS = {
   name: 'name',
   full_name: 'full_name',
   description: 'description',
-  options: {
-    people: 'options.people',
-    location: 'options.location',
-    activity: 'options.activity',
-    noises: 'options.noises',
-    avaible: 'options.avaible',
-    description: 'options.description'
+  checklist: {
+    first: 'checklist.first',
+    second: 'checklist.second',
+    third: 'checklist.third',
+    fourth: 'checklist.fourth',
+    fifth: 'checklist.fifth',
+    sixth: 'checklist.sixth'
+  },
+  los_alcazares: {
+    description: 'los_alcazares.description',
+    button: 'los_alcazares.button'
   }
 }

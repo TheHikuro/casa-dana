@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { ACCEPTED_LANGUAGES } from '../../utils/enum'
 
 // Type Definitions
 interface I18nKeys {
@@ -14,7 +15,11 @@ const __dirname = dirname(__filename)
 const __keys_name = 'CASADANA_KEYS'
 
 // Paths to the localization files
-const languages = ['fr', 'en', 'es']
+const languages = [
+  ACCEPTED_LANGUAGES.FR,
+  ACCEPTED_LANGUAGES.EN,
+  ACCEPTED_LANGUAGES.ES
+]
 const localeFilePaths = languages.reduce<Record<string, string>>(
   (acc, lang) => {
     acc[lang] = join(__dirname, `../locales/${lang}/common.json`)
@@ -52,6 +57,58 @@ function generateKeysFile(keys: I18nKeys, outputPath: string): void {
   const content = `export const ${__keys_name} = ${JSON.stringify(keys, null, 2).replace(/"([^"]+)":/g, '$1:')};`
   mkdirSync(dirname(outputPath), { recursive: true })
   writeFileSync(outputPath, content, 'utf-8')
+}
+
+// Remove keys from other locales that are missing in the 'fr' locale
+function removeMissingKeysFromOtherLocales(
+  allLangKeys: Record<string, I18nKeys>
+): void {
+  let isUpdated = false
+
+  function recurseCheckAndRemove(
+    referenceObj: I18nKeys,
+    targetObj: I18nKeys
+  ): void {
+    Object.keys(targetObj).forEach((key) => {
+      if (!referenceObj[key]) {
+        delete targetObj[key]
+        isUpdated = true
+      } else if (
+        typeof targetObj[key] === 'object' &&
+        !Array.isArray(targetObj[key]) &&
+        targetObj[key] !== null
+      ) {
+        recurseCheckAndRemove(
+          referenceObj[key] as I18nKeys,
+          targetObj[key] as I18nKeys
+        )
+
+        // If the nested object becomes empty after removal, delete the key
+        if (Object.keys(targetObj[key] as I18nKeys).length === 0) {
+          delete targetObj[key]
+          isUpdated = true
+        }
+      }
+    })
+  }
+
+  // Use 'fr' as the reference language to clean up other locales
+  const referenceLang = 'fr'
+  languages.forEach((lang) => {
+    if (lang !== referenceLang) {
+      recurseCheckAndRemove(allLangKeys[referenceLang], allLangKeys[lang])
+      if (isUpdated) {
+        writeFileSync(
+          localeFilePaths[lang],
+          JSON.stringify(allLangKeys[lang], null, 2),
+          'utf-8'
+        )
+        console.log(
+          `${lang.toUpperCase()} JSON updated by removing keys missing in 'fr'.`
+        )
+      }
+    }
+  })
 }
 
 // Update all language JSON files with missing keys
@@ -110,6 +167,9 @@ function main(): void {
   languages.forEach((lang) => {
     allLangKeys[lang] = readJsonFile(localeFilePaths[lang])
   })
+
+  // Remove missing keys from other locales based on 'fr' locale
+  removeMissingKeysFromOtherLocales(allLangKeys)
 
   // Identify and update missing keys in all languages
   updateMissingKeys(allLangKeys)

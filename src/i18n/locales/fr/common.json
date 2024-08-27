@@ -3,10 +3,12 @@
   "name": "Cana Dana",
   "full_name": "Casa DaNa à Los Alcazares",
   "description": "Découvrez notre charmante maison Espagnol de location à Los Alcazares, idéale pour accueillir jusqu'à six personnes.  À seulement 1,6 km de la plage, vous trouverez de nombreuses activités à proximité pour agrémenter votre séjour.",
-  "options.people": "Pour 4 ou 6 personnes",
-  "options.location": "A 1,6 km de la plage",
-  "options.activity": "Diverse activités à proximité",
-  "options.noises": "Un quartier calme et bien situé",
-  "options.avaible": "Location hors saison également",
-  "options.description": "Ville non surpeuplée de touriste "
+  "checklist.first": "Pour 4 ou 6 personnes",
+  "checklist.second": "A 1,6km de la plage",
+  "checklist.third": "Diverse activités à proximité",
+  "checklist.fourth": "Un quartier calme et bien situé",
+  "checklist.fifth": "Location hors saison également",
+  "checklist.sixth": "Ville non surpeuplée de touriste",
+  "los_alcazares.description": "Los Alcazares, charmant village niché au cœur de l'Espagne, séduit par son authenticité et son ambiance chaleureuse. Entouré de paysages pittoresques, ce havre de paix offre un mélange parfait de tradition et de modernité. Avec ses ruelles pittoresques, ses marchés locaux et sa proximité avec la plage (mer mineure), Los Alcazares est une destination idéale pour les amateurs de culture, de nature et de détente.",
+  "los_alcazares.button": "Réservez vos vacances"
 }
