@@ -1,33 +1,34 @@
-import { useTranslation } from 'react-i18next'
-import { CarouselImg } from '../components'
-import Salon from '../assets/photos/photo_1.png'
-import Terrasse from '../assets/photos/photo_2.png'
-import Chambre from '../assets/photos/photo_3.png'
-import Chambre_2 from '../assets/photos/photo_4.png'
-import Salon_2 from '../assets/photos/photo_5.png'
-import Terrasse_2 from '../assets/photos/photo_6.png'
-import { CASADANA_KEYS } from '../i18n/keys/CASADANA_KEYS'
+import { t } from 'i18next'
 import { IoBedOutline } from 'react-icons/io5'
 import { LuBedSingle, LuSofa } from 'react-icons/lu'
+import { CarouselImg } from '../../../components'
+import { CASADANA_KEYS } from '../../../i18n/keys/CASADANA_KEYS'
+import Salon from '../../../assets/photos/photo_1.png'
+import Terrasse from '../../../assets/photos/photo_2.png'
+import Chambre from '../../../assets/photos/photo_3.png'
+import Chambre_2 from '../../../assets/photos/photo_4.png'
+import Salon_2 from '../../../assets/photos/photo_5.png'
+import Terrasse_2 from '../../../assets/photos/photo_6.png'
+import { Fragment } from 'react/jsx-runtime'
 
-export default function Home() {
-  const { t } = useTranslation()
+export function CasaDana() {
   const img = [Salon, Terrasse, Chambre, Chambre_2, Salon_2, Terrasse_2]
+
   return (
-    <div className={`bg-cover flex flex-col overflow-y-scroll h-dvh`}>
+    <Fragment>
       <CarouselImg
         img={img.map((img, index) => ({
           src: img,
-          alt: `image ${index + 1}`
+          alt: `${index + 1}`
         }))}
       />
-      <div className="pl-5 pt-5 space-y-5 h-full">
+      <div className="pt-5 space-y-5 h-full">
         <div>
           <span className="font-medium text-xl">
             {t(CASADANA_KEYS.full_name)}
           </span>
         </div>
-        <div className="flex justify-between text-center pr-5 space-x-2">
+        <div className="flex justify-between text-center  space-x-2">
           <div className="text-xs flex flex-col justify-center items-center space-y-1 border shadow-inner py-1 rounded-md">
             <span>Chambre 1</span>
             <IoBedOutline className="w-7 h-7" />
@@ -44,12 +45,12 @@ export default function Home() {
             <LuSofa className="w-7 h-7" />
           </div>
         </div>
-        <div className="w-full pr-5">
+        <div className="w-full ">
           <span className="text-justify w-full flex">
             {t(CASADANA_KEYS.description)}
           </span>
         </div>
       </div>
-    </div>
+    </Fragment>
   )
 }

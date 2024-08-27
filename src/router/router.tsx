@@ -1,7 +1,7 @@
 import { Fragment, PropsWithChildren, Suspense, lazy } from 'react'
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
 
-const Home = lazy(() => import('../pages/Home'))
+const Home = lazy(() => import('../pages/home/Home'))
 
 interface ProtectedRouteProps extends PropsWithChildren {
   redirect: string

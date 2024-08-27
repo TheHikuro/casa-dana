@@ -6,7 +6,7 @@ interface CarouselImgProps {
 
 export function CarouselImg({ img }: CarouselImgProps) {
   return (
-    <div className="relative h-72 w-full">
+    <div className="relative h-72 w-dvw -ml-5">
       <Carousel
         className="rounded-none"
         placeholder={undefined}
