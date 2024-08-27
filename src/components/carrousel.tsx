@@ -8,7 +8,7 @@ export function CarouselImg({ img }: CarouselImgProps) {
   return (
     <div className="relative h-72 w-dvw -ml-5">
       <Carousel
-        className="rounded-none"
+        className="rounded-none sm:hidden"
         placeholder={undefined}
         onPointerEnterCapture={undefined}
         onPointerLeaveCapture={undefined}
