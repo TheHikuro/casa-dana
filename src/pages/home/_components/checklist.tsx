@@ -15,7 +15,7 @@ export function Checklist() {
     <div className="flex flex-col">
       {checkList.map((check, index) => (
         <div className="flex items-center space-x-2" key={index}>
-          <CgCheck className="w-10 h-10 text-yellow-700 drop-shadow-md" />
+          <CgCheck className="w-10 h-10 text-yellow-400 drop-shadow-md" />
           <span>{t(check)}</span>
         </div>
       ))}

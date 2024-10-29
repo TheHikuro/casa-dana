@@ -15,10 +15,9 @@ export function Header() {
           <div
             className="col-span-1 w-auto items-center"
             onClick={() => handleChangeLanguage(lang)}
+            key={index}
           >
-            <span key={index} className="text-xs uppercase">
-              {lang}
-            </span>
+            <span className="text-xs uppercase">{lang}</span>
           </div>
         ))}
       </div>

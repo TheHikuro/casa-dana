@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next'
-import Activity1 from '../../../assets/photos/acti_1.png'
-import Activity2 from '../../../assets/photos/acti_2.png'
-import Activity3 from '../../../assets/photos/acti_3.png'
-import Activity4 from '../../../assets/photos/acti_4.png'
-import Activity5 from '../../../assets/photos/acti_5.png'
+import {
+  Activity1,
+  Activity2,
+  Activity3,
+  Activity4,
+  Activity5
+} from '../../../assets/photos'
 import { CASADANA_KEYS } from '../../../i18n/keys/CASADANA_KEYS'
 
 export function Activities() {

@@ -1,42 +1,49 @@
-import { Carousel } from '@material-tailwind/react'
+import { useEffect, useState } from 'react'
+import {
+  Carousel,
+  type CarouselApi,
+  CarouselContent,
+  CarouselItem
+} from './ui/carousel.tsx'
 
 interface CarouselImgProps {
-  img: Array<{ src: string; alt: string }>
+  img: string[]
 }
 
 export function CarouselImg({ img }: CarouselImgProps) {
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
   return (
-    <div className="relative h-72 w-dvw -ml-5">
-      <Carousel
-        className="rounded-none sm:hidden"
-        placeholder={undefined}
-        onPointerEnterCapture={undefined}
-        onPointerLeaveCapture={undefined}
-        navigation={({ setActiveIndex, activeIndex, length }) => (
-          <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2 justify-center">
-            {new Array(length).fill('').map((_, i) => (
-              <span
-                key={i}
-                className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
-                  activeIndex === i ? 'w-8 bg-white' : 'w-4 bg-white/50'
-                }`}
-                onClick={() => {
-                  setActiveIndex(i)
-                }}
+    <div className={'flex flex-col'}>
+      <Carousel setApi={setApi} className={'absolute left-0'}>
+        <CarouselContent>
+          {img.map((imageUrl, idx) => (
+            <CarouselItem key={imageUrl}>
+              <img
+                className="object-cover w-full h-52"
+                src={imageUrl}
+                alt={`Gallery ${idx + 1}`}
               />
-            ))}
-          </div>
-        )}
-      >
-        {img.map((img, index) => (
-          <img
-            src={img.src}
-            alt={img.alt}
-            className="h-full w-full object-cover"
-            key={index}
-          />
-        ))}
+            </CarouselItem>
+          ))}
+        </CarouselContent>
       </Carousel>
+      <div className="p-2 text-center text-sm text-white absolute bg-black/20 right-3 top-[13.5rem] rounded-lg">
+        {current} / {img.length}
+      </div>
     </div>
   )
 }

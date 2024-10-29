@@ -1,4 +1,3 @@
-import { Listing } from './_components/listing'
 import { CasaDana } from './_components/casa-dana'
 import { LosAlcazares } from './_components/los-alcazares'
 import { Activities } from './_components/activities'
@@ -12,9 +11,6 @@ export default function Home() {
       >
         <section>
           <CasaDana />
-        </section>
-        <section>
-          <Listing />
         </section>
         <section>
           <LosAlcazares />
