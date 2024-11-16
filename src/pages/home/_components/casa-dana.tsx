@@ -1,7 +1,7 @@
 import { t } from 'i18next'
 import { IoBedOutline } from 'react-icons/io5'
 import { LuBedSingle, LuSofa } from 'react-icons/lu'
-import { CarouselImg } from '../../../components'
+import { CarouselImg, LangSelector } from '../../../components'
 import { CASADANA_KEYS } from '../../../i18n/keys/CASADANA_KEYS'
 import {
   Salon1,
@@ -36,6 +36,7 @@ import { Checklist } from './checklist'
 import Logo from '../../../assets/logo/logo_header.png'
 import { Listing as Equipments } from './listing'
 import { GalleryLayout } from '../../../components/gallery-layout'
+import { cn } from '../../../../@/lib/utils.ts'
 
 export function CasaDana() {
   const img = [
@@ -90,11 +91,19 @@ export function CasaDana() {
       <div className="pt-5 space-y-5 h-full relative sm:h-[80dvh] sm:w-dvw sm:-ml-7 sm:pl-5 sm:justify-center sm:flex sm:items-center">
         <img
           className={
-            'sm:absolute sm:inset-0 sm:bg-no-repeat sm:bg-cover sm:bg-center sm:opacity-75 hidden sm:block'
+            'sm:absolute sm:inset-0 sm:bg-no-repeat sm:bg-cover sm:bg-center sm:opacity-75 hidden sm:block w-full'
           }
           alt={'background-casa-dana'}
           src={BackgroundCover}
         />
+        <div
+          className={cn(
+            'sm:absolute sm:top-5 sm:right-5 sm:z-10 sm:space-x-2',
+            windowSize < 640 ? 'hidden' : 'flex'
+          )}
+        >
+          <LangSelector />
+        </div>
         <img
           src={Logo}
           className="absolute top-10 hidden sm:block sm:aspect-square lg:h-32 lg:w-32 sm:h-20 sm:w-20"

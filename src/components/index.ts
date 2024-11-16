@@ -1,1 +1,6 @@
 export * from './carrousel'
+export * from './lang-selector.tsx'
+export * from './card-listing.tsx'
+export * from './footer.tsx'
+export * from './header.tsx'
+export * from './home-skeleton.tsx'

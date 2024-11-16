@@ -1,6 +1,6 @@
 import { Fragment, PropsWithChildren, Suspense, lazy } from 'react'
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
-import { HomeSkeleton } from '../components/home-skeleton'
+import { HomeSkeleton } from '../components'
 
 const Home = lazy(() => import('../pages/home/Home'))
 
