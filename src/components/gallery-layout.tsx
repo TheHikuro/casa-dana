@@ -1,10 +1,10 @@
 import BlurFade from '../../@/components/magicui/blur-fade'
 
-interface BlurFadeDemoProps {
+interface GalleryLayoutProps {
   img: string[]
 }
 
-export function GalleryLayout({ img }: BlurFadeDemoProps) {
+export function GalleryLayout({ img }: GalleryLayoutProps) {
   return (
     <section id="photos" className="mt-3">
       <div className="columns-2 gap-4 sm:columns-3">
@@ -13,7 +13,7 @@ export function GalleryLayout({ img }: BlurFadeDemoProps) {
             <img
               className="mb-4 size-full rounded-lg object-contain"
               src={imageUrl}
-              alt={`Gallery ${idx + 1}`}
+              alt={`Casa Dana Gallery ${idx + 1}`}
             />
           </BlurFade>
         ))}
