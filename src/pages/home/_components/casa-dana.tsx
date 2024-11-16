@@ -37,6 +37,7 @@ import Logo from '../../../assets/logo/logo_header.png'
 import { Listing as Equipments } from './listing'
 import { GalleryLayout } from '../../../components/gallery-layout'
 import { cn } from '../../../../@/lib/utils.ts'
+import { Button } from '../../../components/ui/button.tsx'
 
 export function CasaDana() {
   const img = [
@@ -102,7 +103,14 @@ export function CasaDana() {
             windowSize < 640 ? 'hidden' : 'flex'
           )}
         >
-          <LangSelector />
+          <div className={'space-y-2'}>
+            <div className="flex justify-end">
+              <LangSelector />
+            </div>
+            <Button className="bg-yellow-400 text-black uppercase rounded-full py-3 px-2 hover:bg-yellow-500">
+              {t(CASADANA_KEYS.los_alcazares.button)}
+            </Button>
+          </div>
         </div>
         <img
           src={Logo}

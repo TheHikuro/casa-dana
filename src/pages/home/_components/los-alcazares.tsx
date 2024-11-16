@@ -1,6 +1,7 @@
 import { t } from 'i18next'
 import { CASADANA_KEYS } from '../../../i18n/keys/CASADANA_KEYS'
 import { Loz1, Loz2, Loz3, Loz4, Loz5 } from '../../../assets/photos'
+import { Button } from '../../../components/ui/button.tsx'
 
 export function LosAlcazares() {
   const img = [Loz1, Loz2, Loz3, Loz4, Loz5]
@@ -23,9 +24,9 @@ export function LosAlcazares() {
         </span>
       </div>
       <div className="">
-        <button className="bg-yellow-400 text-black uppercase rounded-lg py-3 px-2">
+        <Button className="bg-yellow-400 text-black uppercase rounded-full py-3 px-2 hover:bg-yellow-500">
           {t(CASADANA_KEYS.los_alcazares.button)}
-        </button>
+        </Button>
       </div>
     </div>
   )

@@ -15,8 +15,6 @@ import SpanishFlag from '../assets/langs/spain.png'
 export function LangSelector() {
   const { handleChangeLanguage, currentLanguage } = useLang()
 
-  console.log(currentLanguage)
-
   const availableLanguages = {
     [ACCEPTED_LANGUAGES.EN]: EnglishFlag,
     [ACCEPTED_LANGUAGES.ES]: SpanishFlag,
@@ -29,7 +27,7 @@ export function LangSelector() {
         handleChangeLanguage(value as ACCEPTED_LANGUAGES)
       }
     >
-      <SelectTrigger className="bg-transparent border-none">
+      <SelectTrigger className="bg-transparent border-none w-fit">
         <SelectValue
           placeholder={
             <>
