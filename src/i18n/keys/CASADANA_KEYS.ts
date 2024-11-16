@@ -19,7 +19,10 @@ export const CASADANA_KEYS = {
       sixth: 'casa_dana.checklist.sixth'
     },
     gallery: {
-      button: 'casa_dana.gallery.button'
+      button: {
+        more: 'casa_dana.gallery.button.more',
+        back: 'casa_dana.gallery.button.back'
+      }
     }
   },
   listing: {

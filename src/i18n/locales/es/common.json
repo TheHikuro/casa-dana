@@ -24,5 +24,6 @@
   "activities.title": "Actividades",
   "footer.description": "¡Descubre más actividades en nuestro correo de bienvenida!",
   "listing.name": "Equipamiento",
-  "casa_dana.gallery.button": "Voir plus de photos!Missing!"
+  "casa_dana.gallery.button.more": "Voir plus de photos!Missing!",
+  "casa_dana.gallery.button.back": "Revenir à la page d'accueil!Missing!"
 }

@@ -3,28 +3,7 @@ import { IoBedOutline } from 'react-icons/io5'
 import { LuBedSingle, LuSofa } from 'react-icons/lu'
 import { CarouselImg, LangSelector } from '../../../components'
 import { CASADANA_KEYS } from '../../../i18n/keys/CASADANA_KEYS'
-import {
-  Salon1,
-  Salon2,
-  Salon3,
-  Salon4,
-  Salon5,
-  Salon6,
-  Bathroom1,
-  Bathroom2,
-  Bedroom1_1,
-  Bedroom2_1,
-  Bedroom2_2,
-  Jacuzzi,
-  Kitchen1,
-  Kitchen2,
-  Solarium1,
-  Solarium2,
-  Solarium3,
-  Solarium4,
-  FrontPorch,
-  BackgroundCover
-} from '../../../assets/photos'
+import { BackgroundCover } from '../../../assets/photos'
 import {
   Fragment,
   useState,
@@ -38,42 +17,11 @@ import { Listing as Equipments } from './listing'
 import { GalleryLayout } from '../../../components/gallery-layout'
 import { cn } from '../../../../@/lib/utils.ts'
 import { Button } from '../../../components/ui/button.tsx'
+import { img, img_desktop } from '../../../utils/images.ts'
+import { useNavigate } from 'react-router-dom'
 
 export function CasaDana() {
-  const img = [
-    Salon1,
-    Salon2,
-    Salon3,
-    Salon4,
-    Salon5,
-    Salon6,
-    Bathroom1,
-    Bathroom2,
-    Bedroom1_1,
-    Bedroom2_1,
-    Bedroom2_2,
-    Kitchen1,
-    Kitchen2,
-    Solarium1,
-    Solarium2,
-    Solarium3,
-    Solarium4,
-    Jacuzzi,
-    FrontPorch
-  ]
-
-  const img_desktop = [
-    FrontPorch,
-    Salon3,
-    Solarium3,
-    Solarium1,
-    Bedroom1_1,
-    Bedroom2_1,
-    Jacuzzi,
-    Salon4,
-    Kitchen1
-  ]
-
+  const navigate = useNavigate()
   const [windowSize, setWindowSize] = useState(window.innerWidth)
 
   const handleResize = useCallback(() => setWindowSize(window.innerWidth), [])
@@ -159,8 +107,11 @@ export function CasaDana() {
         <div className="flex w-full justify-center items-center flex-col h-fit mt-10">
           <h2 className="font-medium text-xl mr-auto">Casa Dana</h2>
           <GalleryLayout img={img_desktop} />
-          <Button className="bg-yellow-400 text-black uppercase rounded-full py-3 px-2 hover:bg-yellow-500">
-            {t(CASADANA_KEYS.casa_dana.gallery.button)}
+          <Button
+            className="bg-yellow-400 text-black uppercase rounded-full py-3 px-2 hover:bg-yellow-500"
+            onClick={() => navigate('/gallery', { replace: true })}
+          >
+            {t(CASADANA_KEYS.casa_dana.gallery.button.more)}
           </Button>
         </div>
       )}

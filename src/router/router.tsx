@@ -3,6 +3,7 @@ import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
 import { HomeSkeleton } from '../components'
 
 const Home = lazy(() => import('../pages/home/Home'))
+const GalleryPage = lazy(() => import('../pages/gallery/GalleryPage'))
 
 interface ProtectedRouteProps extends PropsWithChildren {
   redirect: string
@@ -42,6 +43,7 @@ export function Router() {
         }
       >
         <Route path="/" element={<Home />} />
+        <Route path="gallery" element={<GalleryPage />} />
       </Route>
     </Routes>
   )
