@@ -70,7 +70,8 @@ export function CasaDana() {
     Bedroom1_1,
     Bedroom2_1,
     Jacuzzi,
-    Salon4
+    Salon4,
+    Kitchen1
   ]
 
   const [windowSize, setWindowSize] = useState(window.innerWidth)
@@ -158,6 +159,9 @@ export function CasaDana() {
         <div className="flex w-full justify-center items-center flex-col h-fit mt-10">
           <h2 className="font-medium text-xl mr-auto">Casa Dana</h2>
           <GalleryLayout img={img_desktop} />
+          <Button className="bg-yellow-400 text-black uppercase rounded-full py-3 px-2 hover:bg-yellow-500">
+            {t(CASADANA_KEYS.casa_dana.gallery.button)}
+          </Button>
         </div>
       )}
     </Fragment>
