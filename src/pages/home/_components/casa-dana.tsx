@@ -100,36 +100,38 @@ export function CasaDana() {
           className="absolute top-10 hidden sm:block sm:aspect-square lg:h-32 lg:w-32 sm:h-20 sm:w-20"
           alt="logo"
         />
-        <div className="relative sm:w-2/3 sm:space-y-5">
-          <div className="relative">
-            <span className="font-medium text-xl sm:text-4xl">
-              {t(CASADANA_KEYS.casa_dana.full_name)}
-            </span>
-          </div>
-          <div className="space-y-5 sm:space-y-0 sm:flex-col-reverse sm:flex relative sm:justify-center sm:w-2/3">
-            <div className="flex justify-around text-center space-x-2 mt-5 sm:justify-start">
-              <Listing name={CASADANA_KEYS.casa_dana.listing.bedroom.first}>
-                <IoBedOutline className="w-7 h-7 sm:w-12 sm:h-12" />
-              </Listing>
-              <Listing name={CASADANA_KEYS.casa_dana.listing.bedroom.second}>
-                <div className="flex justify-center items-center">
-                  <LuBedSingle className="w-7 h-7 sm:w-12 sm:h-12" />
-                  <LuBedSingle className="w-7 h-7 sm:w-12 sm:h-12" />
-                </div>
-              </Listing>
-              <Listing name={CASADANA_KEYS.casa_dana.listing.living_room}>
-                <LuSofa className="w-7 h-7 sm:w-12 sm:h-12" />
-              </Listing>
-            </div>
-            <div className="w-full sm:w-2/3">
-              <span className="text-justify w-full flex sm:text-lg sm:mx-auto">
-                {t(CASADANA_KEYS.casa_dana.description)}
+        <div className="flex justify-evenly flex-col sm:flex-row">
+          <div className="relative sm:space-y-5 flex justify-center flex-col items-center sm:mt-20">
+            <div className="relative">
+              <span className="font-medium text-xl sm:text-4xl">
+                {t(CASADANA_KEYS.casa_dana.full_name)}
               </span>
             </div>
+            <div className="space-y-5 sm:space-y-0 sm:flex-col-reverse sm:flex relative sm:justify-center sm:w-2/3">
+              <div className="flex justify-around text-center space-x-2 mt-5 sm:justify-start">
+                <Listing name={CASADANA_KEYS.casa_dana.listing.bedroom.first}>
+                  <IoBedOutline className="w-7 h-7 sm:w-12 sm:h-12" />
+                </Listing>
+                <Listing name={CASADANA_KEYS.casa_dana.listing.bedroom.second}>
+                  <div className="flex justify-center items-center">
+                    <LuBedSingle className="w-7 h-7 sm:w-12 sm:h-12" />
+                    <LuBedSingle className="w-7 h-7 sm:w-12 sm:h-12" />
+                  </div>
+                </Listing>
+                <Listing name={CASADANA_KEYS.casa_dana.listing.living_room}>
+                  <LuSofa className="w-7 h-7 sm:w-12 sm:h-12" />
+                </Listing>
+              </div>
+              <div className="w-full ">
+                <span className="text-justify w-full flex sm:text-lg sm:mx-auto">
+                  {t(CASADANA_KEYS.casa_dana.description)}
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="relative sm:w-1/3">
-          <Checklist />
+          <div className="relative flex justify-center items-center w-full sm:mt-20">
+            <Checklist />
+          </div>
         </div>
       </div>
       <div className="mt-5">
