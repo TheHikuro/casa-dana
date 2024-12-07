@@ -4,7 +4,7 @@ import { Loz1, Loz2, Loz3, Loz4, Loz5 } from '../../../assets/photos'
 import { Button } from '../../../components/ui/button.tsx'
 
 export function LosAlcazares() {
-  const img = [Loz1, Loz2, Loz3, Loz4, Loz5]
+  const img = [Loz5, Loz1, Loz2, Loz3, Loz4]
   return (
     <div className="space-y-3">
       <h2 className="text-xl font-medium">Los Alcazares</h2>
