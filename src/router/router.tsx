@@ -4,7 +4,7 @@ import { HomeSkeleton } from '../components'
 
 const Home = lazy(() => import('../pages/home/Home'))
 const GalleryPage = lazy(() => import('../pages/gallery/GalleryPage'))
-
+const ContactPage = lazy(() => import('../pages/contact/ContactPage'))
 interface ProtectedRouteProps extends PropsWithChildren {
   redirect: string
   condition: boolean
@@ -44,6 +44,7 @@ export function Router() {
       >
         <Route path="/" element={<Home />} />
         <Route path="gallery" element={<GalleryPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Route>
     </Routes>
   )
