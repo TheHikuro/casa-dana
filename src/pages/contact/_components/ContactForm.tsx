@@ -18,32 +18,31 @@ export function ContactForm() {
   }
 
   return (
-    <form
-      className="grid grid-cols-2 gap-2 w-3/4"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <Input
-        placeholder="Firstname"
-        className="rounded-full"
-        {...register('firstName')}
-      />
-      <Input
-        placeholder="Last Name"
-        className="rounded-full"
-        {...register('lastName')}
-      />
-      <Input
-        placeholder="Email"
-        className="rounded-full"
-        {...register('email')}
-      />
-      <Input
-        type="phone"
-        placeholder="Phone"
-        className="rounded-full"
-        {...register('phone')}
-      />
-      <Button className="rounded-full col-span-2">Submit</Button>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-10 w-3/4">
+      <div className="grid grid-cols-2 gap-2">
+        <Input
+          placeholder="Firstname"
+          className="rounded-full"
+          {...register('firstName')}
+        />
+        <Input
+          placeholder="Last Name"
+          className="rounded-full"
+          {...register('lastName')}
+        />
+        <Input
+          placeholder="Email"
+          className="rounded-full"
+          {...register('email')}
+        />
+        <Input
+          type="phone"
+          placeholder="Phone"
+          className="rounded-full"
+          {...register('phone')}
+        />
+      </div>
+      <Button className="rounded-full col-span-2 w-full">Submit</Button>
     </form>
   )
 }

@@ -1,11 +1,12 @@
 import Fresque from '../../assets/fresques/fresque.png'
 import Logo from '../../assets/logo/logo_header.png'
+import { Footer } from '../../components'
 import { ContactCalendar, ContactForm } from './_components'
 
 export default function ContactPage() {
   return (
-    <div className="flex flex-col">
-      <div className="w-full h-80 relative flex justify-center">
+    <div className="flex flex-col h-dvh">
+      <div className="w-full h-56 relative flex justify-center">
         <img
           src={Fresque}
           alt={'casa_dana_fresque'}
@@ -25,6 +26,7 @@ export default function ContactPage() {
           <ContactCalendar />
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

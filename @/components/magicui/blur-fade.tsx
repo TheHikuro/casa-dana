@@ -39,6 +39,8 @@ export default function BlurFade({
   blur = '6px'
 }: BlurFadeProps) {
   const ref = useRef(null)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const inViewResult = useInView(ref, { once: true, margin: inViewMargin })
   const isInView = !inView || inViewResult
   const defaultVariants: Variants = {
@@ -59,6 +61,8 @@ export default function BlurFade({
           duration,
           ease: 'easeOut'
         }}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         className={className}
       >
         {children}

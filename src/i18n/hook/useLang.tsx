@@ -9,7 +9,6 @@ export function useLang() {
     ACCEPTED_LANGUAGES.FR
 
   const handleChangeLanguage = useCallback((lang: ACCEPTED_LANGUAGES) => {
-    console.log('lang', lang)
     i18next.changeLanguage(lang).then(() => {
       localStorage.setItem('selectedLanguage', lang)
       window.location.reload()
