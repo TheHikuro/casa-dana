@@ -43,7 +43,7 @@ export function Router() {
         }
       >
         <Route path="/" element={<Home />} />
-        <Route path="gallery" element={<GalleryPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Route>
     </Routes>

@@ -56,7 +56,10 @@ export function CasaDana() {
             <div className="flex justify-end">
               <LangSelector />
             </div>
-            <Button className="bg-yellow-400 text-black uppercase rounded-full py-3 px-2 hover:bg-yellow-500">
+            <Button
+              className="bg-yellow-400 text-black uppercase rounded-full py-3 px-2 hover:bg-yellow-500"
+              onClick={() => navigate('/contact')}
+            >
               {t(CASADANA_KEYS.los_alcazares.button)}
             </Button>
           </div>
