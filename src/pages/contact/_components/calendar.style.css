@@ -1,0 +1,73 @@
+.react-calendar {
+  background-color: white;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb; /* Tailwind's gray-300 */
+}
+
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.react-calendar__navigation button {
+  color: #6b7280; /* Tailwind's gray-600 */
+  font-size: 1.25rem; /* Tailwind's text-xl */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.react-calendar__tile {
+  border-radius: 0.375rem;
+  text-align: center;
+  padding: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.react-calendar__tile:hover {
+  background-color: #f3f4f6; /* Tailwind's gray-100 */
+}
+
+/* Highlight the active (selected) date */
+.react-calendar__tile--active {
+  background-color: #2563eb; /* Tailwind's blue-500 */
+  color: #28ff26; /* Custom green color for the text */
+  border-radius: 0.375rem;
+}
+
+/* Highlight tiles while selecting the range */
+.react-calendar__tile--hover {
+  background-color: #facc15; /* Tailwind's yellow-400 */
+  color: white;
+  border-radius: 0.375rem; /* Makes the tile circular */
+  transition: background-color 0.3s;
+}
+
+/* Start of the range */
+.react-calendar__tile--rangeStart {
+  background-color: #fbbf24; /* Tailwind's yellow-500 */
+  color: white;
+  border-radius: 0.375rem;
+}
+
+/* End of the range */
+.react-calendar__tile--rangeEnd {
+  background-color: #fbbf24; /* Tailwind's yellow-500 */
+  color: white;
+  border-radius: 0.375rem;
+}
+
+/* Dates between start and end of range */
+.react-calendar__tile--range {
+  background-color: #fde68a; /* Tailwind's yellow-300 */
+  color: #78350f; /* Tailwind's amber-900 */
+}
+
+/* Hover effect for range tiles */
+.react-calendar__tile--range:hover {
+  background-color: #facc15; /* Tailwind's yellow-400 */
+  color: #78350f; /* Tailwind's amber-900 */
+}
