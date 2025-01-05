@@ -1,28 +1,44 @@
 import Calendar from 'react-calendar'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useLang } from '../../../i18n/hook/useLang'
 import './calendar.style.css'
 import { cn } from '../../../../@/lib/utils'
+import { useGetReservations } from '../../../utils/hooks'
 
 type ValuePiece = Date | null
 
 type Value = ValuePiece | [ValuePiece, ValuePiece]
 
-const reservedRanges = [
-  { start: new Date(2025, 0, 24), end: new Date(2025, 1, 2) }
-]
-
 export function ContactCalendar() {
   const { currentLanguage } = useLang()
   const [value, onChange] = useState<Value | null>(null)
 
+  const { reservations } = useGetReservations()
+
+  const normalizeDate = (date: Date) => {
+    const normalized = new Date(date)
+    normalized.setHours(0, 0, 0, 0)
+    return normalized
+  }
+
+  const reservedRanges = useMemo(() => {
+    return (
+      reservations?.map(({ start, end }) => ({
+        start: normalizeDate(new Date(start)),
+        end: normalizeDate(new Date(end))
+      })) || []
+    )
+  }, [reservations])
+
   const isDateInReservedRange = (date: Date) => {
-    return reservedRanges.some(({ start, end }) => date >= start && date <= end)
+    const normalizedDate = normalizeDate(date)
+    return reservedRanges.some(
+      ({ start, end }) => normalizedDate >= start && normalizedDate <= end
+    )
   }
 
   const anteriorFromTodayOrReserved = (date: Date, view: string) => {
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
+    const today = normalizeDate(new Date())
 
     const isReserved = isDateInReservedRange(date)
 
@@ -49,7 +65,9 @@ export function ContactCalendar() {
     <Calendar
       onChange={onChange}
       value={value}
-      tileDisabled={({ date, view }) => anteriorFromTodayOrReserved(date, view)}
+      tileDisabled={({ date, view }) =>
+        anteriorFromTodayOrReserved(date, view) ?? false
+      }
       locale={currentLanguage}
       selectRange={!!value}
       minDate={new Date()}
