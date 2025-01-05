@@ -71,3 +71,35 @@
   background-color: #facc15; /* Tailwind's yellow-400 */
   color: #78350f; /* Tailwind's amber-900 */
 }
+
+/* Disabled tiles */
+.disabled-tile {
+  background-color: #e5e7eb; /* Tailwind's gray-200 */
+  color: #9ca3af; /* Tailwind's gray-400 */
+  cursor: not-allowed;
+}
+
+.disabled-tile:hover {
+  background-color: #e5e7eb; /* Prevent hover effect for disabled tiles */
+  cursor: not-allowed;
+}
+
+/* Target disabled buttons */
+.react-calendar__tile:disabled {
+  background-color: #e5e7eb; /* Tailwind's gray-200 */
+  color: #9ca3af; /* Tailwind's gray-400 */
+  cursor: not-allowed;
+}
+
+/* Prevent hover effect for disabled tiles */
+.react-calendar__tile:disabled:hover {
+  background-color: #e5e7eb; /* Same as disabled background */
+  cursor: not-allowed;
+}
+
+/* Optional: Specific styling for decade view (if needed) */
+.react-calendar__decade-view__years__year:disabled {
+  background-color: #e5e7eb; /* Tailwind's gray-200 */
+  color: #9ca3af; /* Tailwind's gray-400 */
+  cursor: not-allowed;
+}

@@ -25,5 +25,10 @@
   "footer.description": "Discover more activities in our welcome email!",
   "listing.name": "Amenities",
   "casa_dana.gallery.button.more": "Voir plus de photos!Missing!",
-  "casa_dana.gallery.button.back": "Revenir à la page d'accueil!Missing!"
+  "casa_dana.gallery.button.back": "Revenir à la page d'accueil!Missing!",
+  "reservation.form.email": "Email",
+  "reservation.form.first_name": "First Name",
+  "reservation.form.last_name": "Last Name",
+  "reservation.form.phone": "Phone",
+  "reservation.form.submit": "Send"
 }

@@ -25,5 +25,10 @@
   "footer.description": "¡Descubre más actividades en nuestro correo de bienvenida!",
   "listing.name": "Equipamiento",
   "casa_dana.gallery.button.more": "Voir plus de photos!Missing!",
-  "casa_dana.gallery.button.back": "Revenir à la page d'accueil!Missing!"
+  "casa_dana.gallery.button.back": "Revenir à la page d'accueil!Missing!",
+  "reservation.form.email": "Email!Missing!",
+  "reservation.form.first_name": "Prénom!Missing!",
+  "reservation.form.last_name": "Nom!Missing!",
+  "reservation.form.phone": "Téléphone!Missing!",
+  "reservation.form.submit": "Envoyer!Missing!"
 }

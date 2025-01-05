@@ -1,8 +1,24 @@
 export const CASADANA_KEYS = {
+  activities: {
+    title: 'activities.title'
+  },
   casa_dana: {
-    title: 'casa_dana.title',
-    full_name: 'casa_dana.full_name',
+    checklist: {
+      fifth: 'casa_dana.checklist.fifth',
+      first: 'casa_dana.checklist.first',
+      fourth: 'casa_dana.checklist.fourth',
+      second: 'casa_dana.checklist.second',
+      sixth: 'casa_dana.checklist.sixth',
+      third: 'casa_dana.checklist.third'
+    },
     description: 'casa_dana.description',
+    full_name: 'casa_dana.full_name',
+    gallery: {
+      button: {
+        back: 'casa_dana.gallery.button.back',
+        more: 'casa_dana.gallery.button.more'
+      }
+    },
     listing: {
       bedroom: {
         first: 'casa_dana.listing.bedroom.first',
@@ -10,40 +26,33 @@ export const CASADANA_KEYS = {
       },
       living_room: 'casa_dana.listing.living_room'
     },
-    checklist: {
-      first: 'casa_dana.checklist.first',
-      second: 'casa_dana.checklist.second',
-      third: 'casa_dana.checklist.third',
-      fourth: 'casa_dana.checklist.fourth',
-      fifth: 'casa_dana.checklist.fifth',
-      sixth: 'casa_dana.checklist.sixth'
-    },
-    gallery: {
-      button: {
-        more: 'casa_dana.gallery.button.more',
-        back: 'casa_dana.gallery.button.back'
-      }
-    }
-  },
-  listing: {
-    name: 'listing.name',
-    jacuzzi: 'listing.jacuzzi',
-    wifi: 'listing.wifi',
-    bbq: 'listing.bbq',
-    clim: 'listing.clim',
-    solarium: 'listing.solarium',
-    parking: 'listing.parking',
-    fournitures: 'listing.fournitures',
-    beach: 'listing.beach'
-  },
-  los_alcazares: {
-    description: 'los_alcazares.description',
-    button: 'los_alcazares.button'
-  },
-  activities: {
-    title: 'activities.title'
+    title: 'casa_dana.title'
   },
   footer: {
     description: 'footer.description'
+  },
+  listing: {
+    bbq: 'listing.bbq',
+    beach: 'listing.beach',
+    clim: 'listing.clim',
+    fournitures: 'listing.fournitures',
+    jacuzzi: 'listing.jacuzzi',
+    name: 'listing.name',
+    parking: 'listing.parking',
+    solarium: 'listing.solarium',
+    wifi: 'listing.wifi'
+  },
+  los_alcazares: {
+    button: 'los_alcazares.button',
+    description: 'los_alcazares.description'
+  },
+  reservation: {
+    form: {
+      email: 'reservation.form.email',
+      first_name: 'reservation.form.first_name',
+      last_name: 'reservation.form.last_name',
+      phone: 'reservation.form.phone',
+      submit: 'reservation.form.submit'
+    }
   }
 }
