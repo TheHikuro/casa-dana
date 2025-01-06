@@ -1,19 +1,20 @@
 import Calendar from 'react-calendar'
-import { useMemo, useState } from 'react'
+import { useMemo, useCallback, useState } from 'react'
 import { useLang } from '../../../i18n/hook/useLang'
 import './calendar.style.css'
 import { cn } from '../../../../@/lib/utils'
 import { useGetReservations } from '../../../utils/hooks'
+import { useSelectedDatesStore } from '../utils/useGetSelectedDates.tsx'
 
 type ValuePiece = Date | null
-
 type Value = ValuePiece | [ValuePiece, ValuePiece]
 
 export function ContactCalendar() {
   const { currentLanguage } = useLang()
-  const [value, onChange] = useState<Value | null>(null)
-
+  const [value, setValue] = useState<Value | null>(null)
   const { reservations } = useGetReservations()
+
+  const { setStartDate, setEndDate, setPrice } = useSelectedDatesStore()
 
   const normalizeDate = (date: Date) => {
     const normalized = new Date(date)
@@ -21,70 +22,138 @@ export function ContactCalendar() {
     return normalized
   }
 
-  const reservedRanges = useMemo(() => {
-    return (
+  const reservedRanges = useMemo(
+    () =>
       reservations?.map(({ start, end }) => ({
         start: normalizeDate(new Date(start)),
         end: normalizeDate(new Date(end))
-      })) || []
-    )
-  }, [reservations])
+      })) || [],
+    [reservations]
+  )
 
-  const isDateInReservedRange = (date: Date) => {
-    const normalizedDate = normalizeDate(date)
-    return reservedRanges.some(
-      ({ start, end }) => normalizedDate >= start && normalizedDate <= end
-    )
+  const isDateInReservedRange = useCallback(
+    (date: Date) => {
+      const normalizedDate = normalizeDate(date)
+      return reservedRanges.some(
+        ({ start, end }) => normalizedDate >= start && normalizedDate <= end
+      )
+    },
+    [reservedRanges]
+  )
+
+  const calculatePrice = (
+    startDate: Date,
+    endDate: Date,
+    price: number = 45 // FIXME: Hardcoded price change when price is implemented in supabase db
+  ) => {
+    const dayCount =
+      Math.ceil(
+        (normalizeDate(endDate).getTime() -
+          normalizeDate(startDate).getTime()) /
+          (1000 * 60 * 60 * 24)
+      ) + 1
+    return dayCount * price
   }
 
-  const anteriorFromTodayOrReserved = (date: Date, view: string) => {
-    const today = normalizeDate(new Date())
+  const reservationsStatusPerDates = useMemo(() => {
+    const statusMap: { [key: string]: boolean } = {}
+    reservations?.forEach(({ start, end, status }) => {
+      const currentDate = new Date(start)
+      const endDate = new Date(end)
+      while (currentDate <= endDate) {
+        statusMap[currentDate.toDateString()] = status
+        currentDate.setDate(currentDate.getDate() + 1)
+      }
+    })
+    return statusMap
+  }, [reservations])
 
-    const isReserved = isDateInReservedRange(date)
+  const handleDateSelection = (selectedValue: Value) => {
+    if (!selectedValue) {
+      setStartDate('')
+      setEndDate('')
+      setPrice(0)
+      return
+    }
 
-    switch (view) {
-      case 'month': {
-        return date < today || isReserved
-      }
-      case 'year': {
-        if (date.getFullYear() < today.getFullYear()) return true
-        return (
-          date.getFullYear() === today.getFullYear() &&
-          date.getMonth() < today.getMonth()
-        )
-      }
-      case 'decade': {
-        return date.getFullYear() < today.getFullYear()
-      }
-      default:
-        return false
+    setValue(selectedValue)
+
+    if (Array.isArray(selectedValue)) {
+      const [startDate, endDate] = selectedValue
+      const price = calculatePrice(startDate!, endDate!)
+      setStartDate(startDate!.toLocaleDateString(currentLanguage))
+      setEndDate(endDate!.toLocaleDateString(currentLanguage))
+      setPrice(price)
+    } else {
+      setStartDate(selectedValue.toDateString())
+      setEndDate('')
+      setPrice(45)
     }
   }
 
   return (
     <Calendar
-      onChange={onChange}
+      onChange={handleDateSelection}
       value={value}
-      tileDisabled={({ date, view }) =>
-        anteriorFromTodayOrReserved(date, view) ?? false
+      tileDisabled={({ date }) =>
+        isDateInReservedRange(date) || date < new Date()
       }
       locale={currentLanguage}
-      selectRange={!!value}
+      selectRange
       minDate={new Date()}
       prev2Label={null}
       next2Label={null}
+      nextLabel={
+        <div className="text-yellow-500 w-20 shadow-md rounded-md border hover:bg-yellow-300">
+          {'>'}
+        </div>
+      }
+      prevLabel={
+        <div className="text-yellow-500 w-20 shadow-md rounded-md border hover:bg-yellow-300">
+          {'<'}
+        </div>
+      }
       className="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-lg w-2/3"
       tileClassName={({ date, view }) =>
         cn(`
-          ${view === 'month' && date.toDateString() === new Date().toDateString() ? 'bg-blue-500 text-white' : ''}
-          ${
-            view === 'month' && anteriorFromTodayOrReserved(date, view)
-              ? 'disabled-tile'
-              : ''
-          }
-          rounded-lg my-0.5 mx-2
-        `)
+        ${
+          view === 'month' &&
+          date.toDateString() === new Date().toDateString() &&
+          'bg-blue-500 text-white'
+        }
+        ${view === 'month' && isDateInReservedRange(date) && 'disabled-tile'}
+        rounded-lg my-0.5 shadow-sm
+      `)
       }
+      tileContent={({ date }) => {
+        const weekday = date.toLocaleDateString(currentLanguage, {
+          weekday: 'short'
+        })
+
+        return (
+          <div>
+            <div className="text-[0.5rem] text-gray-500">{weekday}</div>
+            {isDateInReservedRange(date) ? (
+              <div
+                className={cn(
+                  `text-[0.5rem] italic ${
+                    reservationsStatusPerDates[date.toDateString()]
+                      ? 'text-red-500'
+                      : 'text-orange-500'
+                  }`
+                )}
+              >
+                {reservationsStatusPerDates[date.toDateString()]
+                  ? 'Reserved'
+                  : 'Pending'}
+              </div>
+            ) : (
+              <div className="text-[0.5rem] italic">45€</div>
+            )}
+          </div>
+        )
+      }}
+      showNeighboringMonth={false}
     />
   )
 }
