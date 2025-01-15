@@ -12,6 +12,9 @@ type ContactFormType = {
   email: string
   phone: string
   description: string
+  start: string
+  end: string
+  price: number
 }
 
 export function ContactForm() {
@@ -21,7 +24,7 @@ export function ContactForm() {
   const { register, handleSubmit } = methods
 
   const onSubmit = (data: ContactFormType) => {
-    console.log(data)
+    console.log(data, selectedDates)
   }
 
   return (

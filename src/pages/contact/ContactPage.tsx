@@ -8,7 +8,7 @@ export default function ContactPage() {
   const navigate = useNavigate()
   return (
     <div className="flex flex-col h-dvh">
-      <div className="w-full h-56 relative flex justify-center z-0">
+      <div className="w-full h-56 relative sm:flex justify-center z-0 hidden ">
         <img
           src={Fresque}
           alt={'casa_dana_fresque'}
@@ -21,11 +21,11 @@ export default function ContactPage() {
           onClick={() => navigate('/')}
         />
       </div>
-      <div className="h-full flex">
-        <div className="w-1/2 flex justify-center items-center">
+      <div className="h-full flex flex-col-reverse sm:flex-row">
+        <div className="sm:w-1/2 z-10 w-full flex justify-center items-center">
           <ContactForm />
         </div>
-        <div className="w-1/2 flex justify-center items-center z-10">
+        <div className="sm:w-1/2 w-full flex justify-center items-center z-10">
           <ContactCalendar />
         </div>
       </div>

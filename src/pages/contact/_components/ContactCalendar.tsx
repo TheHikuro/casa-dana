@@ -44,7 +44,7 @@ export function ContactCalendar() {
   const calculatePrice = (
     startDate: Date,
     endDate: Date,
-    price: number = 45 // FIXME: Hardcoded price change when price is implemented in supabase db
+    price: number = 88 // FIXME: Hardcoded price change when price is implemented in supabase db
   ) => {
     const dayCount =
       Math.ceil(
@@ -148,7 +148,7 @@ export function ContactCalendar() {
                   : 'Pending'}
               </div>
             ) : (
-              <div className="text-[0.5rem] italic">45€</div>
+              <div className="text-[0.5rem] italic">88€</div>
             )}
           </div>
         )
