@@ -6,6 +6,8 @@ import { cn } from '../../../../@/lib/utils'
 import { useGetReservations } from '../../../utils/hooks'
 import { useSelectedDatesStore } from '../utils/useGetSelectedDates.tsx'
 import { normalizeDate } from '../utils/calendar.utils.ts'
+import { CASADANA_KEYS } from '../../../i18n/keys/CASADANA_KEYS.ts'
+import { useTranslation } from 'react-i18next'
 
 type ValuePiece = Date | null
 type Value = ValuePiece | [ValuePiece, ValuePiece]
@@ -14,6 +16,7 @@ export function ContactCalendar() {
   const { currentLanguage } = useLang()
   const [value, setValue] = useState<Value | null>(null)
   const { reservations } = useGetReservations()
+  const { t } = useTranslation()
 
   const { setStartDate, setEndDate, setPrice } = useSelectedDatesStore()
 
@@ -139,8 +142,8 @@ export function ContactCalendar() {
                 )}
               >
                 {reservationsStatusPerDates[date.toDateString()]
-                  ? 'Reserved'
-                  : 'Pending'}
+                  ? t(CASADANA_KEYS.calendar.reservation.reserved)
+                  : t(CASADANA_KEYS.calendar.reservation.pending)}
               </div>
             ) : (
               <div className="text-[0.5rem] italic">88€</div>

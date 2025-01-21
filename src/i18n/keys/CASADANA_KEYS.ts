@@ -2,6 +2,12 @@ export const CASADANA_KEYS = {
   activities: {
     title: 'activities.title'
   },
+  calendar: {
+    reservation: {
+      pending: 'calendar.reservation.pending',
+      reserved: 'calendar.reservation.reserved'
+    }
+  },
   casa_dana: {
     checklist: {
       fifth: 'casa_dana.checklist.fifth',
