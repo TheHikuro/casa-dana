@@ -5,26 +5,55 @@ import { useTranslation } from 'react-i18next'
 import { CASADANA_KEYS } from '../../../i18n/keys/CASADANA_KEYS.ts'
 import { Textarea } from '../../../components/ui/textarea.tsx'
 import { useSelectedDatesStore } from '../utils/useGetSelectedDates.tsx'
+import { useGetReservations, usePostSelectedDates } from '../../../utils/hooks'
+import { useToaster } from '../../../utils/providers/toaster.provider.tsx'
+import { formatToDate } from '../utils/calendar.utils.ts'
 
-type ContactFormType = {
-  firstName: string
-  lastName: string
+export type ContactFormType = {
+  firstname: string
+  lastname: string
   email: string
   phone: string
   description: string
-  start: string
-  end: string
+  start: Date
+  end: Date
   price: number
 }
 
 export function ContactForm() {
   const methods = useForm<ContactFormType>()
   const { t } = useTranslation()
-  const { selectedDates } = useSelectedDatesStore()
-  const { register, handleSubmit } = methods
+  const { selectedDates, reset: resetSelectionDate } = useSelectedDatesStore()
+  const { mutate: createReservation } = usePostSelectedDates()
+  const { refetch } = useGetReservations()
+  const toast = useToaster()
+  const { register, handleSubmit, reset } = methods
 
   const onSubmit = (data: ContactFormType) => {
-    console.log(data, selectedDates)
+    createReservation(
+      {
+        ...data,
+        start: formatToDate(selectedDates.startDate),
+        end: formatToDate(selectedDates.endDate)
+      },
+      {
+        onSuccess: () => {
+          toast?.success(
+            t(CASADANA_KEYS.reservation.toaster.success, {
+              startDate: selectedDates.startDate,
+              endDate: selectedDates.endDate
+            })
+          )
+          refetch().then(() => {
+            reset()
+            resetSelectionDate()
+          })
+        },
+        onError: (error) => {
+          toast?.error(error.message)
+        }
+      }
+    )
   }
 
   return (
@@ -33,12 +62,12 @@ export function ContactForm() {
         <Input
           placeholder={t(CASADANA_KEYS.reservation.form.first_name)}
           className="rounded-full"
-          {...register('firstName')}
+          {...register('firstname')}
         />
         <Input
           placeholder={t(CASADANA_KEYS.reservation.form.last_name)}
           className="rounded-full"
-          {...register('lastName')}
+          {...register('lastname')}
         />
         <Input
           placeholder={t(CASADANA_KEYS.reservation.form.email)}

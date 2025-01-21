@@ -30,5 +30,6 @@
   "reservation.form.first_name": "Prénom!Missing!",
   "reservation.form.last_name": "Nom!Missing!",
   "reservation.form.phone": "Téléphone!Missing!",
-  "reservation.form.submit": "Envoyer!Missing!"
+  "reservation.form.submit": "Envoyer!Missing!",
+  "reservation.toaster.success": "Votre réservation du {startDate} au {endDate} a bien été prise en compte!Missing!"
 }

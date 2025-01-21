@@ -5,7 +5,8 @@ export function useGetReservations() {
   const {
     data: reservations,
     error,
-    status
+    status,
+    refetch
   } = useQuery({
     queryKey: ['reservations'],
     queryFn: async () => {
@@ -17,5 +18,5 @@ export function useGetReservations() {
     refetchOnWindowFocus: true
   })
 
-  return { reservations, error, status }
+  return { reservations, error, status, refetch }
 }

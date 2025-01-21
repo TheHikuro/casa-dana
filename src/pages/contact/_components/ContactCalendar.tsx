@@ -5,6 +5,7 @@ import './calendar.style.css'
 import { cn } from '../../../../@/lib/utils'
 import { useGetReservations } from '../../../utils/hooks'
 import { useSelectedDatesStore } from '../utils/useGetSelectedDates.tsx'
+import { normalizeDate } from '../utils/calendar.utils.ts'
 
 type ValuePiece = Date | null
 type Value = ValuePiece | [ValuePiece, ValuePiece]
@@ -16,15 +17,9 @@ export function ContactCalendar() {
 
   const { setStartDate, setEndDate, setPrice } = useSelectedDatesStore()
 
-  const normalizeDate = (date: Date) => {
-    const normalized = new Date(date)
-    normalized.setHours(0, 0, 0, 0)
-    return normalized
-  }
-
   const reservedRanges = useMemo(
     () =>
-      reservations?.map(({ start, end }) => ({
+      reservations?.map(({ start, end }: { start: string; end: string }) => ({
         start: normalizeDate(new Date(start)),
         end: normalizeDate(new Date(end))
       })) || [],

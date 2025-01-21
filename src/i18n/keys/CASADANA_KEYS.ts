@@ -53,6 +53,9 @@ export const CASADANA_KEYS = {
       last_name: 'reservation.form.last_name',
       phone: 'reservation.form.phone',
       submit: 'reservation.form.submit'
+    },
+    toaster: {
+      success: 'reservation.toaster.success'
     }
   }
 }

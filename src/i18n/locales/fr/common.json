@@ -30,5 +30,6 @@
   "reservation.form.first_name": "Prénom",
   "reservation.form.last_name": "Nom",
   "reservation.form.phone": "Téléphone",
-  "reservation.form.submit": "Envoyer"
+  "reservation.form.submit": "Envoyer",
+  "reservation.toaster.success": "Votre réservation du {startDate} au {endDate} a bien été prise en compte"
 }

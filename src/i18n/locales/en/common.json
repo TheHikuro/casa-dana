@@ -30,5 +30,6 @@
   "reservation.form.first_name": "First Name",
   "reservation.form.last_name": "Last Name",
   "reservation.form.phone": "Phone",
-  "reservation.form.submit": "Send"
+  "reservation.form.submit": "Send",
+  "reservation.toaster.success": "Your reservation from {startDate} to {endDate} has been sent to the host"
 }
