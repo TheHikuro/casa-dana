@@ -10,7 +10,7 @@ import { useToaster } from '../../../utils/providers/toaster.provider.tsx'
 import { formatToDate, normalizeDate } from '../utils/calendar.utils.ts'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getContactSchema } from '../utils/contact.schema.ts'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 export type ContactFormType = {
   firstname: string
@@ -30,6 +30,8 @@ export function ContactForm() {
   const { refetch } = useGetReservations()
   const toast = useToaster()
   const contactSchema = getContactSchema(t)
+
+  const [cooldown, setCooldown] = useState(0)
 
   const methods = useForm<ContactFormType>({
     resolver: zodResolver(contactSchema)
@@ -52,14 +54,27 @@ export function ContactForm() {
       (normalizedEndDate.getTime() - normalizedStartDate.getTime()) /
       (24 * 60 * 60 * 1000)
 
-    console.log('Difference in Days:', differenceInDays)
-
-    return differenceInDays <= 7
+    return differenceInDays < 7
   }, [selectedDates.endDate, selectedDates.startDate])
 
-  const isBtnDisabled = !isLessThan7Days()
+  const isBtnDisabled = useMemo(() => {
+    return cooldown > 0 || isLessThan7Days()
+  }, [cooldown, isLessThan7Days])
 
-  console.log('isBtnDisabled', isBtnDisabled)
+  const startCooldown = () => {
+    setCooldown(60)
+  }
+
+  // Countdown logic
+  useEffect(() => {
+    if (cooldown > 0) {
+      const timer = setInterval(() => {
+        setCooldown((prev) => prev - 1)
+      }, 1000)
+
+      return () => clearInterval(timer)
+    }
+  }, [cooldown])
 
   const onSubmit = (data: ContactFormType) => {
     createReservation(
@@ -80,6 +95,7 @@ export function ContactForm() {
             reset()
             resetSelectionDate()
           })
+          startCooldown() // Start the cooldown timer after submission
         },
         onError: (error) => {
           toast?.error(error.message)
@@ -138,7 +154,9 @@ export function ContactForm() {
         className="rounded-full col-span-2 w-full"
         disabled={isBtnDisabled}
       >
-        {t(CASADANA_KEYS.reservation.form.submit)}
+        {cooldown > 0
+          ? `${cooldown} s`
+          : t(CASADANA_KEYS.reservation.form.submit)}
       </Button>
     </form>
   )
