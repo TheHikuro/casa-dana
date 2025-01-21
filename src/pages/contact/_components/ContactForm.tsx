@@ -65,7 +65,6 @@ export function ContactForm() {
     setCooldown(60)
   }
 
-  // Countdown logic
   useEffect(() => {
     if (cooldown > 0) {
       const timer = setInterval(() => {
@@ -95,7 +94,7 @@ export function ContactForm() {
             reset()
             resetSelectionDate()
           })
-          startCooldown() // Start the cooldown timer after submission
+          startCooldown()
         },
         onError: (error) => {
           toast?.error(error.message)
@@ -132,8 +131,9 @@ export function ContactForm() {
           placeholder={t(
             CASADANA_KEYS.reservation.form.placeholder.description
           )}
-          className="rounded-lg col-span-2"
+          className="rounded-lg col-span-2 max-h-80"
           {...register('description')}
+          maxLength={250}
         />
 
         <div className="col-span-2 flex justify-between items-center space-x-2 text-sm text-gray-500">

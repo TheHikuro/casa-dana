@@ -2,7 +2,7 @@ import * as z from 'zod'
 import { CASADANA_KEYS } from '../../../i18n/keys/CASADANA_KEYS.ts'
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-const phoneRegex = /^\+\d{10}$/
+const phoneRegex = /^\+\d{10,}$/
 
 export const getContactSchema = (t: (key: string) => string) => {
   return z.object({
