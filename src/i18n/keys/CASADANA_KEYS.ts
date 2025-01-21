@@ -56,6 +56,10 @@ export const CASADANA_KEYS = {
     button: 'los_alcazares.button',
     description: 'los_alcazares.description'
   },
+  menu: {
+    contact: 'menu.contact',
+    home: 'menu.home'
+  },
   reservation: {
     form: {
       email: 'reservation.form.email',

@@ -34,6 +34,8 @@
   "listing.wifi": "Wifi",
   "los_alcazares.button": "Réservez vos vacances",
   "los_alcazares.description": "Los Alcazares, charmant village niché au cœur de l'Espagne, séduit par son authenticité et son ambiance chaleureuse. Entouré de paysages pittoresques, ce havre de paix offre un mélange parfait de tradition et de modernité. Avec ses ruelles pittoresques, ses marchés locaux et sa proximité avec la plage (mer mineure), Los Alcazares est une destination idéale pour les amateurs de culture, de nature et de détente.",
+  "menu.contact": "Contact",
+  "menu.home": "Accueil",
   "reservation.form.email": "Email",
   "reservation.form.first_name": "Prénom",
   "reservation.form.last_name": "Nom",
