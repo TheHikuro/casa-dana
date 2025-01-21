@@ -18,6 +18,7 @@ import { GalleryLayout } from '../../../components/gallery-layout'
 import { cn } from '../../../../@/lib/utils.ts'
 import { Button } from '../../../components/ui/button.tsx'
 import { img, img_desktop } from '../../../utils/images.ts'
+import certifImg from '../../../assets/logo/certif.png'
 import { useNavigate } from 'react-router-dom'
 
 export function CasaDana() {
@@ -38,11 +39,9 @@ export function CasaDana() {
           <CarouselImg img={img} />
         </div>
       )}
-      <div className="pt-5 space-y-5 h-full relative sm:h-[80dvh] sm:w-dvw sm:-ml-7 sm:pl-5 sm:justify-center sm:flex sm:items-center">
+      <div className="pt-5 space-y-5 h-full relative sm:h-[60dvh] sm:w-dvw sm:-ml-7 sm:pl-5 sm:justify-center sm:flex sm:items-center">
         <img
-          className={
-            'sm:absolute sm:inset-0 sm:bg-no-repeat sm:bg-cover sm:bg-center sm:opacity-75 hidden sm:block w-full'
-          }
+          className="absolute hidden sm:block inset-0 size-full object-cover object-bottom opacity-75"
           alt={'background-casa-dana'}
           src={BackgroundCover}
         />
@@ -52,12 +51,12 @@ export function CasaDana() {
             windowSize < 640 ? 'hidden' : 'flex'
           )}
         >
-          <div className={'space-y-2'}>
+          <div className={'space-y-2 mr-auto sm:mr-4'}>
             <div className="flex justify-end">
               <LangSelector />
             </div>
             <Button
-              className="bg-yellow-400 text-black uppercase rounded-full py-3 px-2 hover:bg-yellow-500"
+              className="bg-yellow-400 text-black uppercase rounded-full py-3 hover:bg-yellow-500"
               onClick={() => navigate('/contact')}
             >
               {t(CASADANA_KEYS.los_alcazares.button)}
@@ -69,9 +68,13 @@ export function CasaDana() {
           className="absolute top-10 hidden sm:block sm:aspect-square lg:h-32 lg:w-32 sm:h-20 sm:w-20"
           alt="logo"
         />
-        <div className="flex justify-evenly flex-col sm:flex-row">
+        <div className="flex justify-evenly flex-col sm:flex-row relative">
           <div className="relative sm:space-y-5 flex justify-center flex-col items-center sm:mt-20">
             <div className="relative">
+              <img
+                src={certifImg}
+                className="absolute hidden sm:block -left-10 lg:-left-24 -top-40"
+              />
               <span className="font-medium text-xl sm:text-4xl">
                 {t(CASADANA_KEYS.casa_dana.full_name)}
               </span>
