@@ -28,6 +28,16 @@ export const CASADANA_KEYS = {
     },
     title: 'casa_dana.title'
   },
+  errors: {
+    end_after_start: 'errors.end_after_start',
+    end_date_required: 'errors.end_date_required',
+    firstname_required: 'errors.firstname_required',
+    invalid_email: 'errors.invalid_email',
+    lastname_required: 'errors.lastname_required',
+    phone_required: 'errors.phone_required',
+    positive_price_required: 'errors.positive_price_required',
+    start_date_required: 'errors.start_date_required'
+  },
   footer: {
     description: 'footer.description'
   },
@@ -52,6 +62,9 @@ export const CASADANA_KEYS = {
       first_name: 'reservation.form.first_name',
       last_name: 'reservation.form.last_name',
       phone: 'reservation.form.phone',
+      placeholder: {
+        description: 'reservation.form.placeholder.description'
+      },
       submit: 'reservation.form.submit'
     },
     toaster: {
