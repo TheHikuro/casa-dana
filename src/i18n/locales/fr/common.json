@@ -14,6 +14,14 @@
   "casa_dana.listing.bedroom.second": "Chambre 2",
   "casa_dana.listing.living_room": "Salon",
   "casa_dana.title": "Bienvenue sur le site de la Casa Dana",
+  "errors.end_after_start": "La date de fin doit être après la date de début.",
+  "errors.end_date_required": "La date de fin est obligatoire.",
+  "errors.firstname_required": "Le prénom est obligatoire.",
+  "errors.invalid_email": "Adresse email invalide.",
+  "errors.lastname_required": "Le nom est obligatoire.",
+  "errors.phone_required": "Le numéro de téléphone est obligatoire et doit commencer par un + et contenir au moins 10 chiffres.",
+  "errors.positive_price_required": "Le prix doit être un nombre positif.",
+  "errors.start_date_required": "La date de début est obligatoire.",
   "footer.description": "Découvrez plus d’activités dans notre mail de bienvenue",
   "listing.bbq": "BBQ",
   "listing.beach": "Proche de la plage",
@@ -30,6 +38,7 @@
   "reservation.form.first_name": "Prénom",
   "reservation.form.last_name": "Nom",
   "reservation.form.phone": "Téléphone",
+  "reservation.form.placeholder.description": "Bonjour, je souhaiterais réserver...",
   "reservation.form.submit": "Envoyer",
   "reservation.toaster.success": "Votre réservation du {startDate} au {endDate} a bien été prise en compte"
 }

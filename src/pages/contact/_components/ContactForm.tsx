@@ -7,7 +7,10 @@ import { Textarea } from '../../../components/ui/textarea.tsx'
 import { useSelectedDatesStore } from '../utils/useGetSelectedDates.tsx'
 import { useGetReservations, usePostSelectedDates } from '../../../utils/hooks'
 import { useToaster } from '../../../utils/providers/toaster.provider.tsx'
-import { formatToDate } from '../utils/calendar.utils.ts'
+import { formatToDate, normalizeDate } from '../utils/calendar.utils.ts'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { getContactSchema } from '../utils/contact.schema.ts'
+import { useCallback } from 'react'
 
 export type ContactFormType = {
   firstname: string
@@ -21,13 +24,42 @@ export type ContactFormType = {
 }
 
 export function ContactForm() {
-  const methods = useForm<ContactFormType>()
   const { t } = useTranslation()
   const { selectedDates, reset: resetSelectionDate } = useSelectedDatesStore()
   const { mutate: createReservation } = usePostSelectedDates()
   const { refetch } = useGetReservations()
   const toast = useToaster()
-  const { register, handleSubmit, reset } = methods
+  const contactSchema = getContactSchema(t)
+
+  const methods = useForm<ContactFormType>({
+    resolver: zodResolver(contactSchema)
+  })
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = methods
+
+  const isLessThan7Days = useCallback(() => {
+    const normalizedEndDate = normalizeDate(formatToDate(selectedDates.endDate))
+    const normalizedStartDate = normalizeDate(
+      formatToDate(selectedDates.startDate)
+    )
+
+    const differenceInDays =
+      (normalizedEndDate.getTime() - normalizedStartDate.getTime()) /
+      (24 * 60 * 60 * 1000)
+
+    console.log('Difference in Days:', differenceInDays)
+
+    return differenceInDays <= 7
+  }, [selectedDates.endDate, selectedDates.startDate])
+
+  const isBtnDisabled = !isLessThan7Days()
+
+  console.log('isBtnDisabled', isBtnDisabled)
 
   const onSubmit = (data: ContactFormType) => {
     createReservation(
@@ -75,16 +107,19 @@ export function ContactForm() {
           {...register('email')}
         />
         <Input
-          inputMode={'tel'}
+          inputMode="tel"
           placeholder={t(CASADANA_KEYS.reservation.form.phone)}
           className="rounded-full"
           {...register('phone')}
         />
         <Textarea
-          placeholder={'Bonjour, je souhaiterais réserver...'}
+          placeholder={t(
+            CASADANA_KEYS.reservation.form.placeholder.description
+          )}
           className="rounded-lg col-span-2"
           {...register('description')}
         />
+
         <div className="col-span-2 flex justify-between items-center space-x-2 text-sm text-gray-500">
           <span>Total: {selectedDates.price} €</span>
           <span>
@@ -92,7 +127,17 @@ export function ContactForm() {
           </span>
         </div>
       </div>
-      <Button className="rounded-full col-span-2 w-full">
+      <div className="col-span-2">
+        {Object.keys(errors).map((key) => (
+          <div key={key} className="text-red-500 text-sm italic">
+            {errors[key as keyof ContactFormType]?.message || 'Invalid input.'}
+          </div>
+        ))}
+      </div>
+      <Button
+        className="rounded-full col-span-2 w-full"
+        disabled={isBtnDisabled}
+      >
         {t(CASADANA_KEYS.reservation.form.submit)}
       </Button>
     </form>

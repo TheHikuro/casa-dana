@@ -31,5 +31,14 @@
   "reservation.form.last_name": "Last Name",
   "reservation.form.phone": "Phone",
   "reservation.form.submit": "Send",
-  "reservation.toaster.success": "Your reservation from {startDate} to {endDate} has been sent to the host"
+  "reservation.toaster.success": "Your reservation from {startDate} to {endDate} has been sent to the host",
+  "reservation.form.placeholder.description": "Bonjour, je souhaiterais réserver...!Missing!",
+  "errors.end_after_start": "La date de fin doit être après la date de début.!Missing!",
+  "errors.end_date_required": "La date de fin est obligatoire.!Missing!",
+  "errors.firstname_required": "Le prénom est obligatoire.!Missing!",
+  "errors.invalid_email": "Adresse email invalide.!Missing!",
+  "errors.lastname_required": "Le nom est obligatoire.!Missing!",
+  "errors.phone_required": "Le numéro de téléphone est obligatoire.!Missing!",
+  "errors.positive_price_required": "Le prix doit être un nombre positif.!Missing!",
+  "errors.start_date_required": "La date de début est obligatoire.!Missing!"
 }
