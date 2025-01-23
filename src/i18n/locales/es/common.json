@@ -44,5 +44,6 @@
   "reservation.form.phone": "Teléfono",
   "reservation.form.placeholder.description": "Hola, me gustaría hacer una reserva...",
   "reservation.form.submit": "Enviar",
-  "reservation.toaster.success": "Tu reserva del {startDate} al {endDate} ha sido enviada al anfitrión."
+  "reservation.toaster.success": "Tu reserva del {startDate} al {endDate} ha sido enviada al anfitrión.",
+  "reservation.toaster.error": "Une erreur s’est produite lors de la prise en compte de votre réservation!Missing!"
 }

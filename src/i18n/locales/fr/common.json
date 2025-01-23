@@ -44,5 +44,6 @@
   "reservation.form.phone": "Téléphone",
   "reservation.form.placeholder.description": "Bonjour, je souhaiterais réserver...",
   "reservation.form.submit": "Envoyer",
+  "reservation.toaster.error": "Une erreur s’est produite lors de la prise en compte de votre réservation",
   "reservation.toaster.success": "Votre réservation du {startDate} au {endDate} a bien été prise en compte"
 }

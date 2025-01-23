@@ -78,6 +78,7 @@ export const CASADANA_KEYS = {
       submit: 'reservation.form.submit'
     },
     toaster: {
+      error: 'reservation.toaster.error',
       success: 'reservation.toaster.success'
     }
   }
