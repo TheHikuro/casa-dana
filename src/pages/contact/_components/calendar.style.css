@@ -148,7 +148,7 @@
 
 /* Hover effect for tiles */
 .react-calendar__tile:hover {
-  background-color: #f3f4f6 !important; /* Tailwind's gray-100 */
+  background-color: #14cac7 !important; /* Tailwind's gray-100 */
   transform: scale(1.05) !important; /* Slight zoom effect */
 }
 
