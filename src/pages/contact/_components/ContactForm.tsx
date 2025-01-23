@@ -11,6 +11,7 @@ import { formatToDate, normalizeDate } from '../utils/calendar.utils.ts'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getContactSchema } from '../utils/contact.schema.ts'
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser'
 
 export type ContactFormType = {
   firstname: string
@@ -83,7 +84,25 @@ export function ContactForm() {
         end: formatToDate(selectedDates.endDate)
       },
       {
-        onSuccess: () => {
+        onSuccess: async () => {
+          const emailResponse = await emailjs
+            .send(
+              import.meta.env.VITE_EMAILJS_SERVICE_ID,
+              import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID,
+              {
+                ...data,
+                start: selectedDates.startDate,
+                end: selectedDates.endDate,
+                price: selectedDates.price
+              },
+              { publicKey: import.meta.env.VITE_EMAILJS_PBK }
+            )
+            .catch(() => {
+              toast?.error(t(CASADANA_KEYS.reservation.toaster.error))
+            })
+
+          if (emailResponse?.status !== 200) return
+
           toast?.success(
             t(CASADANA_KEYS.reservation.toaster.success, {
               startDate: selectedDates.startDate,

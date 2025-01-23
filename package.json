@@ -12,6 +12,7 @@
     "gen:i18n": "pnpx tsx src/i18n/script/generate_traductions.ts"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@radix-ui/react-select": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.0",
     "@supabase/supabase-js": "^2.47.10",
