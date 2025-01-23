@@ -37,12 +37,21 @@ export function Footer() {
         </div>
         <div className={'flex space-x-5 items-end'}>
           <Facebook
-            className={'w-5 h-5 cursor-pointer'}
+            className={'w-10 h-10 cursor-pointer hover:text-blue-400'}
             onClick={() =>
               window.open('https://www.facebook.com/groups/607622748355117')
             }
           />
-          <Instagram className={'w-5 h-5 cursor-pointer'} />
+          <Instagram
+            className={
+              'w-10 h-10 cursor-pointer hover:text-orange-400 hover:to-red-600'
+            }
+            onClick={() =>
+              window.open(
+                'https://www.instagram.com/casa_dana_los_alcazares?igsh=MWJweXp5bDU2Z2xybg=='
+              )
+            }
+          />
         </div>
       </div>
     </footer>
