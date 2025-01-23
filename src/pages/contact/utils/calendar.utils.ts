@@ -6,5 +6,7 @@ export const normalizeDate = (date: Date) => {
 
 export function formatToDate(date: string) {
   const [day, month, year] = date.split('/')
-  return new Date(`${year}-${month}-${day}`)
+  const formatedDate = new Date(`${year}-${month}-${day}`)
+  if (isNaN(formatedDate.getTime())) return new Date()
+  return formatedDate
 }
