@@ -1,10 +1,13 @@
 import { Fragment, PropsWithChildren, Suspense, lazy } from 'react'
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
 import { HomeSkeleton } from '../components'
+import { useIdentityStore } from '../pages/admin/admin.utils'
 
 const Home = lazy(() => import('../pages/home/Home'))
 const GalleryPage = lazy(() => import('../pages/gallery/GalleryPage'))
 const ContactPage = lazy(() => import('../pages/contact/ContactPage'))
+const LoginPage = lazy(() => import('../pages/admin/Login'))
+const AdminDashboardPage = lazy(() => import('../pages/admin/AdminDashboard'))
 interface ProtectedRouteProps extends PropsWithChildren {
   redirect: string
   condition: boolean
@@ -33,11 +36,12 @@ const ProtectedRoute = ({
 }
 
 export function Router() {
+  const { identity } = useIdentityStore()
   return (
     <Routes>
       <Route
         element={
-          <ProtectedRoute condition={true} redirect="/">
+          <ProtectedRoute condition={!identity.isConnected} redirect="/">
             <Outlet />
           </ProtectedRoute>
         }
@@ -45,6 +49,16 @@ export function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Route>
+      <Route
+        element={
+          <ProtectedRoute redirect={'/login'} condition={identity.isConnected}>
+            <Outlet />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/admin" element={<AdminDashboardPage />} />
       </Route>
     </Routes>
   )

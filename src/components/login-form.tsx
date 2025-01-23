@@ -1,0 +1,79 @@
+import { ComponentPropsWithoutRef } from 'react'
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card.tsx'
+import { Label } from './ui/label.tsx'
+import { Input } from './ui/input.tsx'
+import { Button } from './ui/button.tsx'
+import { cn } from '../../@/lib/utils.ts'
+import { useForm } from 'react-hook-form'
+import { useAuth } from '../pages/admin/hooks/useAuth.tsx'
+import { useToaster } from '../utils/providers/toaster.provider.tsx'
+import { useNavigate } from 'react-router-dom'
+import { useIdentityStore } from '../pages/admin/admin.utils.ts'
+
+type LoginFormType = {
+  email: string
+  password: string
+}
+
+export function LoginForm({
+  className,
+  ...props
+}: ComponentPropsWithoutRef<'div'>) {
+  const methods = useForm<LoginFormType>()
+  const { handleSubmit, register } = methods
+  const { mutate } = useAuth()
+  const toaster = useToaster()
+  const navigate = useNavigate()
+  const { setIdentity } = useIdentityStore()
+
+  const onSubmit = (data: LoginFormType) => {
+    mutate(data, {
+      onSuccess: (data) => {
+        toaster?.success('Vous êtes connecté avec succès')
+        setIdentity({ email: data.user.email ?? '', isConnected: true })
+        navigate('/admin')
+      },
+      onError: (error) => toaster?.error(error.message)
+    })
+  }
+  return (
+    <div className={cn('flex flex-col gap-6', className)} {...props}>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-2xl">Authentification</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col gap-6">
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  required
+                  {...register('email')}
+                  placeholder="casa-dana@email.com"
+                />
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center">
+                  <Label htmlFor="password">Mot de passe: </Label>
+                </div>
+                <Input
+                  id="password"
+                  type="password"
+                  required
+                  {...register('password')}
+                  placeholder={'********'}
+                />
+              </div>
+              <Button type="submit" className="w-full">
+                Login
+              </Button>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
