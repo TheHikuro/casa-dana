@@ -11,7 +11,7 @@ import { formatToDate, normalizeDate } from '../utils/calendar.utils.ts'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getContactSchema } from '../utils/contact.schema.ts'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import emailjs, { EmailJSResponseStatus } from '@emailjs/browser'
+import emailjs from '@emailjs/browser'
 
 export type ContactFormType = {
   firstname: string
