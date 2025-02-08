@@ -14,12 +14,12 @@ import {
 import { Checklist } from './checklist'
 import Logo from '../../../assets/logo/logo_header.png'
 import { Listing as Equipments } from './listing'
-import { GalleryLayout } from '../../../components/gallery-layout'
 import { cn } from '../../../../@/lib/utils.ts'
 import { Button } from '../../../components/ui/button.tsx'
-import { img, img_desktop } from '../../../utils/images.ts'
+import { img } from '../../../utils/images.ts'
 import certifImg from '../../../assets/logo/certif.png'
 import { useNavigate } from 'react-router-dom'
+import ContactPage from '../../contact/ContactPage.tsx'
 
 export function CasaDana() {
   const navigate = useNavigate()
@@ -72,6 +72,7 @@ export function CasaDana() {
           <div className="relative sm:space-y-5 flex justify-center flex-col items-center sm:mt-20">
             <div className="relative">
               <img
+                alt="cerificat casa dana"
                 src={certifImg}
                 className="absolute hidden sm:block -left-10 lg:-left-24 -top-40"
               />
@@ -109,18 +110,9 @@ export function CasaDana() {
       <div className="mt-5">
         <Equipments />
       </div>
-      {windowSize >= 640 && (
-        <div className="flex w-full justify-center items-center flex-col h-fit mt-10">
-          <h2 className="font-medium text-xl mr-auto">Casa Dana</h2>
-          <GalleryLayout img={img_desktop} />
-          <Button
-            className="bg-yellow-400 text-black uppercase rounded-full py-3 px-2 hover:bg-yellow-500"
-            onClick={() => navigate('/gallery', { replace: true })}
-          >
-            {t(CASADANA_KEYS.casa_dana.gallery.button.more)}
-          </Button>
-        </div>
-      )}
+      <div className="mt-5 lg:mt-10">
+        <ContactPage />
+      </div>
     </Fragment>
   )
 }
