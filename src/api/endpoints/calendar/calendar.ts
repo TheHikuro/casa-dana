@@ -27,7 +27,7 @@ export const getApiCalendarPrice = (
   options?: SecondParameter<typeof customAxiosInstance>,
   signal?: AbortSignal
 ) => {
-  return customAxiosInstance<void>(
+  return customAxiosInstance<unknown[]>(
     { url: `/api/Calendar/price`, method: 'GET', params, signal },
     options
   )
@@ -180,7 +180,7 @@ export const getApiCalendar = (
   options?: SecondParameter<typeof customAxiosInstance>,
   signal?: AbortSignal
 ) => {
-  return customAxiosInstance<void>(
+  return customAxiosInstance<CalendarDto[]>(
     { url: `/api/Calendar`, method: 'GET', signal },
     options
   )
@@ -296,7 +296,7 @@ export const postApiCalendar = (
   options?: SecondParameter<typeof customAxiosInstance>,
   signal?: AbortSignal
 ) => {
-  return customAxiosInstance<void>(
+  return customAxiosInstance<CalendarDto>(
     {
       url: `/api/Calendar`,
       method: 'POST',
@@ -378,7 +378,7 @@ export const getApiCalendarId = (
   options?: SecondParameter<typeof customAxiosInstance>,
   signal?: AbortSignal
 ) => {
-  return customAxiosInstance<void>(
+  return customAxiosInstance<CalendarDto>(
     { url: `/api/Calendar/${id}`, method: 'GET', signal },
     options
   )

@@ -16,13 +16,16 @@ import {
 import { UseFormSetValue } from 'react-hook-form'
 import { DateRange } from 'react-day-picker'
 import { Button } from '../../../components/ui/button.tsx'
+import { ReservationDto } from '../../../api/models'
 
 export function CalendarModal({
   date,
-  setValue
+  setValue,
+  getReservations
 }: {
   date: DateRange
   setValue: UseFormSetValue<FormValues>
+  getReservations: ReservationDto[]
 }) {
   return (
     <Dialog>
@@ -32,13 +35,13 @@ export function CalendarModal({
             <div className="p-3 space-y-1">
               <div className="text-xs font-semibold uppercase">Check-in</div>
               <div className="text-sm">
-                {date.from ? format(date.from, 'MM/dd/yyyy') : 'Add date'}
+                {date.from ? format(date.from, 'dd/MM/yyyy') : 'Add date'}
               </div>
             </div>
             <div className="p-3 space-y-1">
               <div className="text-xs font-semibold uppercase">Checkout</div>
               <div className="text-sm">
-                {date.to ? format(date.to, 'MM/dd/yyyy') : 'Add date'}
+                {date.to ? format(date.to, 'dd/MM/yyyy') : 'Add date'}
               </div>
             </div>
           </div>
@@ -48,9 +51,9 @@ export function CalendarModal({
         <DialogTitle>Reserver</DialogTitle>
         <Calendar
           mode="range"
-          selected={date as any}
+          selected={date as DateRange}
           onSelect={(range) => {
-            if (!isDateRangeInvalid(range?.from, range?.to)) {
+            if (!isDateRangeInvalid(getReservations, range?.from, range?.to)) {
               setValue('from', range?.from)
               setValue('to', range?.to)
             }
@@ -59,7 +62,7 @@ export function CalendarModal({
           modifiersStyles={{
             disabled: { textDecoration: 'line-through' }
           }}
-          disabled={isDateDisabled}
+          disabled={(date) => isDateDisabled(date, getReservations)}
           showOutsideDays={false}
           fixedWeeks
         />

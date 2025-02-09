@@ -16,7 +16,7 @@ import type {
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query'
-import type { ReservationDto } from '../../models'
+import type { ProblemDetails, ReservationDto } from '../../models'
 import { customAxiosInstance } from '../../customAxiosInstance'
 import type { ErrorType } from '../../customAxiosInstance'
 
@@ -38,7 +38,7 @@ export const getGetApiReservationsQueryKey = () => {
 
 export const getGetApiReservationsQueryOptions = <
   TData = Awaited<ReturnType<typeof getApiReservations>>,
-  TError = ErrorType<unknown>
+  TError = ErrorType<ProblemDetails>
 >(options?: {
   query?: Partial<
     UseQueryOptions<
@@ -67,11 +67,11 @@ export const getGetApiReservationsQueryOptions = <
 export type GetApiReservationsQueryResult = NonNullable<
   Awaited<ReturnType<typeof getApiReservations>>
 >
-export type GetApiReservationsQueryError = ErrorType<unknown>
+export type GetApiReservationsQueryError = ErrorType<ProblemDetails>
 
 export function useGetApiReservations<
   TData = Awaited<ReturnType<typeof getApiReservations>>,
-  TError = ErrorType<unknown>
+  TError = ErrorType<ProblemDetails>
 >(options: {
   query: Partial<
     UseQueryOptions<
@@ -94,7 +94,7 @@ export function useGetApiReservations<
 }
 export function useGetApiReservations<
   TData = Awaited<ReturnType<typeof getApiReservations>>,
-  TError = ErrorType<unknown>
+  TError = ErrorType<ProblemDetails>
 >(options?: {
   query?: Partial<
     UseQueryOptions<
@@ -117,7 +117,7 @@ export function useGetApiReservations<
 }
 export function useGetApiReservations<
   TData = Awaited<ReturnType<typeof getApiReservations>>,
-  TError = ErrorType<unknown>
+  TError = ErrorType<ProblemDetails>
 >(options?: {
   query?: Partial<
     UseQueryOptions<
@@ -133,7 +133,7 @@ export function useGetApiReservations<
 
 export function useGetApiReservations<
   TData = Awaited<ReturnType<typeof getApiReservations>>,
-  TError = ErrorType<unknown>
+  TError = ErrorType<ProblemDetails>
 >(options?: {
   query?: Partial<
     UseQueryOptions<
@@ -175,7 +175,7 @@ export const postApiReservations = (
 }
 
 export const getPostApiReservationsMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
@@ -216,10 +216,10 @@ export type PostApiReservationsMutationResult = NonNullable<
   Awaited<ReturnType<typeof postApiReservations>>
 >
 export type PostApiReservationsMutationBody = ReservationDto
-export type PostApiReservationsMutationError = ErrorType<unknown>
+export type PostApiReservationsMutationError = ErrorType<ProblemDetails>
 
 export const usePostApiReservations = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
@@ -256,7 +256,7 @@ export const getGetApiReservationsIdQueryKey = (id: string) => {
 
 export const getGetApiReservationsIdQueryOptions = <
   TData = Awaited<ReturnType<typeof getApiReservationsId>>,
-  TError = ErrorType<unknown>
+  TError = ErrorType<ProblemDetails>
 >(
   id: string,
   options?: {
@@ -293,11 +293,11 @@ export const getGetApiReservationsIdQueryOptions = <
 export type GetApiReservationsIdQueryResult = NonNullable<
   Awaited<ReturnType<typeof getApiReservationsId>>
 >
-export type GetApiReservationsIdQueryError = ErrorType<unknown>
+export type GetApiReservationsIdQueryError = ErrorType<ProblemDetails>
 
 export function useGetApiReservationsId<
   TData = Awaited<ReturnType<typeof getApiReservationsId>>,
-  TError = ErrorType<unknown>
+  TError = ErrorType<ProblemDetails>
 >(
   id: string,
   options: {
@@ -323,7 +323,7 @@ export function useGetApiReservationsId<
 }
 export function useGetApiReservationsId<
   TData = Awaited<ReturnType<typeof getApiReservationsId>>,
-  TError = ErrorType<unknown>
+  TError = ErrorType<ProblemDetails>
 >(
   id: string,
   options?: {
@@ -349,7 +349,7 @@ export function useGetApiReservationsId<
 }
 export function useGetApiReservationsId<
   TData = Awaited<ReturnType<typeof getApiReservationsId>>,
-  TError = ErrorType<unknown>
+  TError = ErrorType<ProblemDetails>
 >(
   id: string,
   options?: {
@@ -368,7 +368,7 @@ export function useGetApiReservationsId<
 
 export function useGetApiReservationsId<
   TData = Awaited<ReturnType<typeof getApiReservationsId>>,
-  TError = ErrorType<unknown>
+  TError = ErrorType<ProblemDetails>
 >(
   id: string,
   options?: {
@@ -400,7 +400,7 @@ export const putApiReservationsId = (
   reservationDto: ReservationDto,
   options?: SecondParameter<typeof customAxiosInstance>
 ) => {
-  return customAxiosInstance<ReservationDto>(
+  return customAxiosInstance<void>(
     {
       url: `/api/Reservations/${id}`,
       method: 'PUT',
@@ -412,7 +412,7 @@ export const putApiReservationsId = (
 }
 
 export const getPutApiReservationsIdMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
@@ -453,10 +453,10 @@ export type PutApiReservationsIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof putApiReservationsId>>
 >
 export type PutApiReservationsIdMutationBody = ReservationDto
-export type PutApiReservationsIdMutationError = ErrorType<unknown>
+export type PutApiReservationsIdMutationError = ErrorType<ProblemDetails>
 
 export const usePutApiReservationsId = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
@@ -487,7 +487,7 @@ export const deleteApiReservationsId = (
 }
 
 export const getDeleteApiReservationsIdMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
@@ -528,10 +528,10 @@ export type DeleteApiReservationsIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteApiReservationsId>>
 >
 
-export type DeleteApiReservationsIdMutationError = ErrorType<unknown>
+export type DeleteApiReservationsIdMutationError = ErrorType<ProblemDetails>
 
 export const useDeleteApiReservationsId = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<

@@ -4,5 +4,6 @@
  */
 
 export type GetApiCalendarPriceParams = {
-  date?: string
+  start?: string
+  end?: string
 }

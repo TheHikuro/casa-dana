@@ -1,7 +1,7 @@
 import { defineConfig } from 'orval'
 
 export default defineConfig({
-  'serezin-gaming-api-file': {
+  'casa-dana-api-file': {
     input: 'src/api/specifications/openapi.yaml',
     output: {
       mode: 'tags-split',
