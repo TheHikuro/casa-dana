@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-export interface LoginUserDto {
+export interface LoginModel {
   /** @nullable */
   email: string | null
   /** @nullable */

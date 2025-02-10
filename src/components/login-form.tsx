@@ -8,10 +8,16 @@ import { useForm } from 'react-hook-form'
 import { useToaster } from '../utils/providers/toaster.provider.tsx'
 import { useNavigate } from 'react-router-dom'
 import { useIdentityStore } from '../pages/admin/admin.utils.ts'
+import { usePostAuthLogin } from '../api/endpoints/auth/auth.ts'
 
 type LoginFormType = {
   email: string
   password: string
+}
+
+type LoginResponse = {
+  token: string
+  email: string
 }
 
 export function LoginForm({
@@ -23,9 +29,27 @@ export function LoginForm({
   const toaster = useToaster()
   const navigate = useNavigate()
   const { setIdentity } = useIdentityStore()
+  const { mutate: auth } = usePostAuthLogin()
 
   const onSubmit = (data: LoginFormType) => {
-    console.log(data)
+    auth(
+      {
+        data: { ...data }
+      },
+      {
+        onSuccess: ({ data }) => {
+          setIdentity({
+            isConnected: true,
+            token: (data as unknown as LoginResponse).token,
+            email: (data as unknown as LoginResponse).email
+          })
+          navigate('/admin')
+        },
+        onError: (error) => {
+          toaster?.error(error.message)
+        }
+      }
+    )
   }
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>

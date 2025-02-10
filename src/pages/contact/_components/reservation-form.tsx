@@ -27,12 +27,12 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getContactSchema } from '../utils/contact.schema.ts'
 import { useTranslation } from 'react-i18next'
-import {
-  useGetApiReservations,
-  usePostApiReservations
-} from '../../../api/endpoints/reservations/reservations.ts'
 import { useToaster } from '../../../utils/providers/toaster.provider.tsx'
-import { useGetApiCalendarPrice } from '../../../api/endpoints/calendar/calendar.ts'
+import {
+  useGetReservations,
+  usePostReservations
+} from '../../../api/endpoints/reservations/reservations.ts'
+import { useGetCalendarPrice } from '../../../api/endpoints/calendar/calendar.ts'
 
 export default function ReservationForm() {
   const { t } = useTranslation()
@@ -50,9 +50,9 @@ export default function ReservationForm() {
     resolver: zodResolver(getContactSchema(t))
   })
   const toast = useToaster()
-  const { mutate: createReservation } = usePostApiReservations()
-  const { data: { data: getReservations = [] } = {} } = useGetApiReservations()
-  const { data: { data: getPricePerDates = [] } = {} } = useGetApiCalendarPrice(
+  const { mutate: createReservation } = usePostReservations()
+  const { data: { data: getReservations = [] } = {} } = useGetReservations()
+  const { data: { data: getPricePerDates = [] } = {} } = useGetCalendarPrice(
     {
       start: getValues('from')?.toLocaleDateString('fr-FR'),
       end: getValues('to')?.toLocaleDateString('fr-FR')
@@ -179,7 +179,11 @@ export default function ReservationForm() {
           </div>
           <div className="col-span-2">
             <Label htmlFor={'description'}>Description</Label>
-            <Textarea {...register('description')} maxLength={200} />
+            <Textarea
+              {...register('description')}
+              maxLength={250}
+              className="resize-none"
+            />
           </div>
           {date.from && date.to && (
             <div className="space-y-4 col-span-2">

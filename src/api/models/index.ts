@@ -4,9 +4,9 @@
  */
 
 export * from './calendarDto'
-export * from './createUserDto'
-export * from './getApiCalendarPriceParams'
-export * from './loginUserDto'
+export * from './getCalendarPriceParams'
+export * from './loginModel'
 export * from './problemDetails'
+export * from './registerModel'
 export * from './reservationDto'
 export * from './reservationStatus'

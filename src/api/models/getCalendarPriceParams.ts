@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-export type GetApiCalendarPriceParams = {
+export type GetCalendarPriceParams = {
   start?: string
   end?: string
 }

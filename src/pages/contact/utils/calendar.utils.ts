@@ -100,7 +100,7 @@ export function generateNightlyPrices(
 
     return {
       date,
-      price: matchingPrice ? matchingPrice.price : defaultPrice // Use default price if not found
+      price: matchingPrice ? matchingPrice.price : defaultPrice
     }
   })
 }

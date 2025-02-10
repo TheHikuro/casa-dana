@@ -22,69 +22,61 @@ import type { ErrorType } from '../../customAxiosInstance'
 
 type SecondParameter<T extends (...args: any) => any> = Parameters<T>[1]
 
-export const getApiReservations = (
+export const getReservations = (
   options?: SecondParameter<typeof customAxiosInstance>,
   signal?: AbortSignal
 ) => {
   return customAxiosInstance<ReservationDto[]>(
-    { url: `/api/Reservations`, method: 'GET', signal },
+    { url: `/Reservations`, method: 'GET', signal },
     options
   )
 }
 
-export const getGetApiReservationsQueryKey = () => {
-  return [`/api/Reservations`] as const
+export const getGetReservationsQueryKey = () => {
+  return [`/Reservations`] as const
 }
 
-export const getGetApiReservationsQueryOptions = <
-  TData = Awaited<ReturnType<typeof getApiReservations>>,
+export const getGetReservationsQueryOptions = <
+  TData = Awaited<ReturnType<typeof getReservations>>,
   TError = ErrorType<ProblemDetails>
 >(options?: {
   query?: Partial<
-    UseQueryOptions<
-      Awaited<ReturnType<typeof getApiReservations>>,
-      TError,
-      TData
-    >
+    UseQueryOptions<Awaited<ReturnType<typeof getReservations>>, TError, TData>
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }) => {
   const { query: queryOptions, request: requestOptions } = options ?? {}
 
-  const queryKey = queryOptions?.queryKey ?? getGetApiReservationsQueryKey()
+  const queryKey = queryOptions?.queryKey ?? getGetReservationsQueryKey()
 
-  const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof getApiReservations>>
-  > = ({ signal }) => getApiReservations(requestOptions, signal)
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getReservations>>> = ({
+    signal
+  }) => getReservations(requestOptions, signal)
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getApiReservations>>,
+    Awaited<ReturnType<typeof getReservations>>,
     TError,
     TData
   > & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type GetApiReservationsQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getApiReservations>>
+export type GetReservationsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getReservations>>
 >
-export type GetApiReservationsQueryError = ErrorType<ProblemDetails>
+export type GetReservationsQueryError = ErrorType<ProblemDetails>
 
-export function useGetApiReservations<
-  TData = Awaited<ReturnType<typeof getApiReservations>>,
+export function useGetReservations<
+  TData = Awaited<ReturnType<typeof getReservations>>,
   TError = ErrorType<ProblemDetails>
 >(options: {
   query: Partial<
-    UseQueryOptions<
-      Awaited<ReturnType<typeof getApiReservations>>,
-      TError,
-      TData
-    >
+    UseQueryOptions<Awaited<ReturnType<typeof getReservations>>, TError, TData>
   > &
     Pick<
       DefinedInitialDataOptions<
-        Awaited<ReturnType<typeof getApiReservations>>,
+        Awaited<ReturnType<typeof getReservations>>,
         TError,
-        Awaited<ReturnType<typeof getApiReservations>>
+        Awaited<ReturnType<typeof getReservations>>
       >,
       'initialData'
     >
@@ -92,22 +84,18 @@ export function useGetApiReservations<
 }): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 }
-export function useGetApiReservations<
-  TData = Awaited<ReturnType<typeof getApiReservations>>,
+export function useGetReservations<
+  TData = Awaited<ReturnType<typeof getReservations>>,
   TError = ErrorType<ProblemDetails>
 >(options?: {
   query?: Partial<
-    UseQueryOptions<
-      Awaited<ReturnType<typeof getApiReservations>>,
-      TError,
-      TData
-    >
+    UseQueryOptions<Awaited<ReturnType<typeof getReservations>>, TError, TData>
   > &
     Pick<
       UndefinedInitialDataOptions<
-        Awaited<ReturnType<typeof getApiReservations>>,
+        Awaited<ReturnType<typeof getReservations>>,
         TError,
-        Awaited<ReturnType<typeof getApiReservations>>
+        Awaited<ReturnType<typeof getReservations>>
       >,
       'initialData'
     >
@@ -115,38 +103,30 @@ export function useGetApiReservations<
 }): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 }
-export function useGetApiReservations<
-  TData = Awaited<ReturnType<typeof getApiReservations>>,
+export function useGetReservations<
+  TData = Awaited<ReturnType<typeof getReservations>>,
   TError = ErrorType<ProblemDetails>
 >(options?: {
   query?: Partial<
-    UseQueryOptions<
-      Awaited<ReturnType<typeof getApiReservations>>,
-      TError,
-      TData
-    >
+    UseQueryOptions<Awaited<ReturnType<typeof getReservations>>, TError, TData>
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 }
 
-export function useGetApiReservations<
-  TData = Awaited<ReturnType<typeof getApiReservations>>,
+export function useGetReservations<
+  TData = Awaited<ReturnType<typeof getReservations>>,
   TError = ErrorType<ProblemDetails>
 >(options?: {
   query?: Partial<
-    UseQueryOptions<
-      Awaited<ReturnType<typeof getApiReservations>>,
-      TError,
-      TData
-    >
+    UseQueryOptions<Awaited<ReturnType<typeof getReservations>>, TError, TData>
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 } {
-  const queryOptions = getGetApiReservationsQueryOptions(options)
+  const queryOptions = getGetReservationsQueryOptions(options)
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: DataTag<QueryKey, TData, TError>
@@ -157,14 +137,14 @@ export function useGetApiReservations<
   return query
 }
 
-export const postApiReservations = (
+export const postReservations = (
   reservationDto: ReservationDto,
   options?: SecondParameter<typeof customAxiosInstance>,
   signal?: AbortSignal
 ) => {
   return customAxiosInstance<ReservationDto>(
     {
-      url: `/api/Reservations`,
+      url: `/Reservations`,
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       data: reservationDto,
@@ -174,24 +154,24 @@ export const postApiReservations = (
   )
 }
 
-export const getPostApiReservationsMutationOptions = <
+export const getPostReservationsMutationOptions = <
   TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof postApiReservations>>,
+    Awaited<ReturnType<typeof postReservations>>,
     TError,
     { data: ReservationDto },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof postApiReservations>>,
+  Awaited<ReturnType<typeof postReservations>>,
   TError,
   { data: ReservationDto },
   TContext
 > => {
-  const mutationKey = ['postApiReservations']
+  const mutationKey = ['postReservations']
   const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
@@ -201,68 +181,68 @@ export const getPostApiReservationsMutationOptions = <
     : { mutation: { mutationKey }, request: undefined }
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof postApiReservations>>,
+    Awaited<ReturnType<typeof postReservations>>,
     { data: ReservationDto }
   > = (props) => {
     const { data } = props ?? {}
 
-    return postApiReservations(data, requestOptions)
+    return postReservations(data, requestOptions)
   }
 
   return { mutationFn, ...mutationOptions }
 }
 
-export type PostApiReservationsMutationResult = NonNullable<
-  Awaited<ReturnType<typeof postApiReservations>>
+export type PostReservationsMutationResult = NonNullable<
+  Awaited<ReturnType<typeof postReservations>>
 >
-export type PostApiReservationsMutationBody = ReservationDto
-export type PostApiReservationsMutationError = ErrorType<ProblemDetails>
+export type PostReservationsMutationBody = ReservationDto
+export type PostReservationsMutationError = ErrorType<ProblemDetails>
 
-export const usePostApiReservations = <
+export const usePostReservations = <
   TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof postApiReservations>>,
+    Awaited<ReturnType<typeof postReservations>>,
     TError,
     { data: ReservationDto },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationResult<
-  Awaited<ReturnType<typeof postApiReservations>>,
+  Awaited<ReturnType<typeof postReservations>>,
   TError,
   { data: ReservationDto },
   TContext
 > => {
-  const mutationOptions = getPostApiReservationsMutationOptions(options)
+  const mutationOptions = getPostReservationsMutationOptions(options)
 
   return useMutation(mutationOptions)
 }
-export const getApiReservationsId = (
+export const getReservationsId = (
   id: string,
   options?: SecondParameter<typeof customAxiosInstance>,
   signal?: AbortSignal
 ) => {
   return customAxiosInstance<ReservationDto>(
-    { url: `/api/Reservations/${id}`, method: 'GET', signal },
+    { url: `/Reservations/${id}`, method: 'GET', signal },
     options
   )
 }
 
-export const getGetApiReservationsIdQueryKey = (id: string) => {
-  return [`/api/Reservations/${id}`] as const
+export const getGetReservationsIdQueryKey = (id: string) => {
+  return [`/Reservations/${id}`] as const
 }
 
-export const getGetApiReservationsIdQueryOptions = <
-  TData = Awaited<ReturnType<typeof getApiReservationsId>>,
+export const getGetReservationsIdQueryOptions = <
+  TData = Awaited<ReturnType<typeof getReservationsId>>,
   TError = ErrorType<ProblemDetails>
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getApiReservationsId>>,
+        Awaited<ReturnType<typeof getReservationsId>>,
         TError,
         TData
       >
@@ -272,11 +252,11 @@ export const getGetApiReservationsIdQueryOptions = <
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {}
 
-  const queryKey = queryOptions?.queryKey ?? getGetApiReservationsIdQueryKey(id)
+  const queryKey = queryOptions?.queryKey ?? getGetReservationsIdQueryKey(id)
 
   const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof getApiReservationsId>>
-  > = ({ signal }) => getApiReservationsId(id, requestOptions, signal)
+    Awaited<ReturnType<typeof getReservationsId>>
+  > = ({ signal }) => getReservationsId(id, requestOptions, signal)
 
   return {
     queryKey,
@@ -284,35 +264,35 @@ export const getGetApiReservationsIdQueryOptions = <
     enabled: !!id,
     ...queryOptions
   } as UseQueryOptions<
-    Awaited<ReturnType<typeof getApiReservationsId>>,
+    Awaited<ReturnType<typeof getReservationsId>>,
     TError,
     TData
   > & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type GetApiReservationsIdQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getApiReservationsId>>
+export type GetReservationsIdQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getReservationsId>>
 >
-export type GetApiReservationsIdQueryError = ErrorType<ProblemDetails>
+export type GetReservationsIdQueryError = ErrorType<ProblemDetails>
 
-export function useGetApiReservationsId<
-  TData = Awaited<ReturnType<typeof getApiReservationsId>>,
+export function useGetReservationsId<
+  TData = Awaited<ReturnType<typeof getReservationsId>>,
   TError = ErrorType<ProblemDetails>
 >(
   id: string,
   options: {
     query: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getApiReservationsId>>,
+        Awaited<ReturnType<typeof getReservationsId>>,
         TError,
         TData
       >
     > &
       Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getApiReservationsId>>,
+          Awaited<ReturnType<typeof getReservationsId>>,
           TError,
-          Awaited<ReturnType<typeof getApiReservationsId>>
+          Awaited<ReturnType<typeof getReservationsId>>
         >,
         'initialData'
       >
@@ -321,24 +301,24 @@ export function useGetApiReservationsId<
 ): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 }
-export function useGetApiReservationsId<
-  TData = Awaited<ReturnType<typeof getApiReservationsId>>,
+export function useGetReservationsId<
+  TData = Awaited<ReturnType<typeof getReservationsId>>,
   TError = ErrorType<ProblemDetails>
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getApiReservationsId>>,
+        Awaited<ReturnType<typeof getReservationsId>>,
         TError,
         TData
       >
     > &
       Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getApiReservationsId>>,
+          Awaited<ReturnType<typeof getReservationsId>>,
           TError,
-          Awaited<ReturnType<typeof getApiReservationsId>>
+          Awaited<ReturnType<typeof getReservationsId>>
         >,
         'initialData'
       >
@@ -347,15 +327,15 @@ export function useGetApiReservationsId<
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 }
-export function useGetApiReservationsId<
-  TData = Awaited<ReturnType<typeof getApiReservationsId>>,
+export function useGetReservationsId<
+  TData = Awaited<ReturnType<typeof getReservationsId>>,
   TError = ErrorType<ProblemDetails>
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getApiReservationsId>>,
+        Awaited<ReturnType<typeof getReservationsId>>,
         TError,
         TData
       >
@@ -366,15 +346,15 @@ export function useGetApiReservationsId<
   queryKey: DataTag<QueryKey, TData, TError>
 }
 
-export function useGetApiReservationsId<
-  TData = Awaited<ReturnType<typeof getApiReservationsId>>,
+export function useGetReservationsId<
+  TData = Awaited<ReturnType<typeof getReservationsId>>,
   TError = ErrorType<ProblemDetails>
 >(
   id: string,
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getApiReservationsId>>,
+        Awaited<ReturnType<typeof getReservationsId>>,
         TError,
         TData
       >
@@ -384,7 +364,7 @@ export function useGetApiReservationsId<
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 } {
-  const queryOptions = getGetApiReservationsIdQueryOptions(id, options)
+  const queryOptions = getGetReservationsIdQueryOptions(id, options)
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: DataTag<QueryKey, TData, TError>
@@ -395,14 +375,14 @@ export function useGetApiReservationsId<
   return query
 }
 
-export const putApiReservationsId = (
+export const putReservationsId = (
   id: string,
   reservationDto: ReservationDto,
   options?: SecondParameter<typeof customAxiosInstance>
 ) => {
   return customAxiosInstance<void>(
     {
-      url: `/api/Reservations/${id}`,
+      url: `/Reservations/${id}`,
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       data: reservationDto
@@ -411,24 +391,24 @@ export const putApiReservationsId = (
   )
 }
 
-export const getPutApiReservationsIdMutationOptions = <
+export const getPutReservationsIdMutationOptions = <
   TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof putApiReservationsId>>,
+    Awaited<ReturnType<typeof putReservationsId>>,
     TError,
     { id: string; data: ReservationDto },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof putApiReservationsId>>,
+  Awaited<ReturnType<typeof putReservationsId>>,
   TError,
   { id: string; data: ReservationDto },
   TContext
 > => {
-  const mutationKey = ['putApiReservationsId']
+  const mutationKey = ['putReservationsId']
   const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
@@ -438,72 +418,72 @@ export const getPutApiReservationsIdMutationOptions = <
     : { mutation: { mutationKey }, request: undefined }
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof putApiReservationsId>>,
+    Awaited<ReturnType<typeof putReservationsId>>,
     { id: string; data: ReservationDto }
   > = (props) => {
     const { id, data } = props ?? {}
 
-    return putApiReservationsId(id, data, requestOptions)
+    return putReservationsId(id, data, requestOptions)
   }
 
   return { mutationFn, ...mutationOptions }
 }
 
-export type PutApiReservationsIdMutationResult = NonNullable<
-  Awaited<ReturnType<typeof putApiReservationsId>>
+export type PutReservationsIdMutationResult = NonNullable<
+  Awaited<ReturnType<typeof putReservationsId>>
 >
-export type PutApiReservationsIdMutationBody = ReservationDto
-export type PutApiReservationsIdMutationError = ErrorType<ProblemDetails>
+export type PutReservationsIdMutationBody = ReservationDto
+export type PutReservationsIdMutationError = ErrorType<ProblemDetails>
 
-export const usePutApiReservationsId = <
+export const usePutReservationsId = <
   TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof putApiReservationsId>>,
+    Awaited<ReturnType<typeof putReservationsId>>,
     TError,
     { id: string; data: ReservationDto },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationResult<
-  Awaited<ReturnType<typeof putApiReservationsId>>,
+  Awaited<ReturnType<typeof putReservationsId>>,
   TError,
   { id: string; data: ReservationDto },
   TContext
 > => {
-  const mutationOptions = getPutApiReservationsIdMutationOptions(options)
+  const mutationOptions = getPutReservationsIdMutationOptions(options)
 
   return useMutation(mutationOptions)
 }
-export const deleteApiReservationsId = (
+export const deleteReservationsId = (
   id: string,
   options?: SecondParameter<typeof customAxiosInstance>
 ) => {
   return customAxiosInstance<void>(
-    { url: `/api/Reservations/${id}`, method: 'DELETE' },
+    { url: `/Reservations/${id}`, method: 'DELETE' },
     options
   )
 }
 
-export const getDeleteApiReservationsIdMutationOptions = <
+export const getDeleteReservationsIdMutationOptions = <
   TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof deleteApiReservationsId>>,
+    Awaited<ReturnType<typeof deleteReservationsId>>,
     TError,
     { id: string },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof deleteApiReservationsId>>,
+  Awaited<ReturnType<typeof deleteReservationsId>>,
   TError,
   { id: string },
   TContext
 > => {
-  const mutationKey = ['deleteApiReservationsId']
+  const mutationKey = ['deleteReservationsId']
   const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
@@ -513,41 +493,41 @@ export const getDeleteApiReservationsIdMutationOptions = <
     : { mutation: { mutationKey }, request: undefined }
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof deleteApiReservationsId>>,
+    Awaited<ReturnType<typeof deleteReservationsId>>,
     { id: string }
   > = (props) => {
     const { id } = props ?? {}
 
-    return deleteApiReservationsId(id, requestOptions)
+    return deleteReservationsId(id, requestOptions)
   }
 
   return { mutationFn, ...mutationOptions }
 }
 
-export type DeleteApiReservationsIdMutationResult = NonNullable<
-  Awaited<ReturnType<typeof deleteApiReservationsId>>
+export type DeleteReservationsIdMutationResult = NonNullable<
+  Awaited<ReturnType<typeof deleteReservationsId>>
 >
 
-export type DeleteApiReservationsIdMutationError = ErrorType<ProblemDetails>
+export type DeleteReservationsIdMutationError = ErrorType<ProblemDetails>
 
-export const useDeleteApiReservationsId = <
+export const useDeleteReservationsId = <
   TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof deleteApiReservationsId>>,
+    Awaited<ReturnType<typeof deleteReservationsId>>,
     TError,
     { id: string },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationResult<
-  Awaited<ReturnType<typeof deleteApiReservationsId>>,
+  Awaited<ReturnType<typeof deleteReservationsId>>,
   TError,
   { id: string },
   TContext
 > => {
-  const mutationOptions = getDeleteApiReservationsIdMutationOptions(options)
+  const mutationOptions = getDeleteReservationsIdMutationOptions(options)
 
   return useMutation(mutationOptions)
 }

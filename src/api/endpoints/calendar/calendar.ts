@@ -16,38 +16,38 @@ import type {
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query'
-import type { CalendarDto, GetApiCalendarPriceParams } from '../../models'
+import type { CalendarDto, GetCalendarPriceParams } from '../../models'
 import { customAxiosInstance } from '../../customAxiosInstance'
 import type { ErrorType } from '../../customAxiosInstance'
 
 type SecondParameter<T extends (...args: any) => any> = Parameters<T>[1]
 
-export const getApiCalendarPrice = (
-  params?: GetApiCalendarPriceParams,
+export const getCalendarPrice = (
+  params?: GetCalendarPriceParams,
   options?: SecondParameter<typeof customAxiosInstance>,
   signal?: AbortSignal
 ) => {
   return customAxiosInstance<unknown[]>(
-    { url: `/api/Calendar/price`, method: 'GET', params, signal },
+    { url: `/Calendar/price`, method: 'GET', params, signal },
     options
   )
 }
 
-export const getGetApiCalendarPriceQueryKey = (
-  params?: GetApiCalendarPriceParams
+export const getGetCalendarPriceQueryKey = (
+  params?: GetCalendarPriceParams
 ) => {
-  return [`/api/Calendar/price`, ...(params ? [params] : [])] as const
+  return [`/Calendar/price`, ...(params ? [params] : [])] as const
 }
 
-export const getGetApiCalendarPriceQueryOptions = <
-  TData = Awaited<ReturnType<typeof getApiCalendarPrice>>,
+export const getGetCalendarPriceQueryOptions = <
+  TData = Awaited<ReturnType<typeof getCalendarPrice>>,
   TError = ErrorType<unknown>
 >(
-  params?: GetApiCalendarPriceParams,
+  params?: GetCalendarPriceParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getApiCalendarPrice>>,
+        Awaited<ReturnType<typeof getCalendarPrice>>,
         TError,
         TData
       >
@@ -57,43 +57,42 @@ export const getGetApiCalendarPriceQueryOptions = <
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {}
 
-  const queryKey =
-    queryOptions?.queryKey ?? getGetApiCalendarPriceQueryKey(params)
+  const queryKey = queryOptions?.queryKey ?? getGetCalendarPriceQueryKey(params)
 
   const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof getApiCalendarPrice>>
-  > = ({ signal }) => getApiCalendarPrice(params, requestOptions, signal)
+    Awaited<ReturnType<typeof getCalendarPrice>>
+  > = ({ signal }) => getCalendarPrice(params, requestOptions, signal)
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getApiCalendarPrice>>,
+    Awaited<ReturnType<typeof getCalendarPrice>>,
     TError,
     TData
   > & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type GetApiCalendarPriceQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getApiCalendarPrice>>
+export type GetCalendarPriceQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getCalendarPrice>>
 >
-export type GetApiCalendarPriceQueryError = ErrorType<unknown>
+export type GetCalendarPriceQueryError = ErrorType<unknown>
 
-export function useGetApiCalendarPrice<
-  TData = Awaited<ReturnType<typeof getApiCalendarPrice>>,
+export function useGetCalendarPrice<
+  TData = Awaited<ReturnType<typeof getCalendarPrice>>,
   TError = ErrorType<unknown>
 >(
-  params: undefined | GetApiCalendarPriceParams,
+  params: undefined | GetCalendarPriceParams,
   options: {
     query: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getApiCalendarPrice>>,
+        Awaited<ReturnType<typeof getCalendarPrice>>,
         TError,
         TData
       >
     > &
       Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getApiCalendarPrice>>,
+          Awaited<ReturnType<typeof getCalendarPrice>>,
           TError,
-          Awaited<ReturnType<typeof getApiCalendarPrice>>
+          Awaited<ReturnType<typeof getCalendarPrice>>
         >,
         'initialData'
       >
@@ -102,24 +101,24 @@ export function useGetApiCalendarPrice<
 ): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 }
-export function useGetApiCalendarPrice<
-  TData = Awaited<ReturnType<typeof getApiCalendarPrice>>,
+export function useGetCalendarPrice<
+  TData = Awaited<ReturnType<typeof getCalendarPrice>>,
   TError = ErrorType<unknown>
 >(
-  params?: GetApiCalendarPriceParams,
+  params?: GetCalendarPriceParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getApiCalendarPrice>>,
+        Awaited<ReturnType<typeof getCalendarPrice>>,
         TError,
         TData
       >
     > &
       Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getApiCalendarPrice>>,
+          Awaited<ReturnType<typeof getCalendarPrice>>,
           TError,
-          Awaited<ReturnType<typeof getApiCalendarPrice>>
+          Awaited<ReturnType<typeof getCalendarPrice>>
         >,
         'initialData'
       >
@@ -128,15 +127,15 @@ export function useGetApiCalendarPrice<
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 }
-export function useGetApiCalendarPrice<
-  TData = Awaited<ReturnType<typeof getApiCalendarPrice>>,
+export function useGetCalendarPrice<
+  TData = Awaited<ReturnType<typeof getCalendarPrice>>,
   TError = ErrorType<unknown>
 >(
-  params?: GetApiCalendarPriceParams,
+  params?: GetCalendarPriceParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getApiCalendarPrice>>,
+        Awaited<ReturnType<typeof getCalendarPrice>>,
         TError,
         TData
       >
@@ -147,15 +146,15 @@ export function useGetApiCalendarPrice<
   queryKey: DataTag<QueryKey, TData, TError>
 }
 
-export function useGetApiCalendarPrice<
-  TData = Awaited<ReturnType<typeof getApiCalendarPrice>>,
+export function useGetCalendarPrice<
+  TData = Awaited<ReturnType<typeof getCalendarPrice>>,
   TError = ErrorType<unknown>
 >(
-  params?: GetApiCalendarPriceParams,
+  params?: GetCalendarPriceParams,
   options?: {
     query?: Partial<
       UseQueryOptions<
-        Awaited<ReturnType<typeof getApiCalendarPrice>>,
+        Awaited<ReturnType<typeof getCalendarPrice>>,
         TError,
         TData
       >
@@ -165,7 +164,7 @@ export function useGetApiCalendarPrice<
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 } {
-  const queryOptions = getGetApiCalendarPriceQueryOptions(params, options)
+  const queryOptions = getGetCalendarPriceQueryOptions(params, options)
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: DataTag<QueryKey, TData, TError>
@@ -176,61 +175,61 @@ export function useGetApiCalendarPrice<
   return query
 }
 
-export const getApiCalendar = (
+export const getCalendar = (
   options?: SecondParameter<typeof customAxiosInstance>,
   signal?: AbortSignal
 ) => {
   return customAxiosInstance<CalendarDto[]>(
-    { url: `/api/Calendar`, method: 'GET', signal },
+    { url: `/Calendar`, method: 'GET', signal },
     options
   )
 }
 
-export const getGetApiCalendarQueryKey = () => {
-  return [`/api/Calendar`] as const
+export const getGetCalendarQueryKey = () => {
+  return [`/Calendar`] as const
 }
 
-export const getGetApiCalendarQueryOptions = <
-  TData = Awaited<ReturnType<typeof getApiCalendar>>,
+export const getGetCalendarQueryOptions = <
+  TData = Awaited<ReturnType<typeof getCalendar>>,
   TError = ErrorType<unknown>
 >(options?: {
   query?: Partial<
-    UseQueryOptions<Awaited<ReturnType<typeof getApiCalendar>>, TError, TData>
+    UseQueryOptions<Awaited<ReturnType<typeof getCalendar>>, TError, TData>
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }) => {
   const { query: queryOptions, request: requestOptions } = options ?? {}
 
-  const queryKey = queryOptions?.queryKey ?? getGetApiCalendarQueryKey()
+  const queryKey = queryOptions?.queryKey ?? getGetCalendarQueryKey()
 
-  const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiCalendar>>> = ({
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getCalendar>>> = ({
     signal
-  }) => getApiCalendar(requestOptions, signal)
+  }) => getCalendar(requestOptions, signal)
 
   return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
-    Awaited<ReturnType<typeof getApiCalendar>>,
+    Awaited<ReturnType<typeof getCalendar>>,
     TError,
     TData
   > & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type GetApiCalendarQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getApiCalendar>>
+export type GetCalendarQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getCalendar>>
 >
-export type GetApiCalendarQueryError = ErrorType<unknown>
+export type GetCalendarQueryError = ErrorType<unknown>
 
-export function useGetApiCalendar<
-  TData = Awaited<ReturnType<typeof getApiCalendar>>,
+export function useGetCalendar<
+  TData = Awaited<ReturnType<typeof getCalendar>>,
   TError = ErrorType<unknown>
 >(options: {
   query: Partial<
-    UseQueryOptions<Awaited<ReturnType<typeof getApiCalendar>>, TError, TData>
+    UseQueryOptions<Awaited<ReturnType<typeof getCalendar>>, TError, TData>
   > &
     Pick<
       DefinedInitialDataOptions<
-        Awaited<ReturnType<typeof getApiCalendar>>,
+        Awaited<ReturnType<typeof getCalendar>>,
         TError,
-        Awaited<ReturnType<typeof getApiCalendar>>
+        Awaited<ReturnType<typeof getCalendar>>
       >,
       'initialData'
     >
@@ -238,18 +237,18 @@ export function useGetApiCalendar<
 }): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 }
-export function useGetApiCalendar<
-  TData = Awaited<ReturnType<typeof getApiCalendar>>,
+export function useGetCalendar<
+  TData = Awaited<ReturnType<typeof getCalendar>>,
   TError = ErrorType<unknown>
 >(options?: {
   query?: Partial<
-    UseQueryOptions<Awaited<ReturnType<typeof getApiCalendar>>, TError, TData>
+    UseQueryOptions<Awaited<ReturnType<typeof getCalendar>>, TError, TData>
   > &
     Pick<
       UndefinedInitialDataOptions<
-        Awaited<ReturnType<typeof getApiCalendar>>,
+        Awaited<ReturnType<typeof getCalendar>>,
         TError,
-        Awaited<ReturnType<typeof getApiCalendar>>
+        Awaited<ReturnType<typeof getCalendar>>
       >,
       'initialData'
     >
@@ -257,30 +256,30 @@ export function useGetApiCalendar<
 }): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 }
-export function useGetApiCalendar<
-  TData = Awaited<ReturnType<typeof getApiCalendar>>,
+export function useGetCalendar<
+  TData = Awaited<ReturnType<typeof getCalendar>>,
   TError = ErrorType<unknown>
 >(options?: {
   query?: Partial<
-    UseQueryOptions<Awaited<ReturnType<typeof getApiCalendar>>, TError, TData>
+    UseQueryOptions<Awaited<ReturnType<typeof getCalendar>>, TError, TData>
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 }
 
-export function useGetApiCalendar<
-  TData = Awaited<ReturnType<typeof getApiCalendar>>,
+export function useGetCalendar<
+  TData = Awaited<ReturnType<typeof getCalendar>>,
   TError = ErrorType<unknown>
 >(options?: {
   query?: Partial<
-    UseQueryOptions<Awaited<ReturnType<typeof getApiCalendar>>, TError, TData>
+    UseQueryOptions<Awaited<ReturnType<typeof getCalendar>>, TError, TData>
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 } {
-  const queryOptions = getGetApiCalendarQueryOptions(options)
+  const queryOptions = getGetCalendarQueryOptions(options)
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: DataTag<QueryKey, TData, TError>
@@ -291,14 +290,14 @@ export function useGetApiCalendar<
   return query
 }
 
-export const postApiCalendar = (
+export const postCalendar = (
   calendarDto: CalendarDto,
   options?: SecondParameter<typeof customAxiosInstance>,
   signal?: AbortSignal
 ) => {
   return customAxiosInstance<CalendarDto>(
     {
-      url: `/api/Calendar`,
+      url: `/Calendar`,
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       data: calendarDto,
@@ -308,24 +307,24 @@ export const postApiCalendar = (
   )
 }
 
-export const getPostApiCalendarMutationOptions = <
+export const getPostCalendarMutationOptions = <
   TError = ErrorType<unknown>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof postApiCalendar>>,
+    Awaited<ReturnType<typeof postCalendar>>,
     TError,
     { data: CalendarDto },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof postApiCalendar>>,
+  Awaited<ReturnType<typeof postCalendar>>,
   TError,
   { data: CalendarDto },
   TContext
 > => {
-  const mutationKey = ['postApiCalendar']
+  const mutationKey = ['postCalendar']
   const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
@@ -335,82 +334,78 @@ export const getPostApiCalendarMutationOptions = <
     : { mutation: { mutationKey }, request: undefined }
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof postApiCalendar>>,
+    Awaited<ReturnType<typeof postCalendar>>,
     { data: CalendarDto }
   > = (props) => {
     const { data } = props ?? {}
 
-    return postApiCalendar(data, requestOptions)
+    return postCalendar(data, requestOptions)
   }
 
   return { mutationFn, ...mutationOptions }
 }
 
-export type PostApiCalendarMutationResult = NonNullable<
-  Awaited<ReturnType<typeof postApiCalendar>>
+export type PostCalendarMutationResult = NonNullable<
+  Awaited<ReturnType<typeof postCalendar>>
 >
-export type PostApiCalendarMutationBody = CalendarDto
-export type PostApiCalendarMutationError = ErrorType<unknown>
+export type PostCalendarMutationBody = CalendarDto
+export type PostCalendarMutationError = ErrorType<unknown>
 
-export const usePostApiCalendar = <
+export const usePostCalendar = <
   TError = ErrorType<unknown>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof postApiCalendar>>,
+    Awaited<ReturnType<typeof postCalendar>>,
     TError,
     { data: CalendarDto },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationResult<
-  Awaited<ReturnType<typeof postApiCalendar>>,
+  Awaited<ReturnType<typeof postCalendar>>,
   TError,
   { data: CalendarDto },
   TContext
 > => {
-  const mutationOptions = getPostApiCalendarMutationOptions(options)
+  const mutationOptions = getPostCalendarMutationOptions(options)
 
   return useMutation(mutationOptions)
 }
-export const getApiCalendarId = (
+export const getCalendarId = (
   id: string,
   options?: SecondParameter<typeof customAxiosInstance>,
   signal?: AbortSignal
 ) => {
   return customAxiosInstance<CalendarDto>(
-    { url: `/api/Calendar/${id}`, method: 'GET', signal },
+    { url: `/Calendar/${id}`, method: 'GET', signal },
     options
   )
 }
 
-export const getGetApiCalendarIdQueryKey = (id: string) => {
-  return [`/api/Calendar/${id}`] as const
+export const getGetCalendarIdQueryKey = (id: string) => {
+  return [`/Calendar/${id}`] as const
 }
 
-export const getGetApiCalendarIdQueryOptions = <
-  TData = Awaited<ReturnType<typeof getApiCalendarId>>,
+export const getGetCalendarIdQueryOptions = <
+  TData = Awaited<ReturnType<typeof getCalendarId>>,
   TError = ErrorType<unknown>
 >(
   id: string,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getApiCalendarId>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getCalendarId>>, TError, TData>
     >
     request?: SecondParameter<typeof customAxiosInstance>
   }
 ) => {
   const { query: queryOptions, request: requestOptions } = options ?? {}
 
-  const queryKey = queryOptions?.queryKey ?? getGetApiCalendarIdQueryKey(id)
+  const queryKey = queryOptions?.queryKey ?? getGetCalendarIdQueryKey(id)
 
-  const queryFn: QueryFunction<
-    Awaited<ReturnType<typeof getApiCalendarId>>
-  > = ({ signal }) => getApiCalendarId(id, requestOptions, signal)
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getCalendarId>>> = ({
+    signal
+  }) => getCalendarId(id, requestOptions, signal)
 
   return {
     queryKey,
@@ -418,35 +413,31 @@ export const getGetApiCalendarIdQueryOptions = <
     enabled: !!id,
     ...queryOptions
   } as UseQueryOptions<
-    Awaited<ReturnType<typeof getApiCalendarId>>,
+    Awaited<ReturnType<typeof getCalendarId>>,
     TError,
     TData
   > & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type GetApiCalendarIdQueryResult = NonNullable<
-  Awaited<ReturnType<typeof getApiCalendarId>>
+export type GetCalendarIdQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getCalendarId>>
 >
-export type GetApiCalendarIdQueryError = ErrorType<unknown>
+export type GetCalendarIdQueryError = ErrorType<unknown>
 
-export function useGetApiCalendarId<
-  TData = Awaited<ReturnType<typeof getApiCalendarId>>,
+export function useGetCalendarId<
+  TData = Awaited<ReturnType<typeof getCalendarId>>,
   TError = ErrorType<unknown>
 >(
   id: string,
   options: {
     query: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getApiCalendarId>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getCalendarId>>, TError, TData>
     > &
       Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getApiCalendarId>>,
+          Awaited<ReturnType<typeof getCalendarId>>,
           TError,
-          Awaited<ReturnType<typeof getApiCalendarId>>
+          Awaited<ReturnType<typeof getCalendarId>>
         >,
         'initialData'
       >
@@ -455,24 +446,20 @@ export function useGetApiCalendarId<
 ): DefinedUseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 }
-export function useGetApiCalendarId<
-  TData = Awaited<ReturnType<typeof getApiCalendarId>>,
+export function useGetCalendarId<
+  TData = Awaited<ReturnType<typeof getCalendarId>>,
   TError = ErrorType<unknown>
 >(
   id: string,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getApiCalendarId>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getCalendarId>>, TError, TData>
     > &
       Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof getApiCalendarId>>,
+          Awaited<ReturnType<typeof getCalendarId>>,
           TError,
-          Awaited<ReturnType<typeof getApiCalendarId>>
+          Awaited<ReturnType<typeof getCalendarId>>
         >,
         'initialData'
       >
@@ -481,18 +468,14 @@ export function useGetApiCalendarId<
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 }
-export function useGetApiCalendarId<
-  TData = Awaited<ReturnType<typeof getApiCalendarId>>,
+export function useGetCalendarId<
+  TData = Awaited<ReturnType<typeof getCalendarId>>,
   TError = ErrorType<unknown>
 >(
   id: string,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getApiCalendarId>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getCalendarId>>, TError, TData>
     >
     request?: SecondParameter<typeof customAxiosInstance>
   }
@@ -500,25 +483,21 @@ export function useGetApiCalendarId<
   queryKey: DataTag<QueryKey, TData, TError>
 }
 
-export function useGetApiCalendarId<
-  TData = Awaited<ReturnType<typeof getApiCalendarId>>,
+export function useGetCalendarId<
+  TData = Awaited<ReturnType<typeof getCalendarId>>,
   TError = ErrorType<unknown>
 >(
   id: string,
   options?: {
     query?: Partial<
-      UseQueryOptions<
-        Awaited<ReturnType<typeof getApiCalendarId>>,
-        TError,
-        TData
-      >
+      UseQueryOptions<Awaited<ReturnType<typeof getCalendarId>>, TError, TData>
     >
     request?: SecondParameter<typeof customAxiosInstance>
   }
 ): UseQueryResult<TData, TError> & {
   queryKey: DataTag<QueryKey, TData, TError>
 } {
-  const queryOptions = getGetApiCalendarIdQueryOptions(id, options)
+  const queryOptions = getGetCalendarIdQueryOptions(id, options)
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: DataTag<QueryKey, TData, TError>
@@ -529,14 +508,14 @@ export function useGetApiCalendarId<
   return query
 }
 
-export const putApiCalendarId = (
+export const putCalendarId = (
   id: string,
   calendarDto: CalendarDto,
   options?: SecondParameter<typeof customAxiosInstance>
 ) => {
   return customAxiosInstance<void>(
     {
-      url: `/api/Calendar/${id}`,
+      url: `/Calendar/${id}`,
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       data: calendarDto
@@ -545,24 +524,24 @@ export const putApiCalendarId = (
   )
 }
 
-export const getPutApiCalendarIdMutationOptions = <
+export const getPutCalendarIdMutationOptions = <
   TError = ErrorType<unknown>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof putApiCalendarId>>,
+    Awaited<ReturnType<typeof putCalendarId>>,
     TError,
     { id: string; data: CalendarDto },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof putApiCalendarId>>,
+  Awaited<ReturnType<typeof putCalendarId>>,
   TError,
   { id: string; data: CalendarDto },
   TContext
 > => {
-  const mutationKey = ['putApiCalendarId']
+  const mutationKey = ['putCalendarId']
   const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
@@ -572,72 +551,72 @@ export const getPutApiCalendarIdMutationOptions = <
     : { mutation: { mutationKey }, request: undefined }
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof putApiCalendarId>>,
+    Awaited<ReturnType<typeof putCalendarId>>,
     { id: string; data: CalendarDto }
   > = (props) => {
     const { id, data } = props ?? {}
 
-    return putApiCalendarId(id, data, requestOptions)
+    return putCalendarId(id, data, requestOptions)
   }
 
   return { mutationFn, ...mutationOptions }
 }
 
-export type PutApiCalendarIdMutationResult = NonNullable<
-  Awaited<ReturnType<typeof putApiCalendarId>>
+export type PutCalendarIdMutationResult = NonNullable<
+  Awaited<ReturnType<typeof putCalendarId>>
 >
-export type PutApiCalendarIdMutationBody = CalendarDto
-export type PutApiCalendarIdMutationError = ErrorType<unknown>
+export type PutCalendarIdMutationBody = CalendarDto
+export type PutCalendarIdMutationError = ErrorType<unknown>
 
-export const usePutApiCalendarId = <
+export const usePutCalendarId = <
   TError = ErrorType<unknown>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof putApiCalendarId>>,
+    Awaited<ReturnType<typeof putCalendarId>>,
     TError,
     { id: string; data: CalendarDto },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationResult<
-  Awaited<ReturnType<typeof putApiCalendarId>>,
+  Awaited<ReturnType<typeof putCalendarId>>,
   TError,
   { id: string; data: CalendarDto },
   TContext
 > => {
-  const mutationOptions = getPutApiCalendarIdMutationOptions(options)
+  const mutationOptions = getPutCalendarIdMutationOptions(options)
 
   return useMutation(mutationOptions)
 }
-export const deleteApiCalendarId = (
+export const deleteCalendarId = (
   id: string,
   options?: SecondParameter<typeof customAxiosInstance>
 ) => {
   return customAxiosInstance<void>(
-    { url: `/api/Calendar/${id}`, method: 'DELETE' },
+    { url: `/Calendar/${id}`, method: 'DELETE' },
     options
   )
 }
 
-export const getDeleteApiCalendarIdMutationOptions = <
+export const getDeleteCalendarIdMutationOptions = <
   TError = ErrorType<unknown>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof deleteApiCalendarId>>,
+    Awaited<ReturnType<typeof deleteCalendarId>>,
     TError,
     { id: string },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof deleteApiCalendarId>>,
+  Awaited<ReturnType<typeof deleteCalendarId>>,
   TError,
   { id: string },
   TContext
 > => {
-  const mutationKey = ['deleteApiCalendarId']
+  const mutationKey = ['deleteCalendarId']
   const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
@@ -647,41 +626,41 @@ export const getDeleteApiCalendarIdMutationOptions = <
     : { mutation: { mutationKey }, request: undefined }
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof deleteApiCalendarId>>,
+    Awaited<ReturnType<typeof deleteCalendarId>>,
     { id: string }
   > = (props) => {
     const { id } = props ?? {}
 
-    return deleteApiCalendarId(id, requestOptions)
+    return deleteCalendarId(id, requestOptions)
   }
 
   return { mutationFn, ...mutationOptions }
 }
 
-export type DeleteApiCalendarIdMutationResult = NonNullable<
-  Awaited<ReturnType<typeof deleteApiCalendarId>>
+export type DeleteCalendarIdMutationResult = NonNullable<
+  Awaited<ReturnType<typeof deleteCalendarId>>
 >
 
-export type DeleteApiCalendarIdMutationError = ErrorType<unknown>
+export type DeleteCalendarIdMutationError = ErrorType<unknown>
 
-export const useDeleteApiCalendarId = <
+export const useDeleteCalendarId = <
   TError = ErrorType<unknown>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof deleteApiCalendarId>>,
+    Awaited<ReturnType<typeof deleteCalendarId>>,
     TError,
     { id: string },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationResult<
-  Awaited<ReturnType<typeof deleteApiCalendarId>>,
+  Awaited<ReturnType<typeof deleteCalendarId>>,
   TError,
   { id: string },
   TContext
 > => {
-  const mutationOptions = getDeleteApiCalendarIdMutationOptions(options)
+  const mutationOptions = getDeleteCalendarIdMutationOptions(options)
 
   return useMutation(mutationOptions)
 }

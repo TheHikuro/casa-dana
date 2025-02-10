@@ -2,7 +2,8 @@ import { create } from 'zustand'
 
 const initialState = {
   email: '',
-  isConnected: false
+  isConnected: false,
+  token: ''
 }
 
 export const useIdentityStore = create<{

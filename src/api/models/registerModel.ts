@@ -3,13 +3,13 @@
  * Do not edit manually.
  */
 
-export interface CreateUserDto {
+export interface RegisterModel {
   /** @nullable */
   email: string | null
+  /** @nullable */
+  password: string | null
   /** @nullable */
   firstName: string | null
   /** @nullable */
   lastName: string | null
-  /** @nullable */
-  password: string | null
 }
