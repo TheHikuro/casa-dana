@@ -15,7 +15,7 @@ export const getContactSchema = (t: (key: string) => string) => {
     email: z.string().regex(emailRegex, {
       message: t(CASADANA_KEYS.errors.invalid_email)
     }),
-    guests: z.number().int().positive(),
+    guests: z.string().nonempty(),
     phone: z
       .string()
       .regex(phoneRegex, { message: t(CASADANA_KEYS.errors.phone_required) }),

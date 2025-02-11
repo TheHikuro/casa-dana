@@ -87,10 +87,12 @@ export default function ReservationForm() {
     0
   )
   const total = defaultTotal + customTotal
-
   const groupedPrices = groupNightsByPrice(priceDetails)
 
+  console.log(errors)
+
   const onSubmit = (data: FormValues) => {
+    console.log(data, Number(data.guests))
     createReservation(
       {
         data: {

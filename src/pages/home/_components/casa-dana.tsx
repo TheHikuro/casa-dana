@@ -15,14 +15,11 @@ import { Checklist } from './checklist'
 import Logo from '../../../assets/logo/logo_header.png'
 import { Listing as Equipments } from './listing'
 import { cn } from '../../../../@/lib/utils.ts'
-import { Button } from '../../../components/ui/button.tsx'
 import { img } from '../../../utils/images.ts'
 import certifImg from '../../../assets/logo/certif.png'
-import { useNavigate } from 'react-router-dom'
 import ContactPage from '../../contact/ContactPage.tsx'
 
 export function CasaDana() {
-  const navigate = useNavigate()
   const [windowSize, setWindowSize] = useState(window.innerWidth)
 
   const handleResize = useCallback(() => setWindowSize(window.innerWidth), [])
@@ -55,12 +52,6 @@ export function CasaDana() {
             <div className="flex justify-end">
               <LangSelector />
             </div>
-            <Button
-              className="bg-yellow-400 text-black uppercase rounded-full py-3 hover:bg-yellow-500"
-              onClick={() => navigate('/contact')}
-            >
-              {t(CASADANA_KEYS.los_alcazares.button)}
-            </Button>
           </div>
         </div>
         <img

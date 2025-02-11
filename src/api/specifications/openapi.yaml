@@ -681,7 +681,7 @@
                     }
                 }
             },
-          'put':
+          'patch':
             {
               'tags': ['Reservations'],
               'parameters':
@@ -691,50 +691,17 @@
                     'in': 'path',
                     'required': true,
                     'schema': { 'type': 'string', 'format': 'uuid' }
+                  },
+                  {
+                    'name': 'status',
+                    'in': 'query',
+                    'schema':
+                      {
+                        'allOf':
+                          [{ '$ref': '#/components/schemas/ReservationStatus' }]
+                      }
                   }
                 ],
-              'requestBody':
-                {
-                  'content':
-                    {
-                      'application/json':
-                        {
-                          'schema':
-                            {
-                              'allOf':
-                                [
-                                  {
-                                    '$ref': '#/components/schemas/ReservationDto'
-                                  }
-                                ]
-                            }
-                        },
-                      'text/json':
-                        {
-                          'schema':
-                            {
-                              'allOf':
-                                [
-                                  {
-                                    '$ref': '#/components/schemas/ReservationDto'
-                                  }
-                                ]
-                            }
-                        },
-                      'application/*+json':
-                        {
-                          'schema':
-                            {
-                              'allOf':
-                                [
-                                  {
-                                    '$ref': '#/components/schemas/ReservationDto'
-                                  }
-                                ]
-                            }
-                        }
-                    }
-                },
               'responses':
                 {
                   '204': { 'description': 'No Content' },

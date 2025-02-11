@@ -16,7 +16,11 @@ import type {
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query'
-import type { ProblemDetails, ReservationDto } from '../../models'
+import type {
+  PatchReservationsIdParams,
+  ProblemDetails,
+  ReservationDto
+} from '../../models'
 import { customAxiosInstance } from '../../customAxiosInstance'
 import type { ErrorType } from '../../customAxiosInstance'
 
@@ -375,40 +379,35 @@ export function useGetReservationsId<
   return query
 }
 
-export const putReservationsId = (
+export const patchReservationsId = (
   id: string,
-  reservationDto: ReservationDto,
+  params?: PatchReservationsIdParams,
   options?: SecondParameter<typeof customAxiosInstance>
 ) => {
   return customAxiosInstance<void>(
-    {
-      url: `/Reservations/${id}`,
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      data: reservationDto
-    },
+    { url: `/Reservations/${id}`, method: 'PATCH', params },
     options
   )
 }
 
-export const getPutReservationsIdMutationOptions = <
+export const getPatchReservationsIdMutationOptions = <
   TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof putReservationsId>>,
+    Awaited<ReturnType<typeof patchReservationsId>>,
     TError,
-    { id: string; data: ReservationDto },
+    { id: string; params?: PatchReservationsIdParams },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationOptions<
-  Awaited<ReturnType<typeof putReservationsId>>,
+  Awaited<ReturnType<typeof patchReservationsId>>,
   TError,
-  { id: string; data: ReservationDto },
+  { id: string; params?: PatchReservationsIdParams },
   TContext
 > => {
-  const mutationKey = ['putReservationsId']
+  const mutationKey = ['patchReservationsId']
   const { mutation: mutationOptions, request: requestOptions } = options
     ? options.mutation &&
       'mutationKey' in options.mutation &&
@@ -418,41 +417,41 @@ export const getPutReservationsIdMutationOptions = <
     : { mutation: { mutationKey }, request: undefined }
 
   const mutationFn: MutationFunction<
-    Awaited<ReturnType<typeof putReservationsId>>,
-    { id: string; data: ReservationDto }
+    Awaited<ReturnType<typeof patchReservationsId>>,
+    { id: string; params?: PatchReservationsIdParams }
   > = (props) => {
-    const { id, data } = props ?? {}
+    const { id, params } = props ?? {}
 
-    return putReservationsId(id, data, requestOptions)
+    return patchReservationsId(id, params, requestOptions)
   }
 
   return { mutationFn, ...mutationOptions }
 }
 
-export type PutReservationsIdMutationResult = NonNullable<
-  Awaited<ReturnType<typeof putReservationsId>>
+export type PatchReservationsIdMutationResult = NonNullable<
+  Awaited<ReturnType<typeof patchReservationsId>>
 >
-export type PutReservationsIdMutationBody = ReservationDto
-export type PutReservationsIdMutationError = ErrorType<ProblemDetails>
 
-export const usePutReservationsId = <
+export type PatchReservationsIdMutationError = ErrorType<ProblemDetails>
+
+export const usePatchReservationsId = <
   TError = ErrorType<ProblemDetails>,
   TContext = unknown
 >(options?: {
   mutation?: UseMutationOptions<
-    Awaited<ReturnType<typeof putReservationsId>>,
+    Awaited<ReturnType<typeof patchReservationsId>>,
     TError,
-    { id: string; data: ReservationDto },
+    { id: string; params?: PatchReservationsIdParams },
     TContext
   >
   request?: SecondParameter<typeof customAxiosInstance>
 }): UseMutationResult<
-  Awaited<ReturnType<typeof putReservationsId>>,
+  Awaited<ReturnType<typeof patchReservationsId>>,
   TError,
-  { id: string; data: ReservationDto },
+  { id: string; params?: PatchReservationsIdParams },
   TContext
 > => {
-  const mutationOptions = getPutReservationsIdMutationOptions(options)
+  const mutationOptions = getPatchReservationsIdMutationOptions(options)
 
   return useMutation(mutationOptions)
 }

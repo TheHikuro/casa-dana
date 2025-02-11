@@ -12,9 +12,9 @@ import { useToaster } from '../../utils/providers/toaster.provider.tsx'
 import { Link } from 'react-router-dom'
 import {
   useGetReservations,
-  usePutReservationsId
+  usePatchReservationsId
 } from '../../api/endpoints/reservations/reservations.ts'
-import { ReservationDto, ReservationStatus } from '../../api/models'
+import { ReservationStatus } from '../../api/models'
 import { format } from 'date-fns'
 
 export default function AdminDashboard() {
@@ -23,26 +23,14 @@ export default function AdminDashboard() {
     console.log(id)
   }
 
-  const { mutate: approuveReservation } = usePutReservationsId()
+  const { mutate: approuveReservation } = usePatchReservationsId()
   const { data: { data: reservations = [] } = {}, refetch } =
     useGetReservations()
-  const handleUpdate = (id: string, reservation: ReservationDto) => {
+  const handleUpdate = (id: string, status: ReservationStatus) => {
     approuveReservation(
       {
         id,
-        data: {
-          status: ReservationStatus.NUMBER_1,
-          description: reservation.description,
-          email: reservation.email,
-          end: reservation.end,
-          firstName: reservation.firstName,
-          lastName: reservation.lastName,
-          numberOfPersons: reservation.numberOfPersons,
-          phone: reservation.phone,
-          price: reservation.price,
-          start: reservation.start,
-          id: reservation.id
-        }
+        params: { status }
       },
       {
         onSuccess: async () => {
@@ -117,7 +105,9 @@ export default function AdminDashboard() {
                   <Button
                     className="bg-green-500 hover:bg-green-600"
                     size="sm"
-                    onClick={() => handleUpdate(reservation.id!, reservation)}
+                    onClick={() =>
+                      handleUpdate(reservation.id!, ReservationStatus.NUMBER_1)
+                    }
                   >
                     <Check className="mr-2 h-4 w-4" /> Accepter
                   </Button>

@@ -6,6 +6,7 @@
 export * from './calendarDto'
 export * from './getCalendarPriceParams'
 export * from './loginModel'
+export * from './patchReservationsIdParams'
 export * from './problemDetails'
 export * from './registerModel'
 export * from './reservationDto'
