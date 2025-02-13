@@ -1,2 +1,2 @@
-export * from './ContactCalendar.tsx'
-export * from './ContactForm.tsx'
+export * from './image-gallery.tsx'
+export * from './reservation-form.tsx'

@@ -6,15 +6,16 @@ const phoneRegex = /^\+\d{10,}$/
 
 export const getContactSchema = (t: (key: string) => string) => {
   return z.object({
-    firstname: z
+    firstName: z
       .string()
       .nonempty({ message: t(CASADANA_KEYS.errors.firstname_required) }),
-    lastname: z
+    lastName: z
       .string()
       .nonempty({ message: t(CASADANA_KEYS.errors.lastname_required) }),
     email: z.string().regex(emailRegex, {
       message: t(CASADANA_KEYS.errors.invalid_email)
     }),
+    guests: z.string().nonempty(),
     phone: z
       .string()
       .regex(phoneRegex, { message: t(CASADANA_KEYS.errors.phone_required) }),

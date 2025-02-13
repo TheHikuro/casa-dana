@@ -9,26 +9,29 @@
     "lint": "prettier . --write",
     "preview": "vite preview",
     "prepare": "husky",
-    "gen:i18n": "pnpx tsx src/i18n/script/generate_traductions.ts"
+    "gen:i18n": "pnpx tsx src/i18n/script/generate_traductions.ts",
+    "update:api": "bash src/scripts/generate-spec-api.sh"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.5",
     "@radix-ui/react-label": "^2.1.1",
-    "@emailjs/browser": "^4.4.1",
-    "@radix-ui/react-select": "^2.1.2",
+    "@radix-ui/react-select": "^2.1.5",
     "@radix-ui/react-slot": "^1.1.0",
-    "@supabase/supabase-js": "^2.47.10",
     "@tanstack/react-query": "^5.62.15",
+    "axios": "^1.7.9",
     "class-variance-authority": "^0.7.0",
+    "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.3.1",
     "framer-motion": "^11.13.1",
     "lucide-react": "^0.441.0",
+    "orval": "^7.5.0",
     "react": "^19.0.0",
     "react-calendar": "^5.1.0",
+    "react-day-picker": "8.10.1",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.0",
     "react-hot-toast": "^2.5.1",
     "react-icons": "^5.3.0",
-    "resend": "^4.0.1",
     "tailwind-merge": "^2.5.2",
     "tailwindcss": "^3.4.11",
     "tailwindcss-animate": "^1.0.7"
@@ -61,13 +64,22 @@
     "tsx": "^4.17.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "5.4.6",
+    "vite": "6.0.11",
     "zod": "^3.24.1",
     "zustand": "^5.0.2"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "pnpm": {
+    "overrides": {
+      "micromatch@<4.0.8": ">=4.0.8",
+      "rollup@>=4.0.0 <4.22.4": ">=4.22.4",
+      "cross-spawn@>=7.0.0 <7.0.5": ">=7.0.5",
+      "nanoid@<3.3.8": ">=3.3.8",
+      "vite@>=5.0.0 <=5.4.11": ">=5.4.12"
     }
   }
 }

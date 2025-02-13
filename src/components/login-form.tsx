@@ -5,14 +5,19 @@ import { Input } from './ui/input.tsx'
 import { Button } from './ui/button.tsx'
 import { cn } from '../../@/lib/utils.ts'
 import { useForm } from 'react-hook-form'
-import { useAuth } from '../pages/admin/hooks/useAuth.tsx'
 import { useToaster } from '../utils/providers/toaster.provider.tsx'
 import { useNavigate } from 'react-router-dom'
 import { useIdentityStore } from '../pages/admin/admin.utils.ts'
+import { usePostAuthLogin } from '../api/endpoints/auth/auth.ts'
 
 type LoginFormType = {
   email: string
   password: string
+}
+
+type LoginResponse = {
+  token: string
+  email: string
 }
 
 export function LoginForm({
@@ -21,20 +26,30 @@ export function LoginForm({
 }: ComponentPropsWithoutRef<'div'>) {
   const methods = useForm<LoginFormType>()
   const { handleSubmit, register } = methods
-  const { mutate } = useAuth()
   const toaster = useToaster()
   const navigate = useNavigate()
   const { setIdentity } = useIdentityStore()
+  const { mutate: auth } = usePostAuthLogin()
 
   const onSubmit = (data: LoginFormType) => {
-    mutate(data, {
-      onSuccess: (data) => {
-        toaster?.success('Vous êtes connecté avec succès')
-        setIdentity({ email: data.user.email ?? '', isConnected: true })
-        navigate('/admin')
+    auth(
+      {
+        data: { ...data }
       },
-      onError: (error) => toaster?.error(error.message)
-    })
+      {
+        onSuccess: ({ data }) => {
+          setIdentity({
+            isConnected: true,
+            token: (data as unknown as LoginResponse).token,
+            email: (data as unknown as LoginResponse).email
+          })
+          navigate('/admin')
+        },
+        onError: (error) => {
+          toaster?.error(error.message)
+        }
+      }
+    )
   }
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>

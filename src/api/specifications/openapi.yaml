@@ -1,0 +1,1000 @@
+{
+  'openapi': '3.0.1',
+  'info':
+    {
+      'title': 'CasaDana API',
+      'description': 'CasaDana Reservation API',
+      'version': 'v1'
+    },
+  'paths':
+    {
+      '/Auth/register':
+        {
+          'post':
+            {
+              'tags': ['Auth'],
+              'requestBody':
+                {
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [
+                                  {
+                                    '$ref': '#/components/schemas/RegisterModel'
+                                  }
+                                ]
+                            }
+                        },
+                      'text/json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [
+                                  {
+                                    '$ref': '#/components/schemas/RegisterModel'
+                                  }
+                                ]
+                            }
+                        },
+                      'application/*+json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [
+                                  {
+                                    '$ref': '#/components/schemas/RegisterModel'
+                                  }
+                                ]
+                            }
+                        }
+                    }
+                },
+              'responses': { '200': { 'description': 'OK' } }
+            }
+        },
+      '/Auth/login':
+        {
+          'post':
+            {
+              'tags': ['Auth'],
+              'requestBody':
+                {
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [{ '$ref': '#/components/schemas/LoginModel' }]
+                            }
+                        },
+                      'text/json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [{ '$ref': '#/components/schemas/LoginModel' }]
+                            }
+                        },
+                      'application/*+json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [{ '$ref': '#/components/schemas/LoginModel' }]
+                            }
+                        }
+                    }
+                },
+              'responses': { '200': { 'description': 'OK' } }
+            }
+        },
+      '/Calendar/price':
+        {
+          'get':
+            {
+              'tags': ['Calendar'],
+              'parameters':
+                [
+                  {
+                    'name': 'start',
+                    'in': 'query',
+                    'schema': { 'type': 'string' }
+                  },
+                  {
+                    'name': 'end',
+                    'in': 'query',
+                    'schema': { 'type': 'string' }
+                  }
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'OK',
+                      'content':
+                        {
+                          'text/plain':
+                            { 'schema': { 'type': 'array', 'items': {} } },
+                          'application/json':
+                            { 'schema': { 'type': 'array', 'items': {} } },
+                          'text/json':
+                            { 'schema': { 'type': 'array', 'items': {} } }
+                        }
+                    }
+                }
+            }
+        },
+      '/Calendar':
+        {
+          'get':
+            {
+              'tags': ['Calendar'],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'OK',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/CalendarDto'
+                                    }
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/CalendarDto'
+                                    }
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/CalendarDto'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+          'post':
+            {
+              'tags': ['Calendar'],
+              'requestBody':
+                {
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [{ '$ref': '#/components/schemas/CalendarDto' }]
+                            }
+                        },
+                      'text/json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [{ '$ref': '#/components/schemas/CalendarDto' }]
+                            }
+                        },
+                      'application/*+json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [{ '$ref': '#/components/schemas/CalendarDto' }]
+                            }
+                        }
+                    }
+                },
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'OK',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/CalendarDto' }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/CalendarDto' }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/CalendarDto' }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+      '/Calendar/{id}':
+        {
+          'get':
+            {
+              'tags': ['Calendar'],
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'string', 'format': 'uuid' }
+                  }
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'OK',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/CalendarDto' }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/CalendarDto' }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                { '$ref': '#/components/schemas/CalendarDto' }
+                            }
+                        }
+                    }
+                }
+            },
+          'put':
+            {
+              'tags': ['Calendar'],
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'string', 'format': 'uuid' }
+                  }
+                ],
+              'requestBody':
+                {
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [{ '$ref': '#/components/schemas/CalendarDto' }]
+                            }
+                        },
+                      'text/json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [{ '$ref': '#/components/schemas/CalendarDto' }]
+                            }
+                        },
+                      'application/*+json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [{ '$ref': '#/components/schemas/CalendarDto' }]
+                            }
+                        }
+                    }
+                },
+              'responses': { '200': { 'description': 'OK' } }
+            },
+          'delete':
+            {
+              'tags': ['Calendar'],
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'string', 'format': 'uuid' }
+                  }
+                ],
+              'responses': { '200': { 'description': 'OK' } }
+            }
+        },
+      '/Reservations':
+        {
+          'get':
+            {
+              'tags': ['Reservations'],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'OK',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/ReservationDto'
+                                    }
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/ReservationDto'
+                                    }
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  'type': 'array',
+                                  'items':
+                                    {
+                                      '$ref': '#/components/schemas/ReservationDto'
+                                    }
+                                }
+                            }
+                        }
+                    },
+                  '404':
+                    {
+                      'description': 'Not Found',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            }
+                        }
+                    },
+                  'default':
+                    {
+                      'description': 'Error',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+          'post':
+            {
+              'tags': ['Reservations'],
+              'requestBody':
+                {
+                  'content':
+                    {
+                      'application/json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [
+                                  {
+                                    '$ref': '#/components/schemas/ReservationDto'
+                                  }
+                                ]
+                            }
+                        },
+                      'text/json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [
+                                  {
+                                    '$ref': '#/components/schemas/ReservationDto'
+                                  }
+                                ]
+                            }
+                        },
+                      'application/*+json':
+                        {
+                          'schema':
+                            {
+                              'allOf':
+                                [
+                                  {
+                                    '$ref': '#/components/schemas/ReservationDto'
+                                  }
+                                ]
+                            }
+                        }
+                    }
+                },
+              'responses':
+                {
+                  '201':
+                    {
+                      'description': 'Created',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ReservationDto'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ReservationDto'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ReservationDto'
+                                }
+                            }
+                        }
+                    },
+                  '400':
+                    {
+                      'description': 'Bad Request',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            }
+                        }
+                    },
+                  'default':
+                    {
+                      'description': 'Error',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+      '/Reservations/{id}':
+        {
+          'get':
+            {
+              'tags': ['Reservations'],
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'string', 'format': 'uuid' }
+                  }
+                ],
+              'responses':
+                {
+                  '200':
+                    {
+                      'description': 'OK',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ReservationDto'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ReservationDto'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ReservationDto'
+                                }
+                            }
+                        }
+                    },
+                  '404':
+                    {
+                      'description': 'Not Found',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            }
+                        }
+                    },
+                  'default':
+                    {
+                      'description': 'Error',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+          'patch':
+            {
+              'tags': ['Reservations'],
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'string', 'format': 'uuid' }
+                  },
+                  {
+                    'name': 'status',
+                    'in': 'query',
+                    'schema':
+                      {
+                        'allOf':
+                          [{ '$ref': '#/components/schemas/ReservationStatus' }]
+                      }
+                  }
+                ],
+              'responses':
+                {
+                  '204': { 'description': 'No Content' },
+                  '404':
+                    {
+                      'description': 'Not Found',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            }
+                        }
+                    },
+                  '400':
+                    {
+                      'description': 'Bad Request',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            }
+                        }
+                    },
+                  'default':
+                    {
+                      'description': 'Error',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+          'delete':
+            {
+              'tags': ['Reservations'],
+              'parameters':
+                [
+                  {
+                    'name': 'id',
+                    'in': 'path',
+                    'required': true,
+                    'schema': { 'type': 'string', 'format': 'uuid' }
+                  }
+                ],
+              'responses':
+                {
+                  '200': { 'description': 'OK' },
+                  '404':
+                    {
+                      'description': 'Not Found',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            }
+                        }
+                    },
+                  '400':
+                    {
+                      'description': 'Bad Request',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            }
+                        }
+                    },
+                  'default':
+                    {
+                      'description': 'Error',
+                      'content':
+                        {
+                          'text/plain':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'application/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            },
+                          'text/json':
+                            {
+                              'schema':
+                                {
+                                  '$ref': '#/components/schemas/ProblemDetails'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+  'components':
+    {
+      'schemas':
+        {
+          'CalendarDto':
+            {
+              'required': ['endDate', 'price', 'startDate'],
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'string', 'format': 'uuid' },
+                  'startDate': { 'type': 'string', 'format': 'date-time' },
+                  'endDate': { 'type': 'string', 'format': 'date-time' },
+                  'price': { 'type': 'integer', 'format': 'int32' }
+                },
+              'additionalProperties': false
+            },
+          'LoginModel':
+            {
+              'required': ['email', 'password'],
+              'type': 'object',
+              'properties':
+                {
+                  'email': { 'type': 'string', 'nullable': true },
+                  'password': { 'type': 'string', 'nullable': true }
+                },
+              'additionalProperties': false
+            },
+          'ProblemDetails':
+            {
+              'type': 'object',
+              'properties':
+                {
+                  'type': { 'type': 'string', 'nullable': true },
+                  'title': { 'type': 'string', 'nullable': true },
+                  'status':
+                    { 'type': 'integer', 'format': 'int32', 'nullable': true },
+                  'detail': { 'type': 'string', 'nullable': true },
+                  'instance': { 'type': 'string', 'nullable': true }
+                },
+              'additionalProperties': {}
+            },
+          'RegisterModel':
+            {
+              'required': ['email', 'firstName', 'lastName', 'password'],
+              'type': 'object',
+              'properties':
+                {
+                  'email': { 'type': 'string', 'nullable': true },
+                  'password': { 'type': 'string', 'nullable': true },
+                  'firstName': { 'type': 'string', 'nullable': true },
+                  'lastName': { 'type': 'string', 'nullable': true }
+                },
+              'additionalProperties': false
+            },
+          'ReservationDto':
+            {
+              'required':
+                [
+                  'email',
+                  'end',
+                  'firstName',
+                  'lastName',
+                  'numberOfPersons',
+                  'phone',
+                  'start'
+                ],
+              'type': 'object',
+              'properties':
+                {
+                  'id': { 'type': 'string', 'format': 'uuid' },
+                  'start': { 'type': 'string', 'format': 'date-time' },
+                  'end': { 'type': 'string', 'format': 'date-time' },
+                  'numberOfPersons': { 'type': 'integer', 'format': 'int32' },
+                  'price': { 'type': 'number', 'format': 'double' },
+                  'phone': { 'minLength': 1, 'type': 'string' },
+                  'email': { 'minLength': 1, 'type': 'string' },
+                  'firstName': { 'minLength': 1, 'type': 'string' },
+                  'lastName': { 'minLength': 1, 'type': 'string' },
+                  'description': { 'type': 'string', 'nullable': true },
+                  'status':
+                    {
+                      'allOf':
+                        [{ '$ref': '#/components/schemas/ReservationStatus' }]
+                    }
+                },
+              'additionalProperties': false
+            },
+          'ReservationStatus':
+            { 'enum': [0, 1, 2], 'type': 'integer', 'format': 'int32' }
+        },
+      'securitySchemes':
+        {
+          'Bearer':
+            {
+              'type': 'http',
+              'description': "Enter 'Bearer YOUR_TOKEN' below.",
+              'scheme': 'Bearer',
+              'bearerFormat': 'JWT'
+            }
+        }
+    },
+  'security': [{ 'Bearer': [] }]
+}

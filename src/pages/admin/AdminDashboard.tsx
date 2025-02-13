@@ -1,5 +1,4 @@
 import { Check, X, Users, Calendar, Phone, Mail } from 'lucide-react'
-import { useGetReservations } from '../../utils/hooks'
 import {
   Card,
   CardContent,
@@ -9,37 +8,33 @@ import {
   CardTitle
 } from '../../components/ui/card'
 import { Button } from '../../components/ui/button'
-import { useDeleteReservation } from './hooks/useDeleteReservation'
-import { useUpdateReservation } from './hooks/useUpdateReservation.ts'
 import { useToaster } from '../../utils/providers/toaster.provider.tsx'
 import { Link } from 'react-router-dom'
+import {
+  useGetReservations,
+  usePatchReservationsId
+} from '../../api/endpoints/reservations/reservations.ts'
+import { ReservationStatus } from '../../api/models'
+import { format } from 'date-fns'
 
 export default function AdminDashboard() {
-  const { reservations, refetch } = useGetReservations()
-  const { mutate: deleteReservation } = useDeleteReservation()
-  const { mutate: updateReservation } = useUpdateReservation()
   const toaster = useToaster()
   const handleDelete = (id: string) => {
-    deleteReservation(
-      { id },
-      {
-        onSuccess: async () => {
-          toaster?.success('Reservation à bien été supprimée')
-          await refetch()
-        },
-        onError: (error) => {
-          toaster?.error(error.message)
-        }
-      }
-    )
+    console.log(id)
   }
 
-  const handleUpdate = (id: string, status: boolean) => {
-    updateReservation(
-      { id, status },
+  const { mutate: approuveReservation } = usePatchReservationsId()
+  const { data: { data: reservations = [] } = {}, refetch } =
+    useGetReservations()
+  const handleUpdate = (id: string, status: ReservationStatus) => {
+    approuveReservation(
+      {
+        id,
+        params: { status }
+      },
       {
         onSuccess: async () => {
-          toaster?.success('Reservation à bien été acceptée')
+          toaster?.success('Reservation approuvée')
           await refetch()
         },
         onError: (error) => {
@@ -56,7 +51,9 @@ export default function AdminDashboard() {
           <Card key={reservation.id} className="w-full h-fit">
             <CardHeader>
               <div className="flex justify-between items-center">
-                <CardTitle>{reservation.name}</CardTitle>
+                <CardTitle>
+                  {reservation.firstName} {reservation.lastName}
+                </CardTitle>
               </div>
               <CardDescription>Reservation #{reservation.id}</CardDescription>
             </CardHeader>
@@ -65,13 +62,14 @@ export default function AdminDashboard() {
                 <div className="flex items-center">
                   <Users className="mr-2 h-4 w-4" />
                   <span>
-                    {reservation.firstname} - {reservation.lastname}
+                    {reservation.firstName} - {reservation.lastName}
                   </span>
                 </div>
                 <div className="flex items-center">
                   <Calendar className="mr-2 h-4 w-4" />
                   <span>
-                    {reservation.start} - {reservation.end}
+                    {format(new Date(reservation.start), 'dd/MM/yyyy')} -{' '}
+                    {format(new Date(reservation.end), 'dd/MM/yyyy')}
                   </span>
                 </div>
                 <div className="flex items-center">
@@ -95,19 +93,21 @@ export default function AdminDashboard() {
               </div>
             </CardContent>
             <CardFooter className="flex justify-end space-x-2">
-              {reservation.status === false && (
+              {reservation.status === ReservationStatus.NUMBER_0 && (
                 <>
                   <Button
                     variant="destructive"
                     size="sm"
-                    onClick={() => handleDelete(reservation.id)}
+                    onClick={() => handleDelete(reservation.id!)}
                   >
                     <X className="mr-2 h-4 w-4" /> Refuser
                   </Button>
                   <Button
                     className="bg-green-500 hover:bg-green-600"
                     size="sm"
-                    onClick={() => handleUpdate(reservation.id, true)}
+                    onClick={() =>
+                      handleUpdate(reservation.id!, ReservationStatus.NUMBER_1)
+                    }
                   >
                     <Check className="mr-2 h-4 w-4" /> Accepter
                   </Button>

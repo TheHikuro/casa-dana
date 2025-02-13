@@ -4,8 +4,6 @@ import { HomeSkeleton } from '../components'
 import { useIdentityStore } from '../pages/admin/admin.utils'
 
 const Home = lazy(() => import('../pages/home/Home'))
-const GalleryPage = lazy(() => import('../pages/gallery/GalleryPage'))
-const ContactPage = lazy(() => import('../pages/contact/ContactPage'))
 const LoginPage = lazy(() => import('../pages/admin/Login'))
 const AdminDashboardPage = lazy(() => import('../pages/admin/AdminDashboard'))
 interface ProtectedRouteProps extends PropsWithChildren {
@@ -47,8 +45,6 @@ export function Router() {
         }
       >
         <Route path="/" element={<Home />} />
-        <Route path="/gallery" element={<GalleryPage />} />
-        <Route path="/contact" element={<ContactPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Route>
       <Route
