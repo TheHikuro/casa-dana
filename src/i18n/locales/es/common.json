@@ -45,5 +45,11 @@
   "reservation.form.placeholder.description": "Hola, me gustaría hacer una reserva...",
   "reservation.form.submit": "Enviar",
   "reservation.toaster.success": "Tu reserva del {startDate} al {endDate} ha sido enviada al anfitrión.",
-  "reservation.toaster.error": "Une erreur s’est produite lors de la prise en compte de votre réservation!Missing!"
+  "reservation.toaster.error": "Une erreur s’est produite lors de la prise en compte de votre réservation!Missing!",
+  "reservation.form.guests": "Nombre de personnes!Missing!",
+  "reservation.form.description": "Description!Missing!",
+  "reservation.guest": "Personne!Missing!",
+  "reservation.nights": "Nuit(s)!Missing!",
+  "reservation.total": "Total!Missing!",
+  "reservation.form.nights_min": "Minimum de {nights} nuits!Missing!"
 }

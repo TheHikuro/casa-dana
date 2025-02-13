@@ -12,7 +12,7 @@ export type FormValues = {
   lastName: string
   phone: string
   email: string
-  guests: number
+  guests: string
   description: string
   from?: Date
   to?: Date
@@ -55,7 +55,7 @@ export const defaultValues: FormValues = {
   lastName: '',
   phone: '',
   email: '',
-  guests: 1,
+  guests: '1',
   description: '',
   from: undefined,
   to: undefined
@@ -110,12 +110,10 @@ export function groupNightsByPrice(priceDetails: PriceDetail[]) {
 
   const groupedMap = new Map<number, number>()
 
-  // Count occurrences of each price
   priceDetails.forEach(({ price }) => {
     groupedMap.set(price, (groupedMap.get(price) || 0) + 1)
   })
 
-  // Convert to array format
   return Array.from(groupedMap.entries()).map(([price, nights]) => ({
     price,
     nights

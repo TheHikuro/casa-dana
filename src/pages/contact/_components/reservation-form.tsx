@@ -33,6 +33,7 @@ import {
   usePostReservations
 } from '../../../api/endpoints/reservations/reservations.ts'
 import { useGetCalendarPrice } from '../../../api/endpoints/calendar/calendar.ts'
+import { CASADANA_KEYS } from '../../../i18n/keys/CASADANA_KEYS.ts'
 
 export default function ReservationForm() {
   const { t } = useTranslation()
@@ -89,15 +90,13 @@ export default function ReservationForm() {
   const total = defaultTotal + customTotal
   const groupedPrices = groupNightsByPrice(priceDetails)
 
-  console.log(errors)
-
   const onSubmit = (data: FormValues) => {
-    console.log(data, Number(data.guests))
+    const formatedGuests = Number(data.guests)
     createReservation(
       {
         data: {
           ...data,
-          numberOfPersons: Number(data.guests),
+          numberOfPersons: formatedGuests,
           start: date.from!.toISOString(),
           end: date.to!.toISOString(),
           price: total
@@ -124,39 +123,49 @@ export default function ReservationForm() {
           className="gap-4 grid col-span-2"
         >
           <div className="col-span-1">
-            <Label htmlFor={'firstName'}>First Name</Label>
+            <Label htmlFor={'firstName'}>
+              {t(CASADANA_KEYS.reservation.form.first_name)}
+            </Label>
             <Input {...register('firstName', { required: true })} />
             <span className="text-red-500 text-sm italic">
               {errors.firstName?.message}
             </span>
           </div>
           <div className="col-span-1">
-            <Label htmlFor={'lastName'}>Last Name</Label>
+            <Label htmlFor={'lastName'}>
+              {t(CASADANA_KEYS.reservation.form.last_name)}
+            </Label>
             <Input {...register('lastName', { required: true })} />
             <span className="text-red-500 text-sm italic">
               {errors.lastName?.message}
             </span>
           </div>
           <div className="col-span-2">
-            <Label htmlFor={'email'}>Email</Label>
+            <Label htmlFor={'email'}>
+              {t(CASADANA_KEYS.reservation.form.email)}
+            </Label>
             <Input {...register('email')} />
             <span className="text-red-500 text-sm italic">
               {errors.email?.message}
             </span>
           </div>
           <div>
-            <Label htmlFor={'phone'}>Phone</Label>
+            <Label htmlFor={'phone'}>
+              {t(CASADANA_KEYS.reservation.form.phone)}
+            </Label>
             <Input {...register('phone')} />
             <span className="text-red-500 text-sm italic">
               {errors.phone?.message}
             </span>
           </div>
           <div>
-            <Label htmlFor={'guests'}>Guests</Label>
+            <Label htmlFor={'guests'}>
+              {t(CASADANA_KEYS.reservation.form.guests)}
+            </Label>
             <Controller
               control={control}
               name="guests"
-              defaultValue={1}
+              defaultValue={'1'}
               rules={{
                 required: 'Veuillez sélectionner un nombre de personnes'
               }}
@@ -171,7 +180,7 @@ export default function ReservationForm() {
                   <SelectContent>
                     {[...Array(6)].map((_, i) => (
                       <SelectItem key={i} value={(i + 1).toString()}>
-                        {i + 1} guest
+                        {i + 1} {t(CASADANA_KEYS.reservation.guest)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -180,11 +189,16 @@ export default function ReservationForm() {
             />
           </div>
           <div className="col-span-2">
-            <Label htmlFor={'description'}>Description</Label>
+            <Label htmlFor={'description'}>
+              {t(CASADANA_KEYS.reservation.form.description)}
+            </Label>
             <Textarea
               {...register('description')}
               maxLength={250}
               className="resize-none"
+              placeholder={t(
+                CASADANA_KEYS.reservation.form.placeholder.description
+              )}
             />
           </div>
           {date.from && date.to && (
@@ -192,17 +206,17 @@ export default function ReservationForm() {
               {groupedPrices.map(({ price, nights }) => (
                 <div key={price} className="flex justify-between">
                   <span className="underline">
-                    €{price} x {nights} nights
+                    €{price} x {nights} {t(CASADANA_KEYS.reservation.nights)}
                   </span>
                   <span>€{price * nights}</span>
                 </div>
               ))}
               <div className="pt-4 border-t flex justify-between font-semibold">
-                <span>Total</span>
+                <span>{t(CASADANA_KEYS.reservation.total)}</span>
                 <span>€{total}</span>
               </div>
               <div className="flex justify-between font-semibold">
-                <span>Nights</span>
+                <span>{t(CASADANA_KEYS.reservation.nights)}</span>
                 <span>{nights}</span>
               </div>
             </div>
@@ -214,7 +228,9 @@ export default function ReservationForm() {
             type="submit"
             disabled={!date.from || !date.to || nights < 6 || invalidDateRange}
           >
-            {nights < 6 ? '6 nights minimum' : 'Reserve'}
+            {nights < 6
+              ? t(CASADANA_KEYS.reservation.form.nights_min, { nights: 6 })
+              : t(CASADANA_KEYS.calendar.reservation.reserved)}
           </Button>
         </form>
       </div>

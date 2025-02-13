@@ -1,23 +1,3 @@
-import Salon1 from './salon_1.jpg'
-import Salon2 from './salon_2.jpg'
-import Salon3 from './salon_3.jpg'
-import Salon4 from './salon_4.jpg'
-import Salon5 from './salon_5.jpg'
-import Salon6 from './salon_6.jpg'
-import Bedroom1_1 from './chambre1_1.jpg'
-import Bedroom2_1 from './chambre2_1.jpg'
-import Bedroom2_2 from './chambre2_2.jpg'
-import Kitchen1 from './cuisine_1.jpg'
-import Kitchen2 from './cuisine_2.jpg'
-import Solarium1 from './solarium_1.jpg'
-import Solarium2 from './solarium_2.jpg'
-import Solarium3 from './solarium_3.jpg'
-import Solarium4 from './solarium_4.jpg'
-import Bathroom1 from './sdb_1.jpg'
-import Bathroom2 from './sdb_2.jpg'
-import FrontPorch2 from './avant_2.jpeg'
-import FrontPorch from './avant_1.png'
-import Jacuzzi from './jacuzzi.jpg'
 import {
   Activity1,
   Activity2,
@@ -27,28 +7,28 @@ import {
 } from './activities'
 import { Loz1, Loz2, Loz3, Loz4, Loz5 } from './loz_alcasarez'
 import BackgroundCover from './first_photo.png'
-
+import HouseFront1 from './house/front1.jpeg'
+import HouseFront2 from './house/front2.jpeg'
+import HouseFront3 from './house/front3.jpeg'
+import HouseBedRoom1 from './house/bedroom1.jpeg'
+import HouseBedRoom2 from './house/bedroom2.jpeg'
+import HouseBedRoom3 from './house/bedroom3.jpeg'
+import HouseBedRoom1_1 from './house/bedroom1_1.jpeg'
+import HouseJacuzzi1 from './house/jacuzzi1.jpeg'
+import HouseJacuzzi2 from './house/jacuzzi2.jpeg'
+import HouseKitchen1 from './house/kitchen1.jpeg'
+import HouseKitchen2 from './house/kitchen2.jpeg'
+import HouseLivingRoom1 from './house/living_room1.jpeg'
+import HouseLivingRoom2 from './house/living_room2.jpeg'
+import HouseLivingRoom3 from './house/living_room3.jpeg'
+import HouseRoofTop1 from './house/rooftop1.jpeg'
+import HouseRoofTop2 from './house/rooftop2.jpeg'
+import HouseRoofTop3 from './house/rooftop3.jpeg'
+import HouseRoofTop4 from './house/rooftop4.jpeg'
+import HouseRoofTop5 from './house/rooftop5.jpeg'
+import HouseRoofTop6 from './house/rooftop6.jpeg'
+import HouseBathRoom from './house/bathroom.jpeg'
 export {
-  Salon1,
-  Salon2,
-  Salon3,
-  Salon4,
-  Salon5,
-  Salon6,
-  Bedroom1_1,
-  Bedroom2_1,
-  Bedroom2_2,
-  Kitchen1,
-  Kitchen2,
-  Solarium1,
-  Solarium2,
-  Solarium3,
-  Solarium4,
-  Bathroom1,
-  Bathroom2,
-  FrontPorch,
-  FrontPorch2,
-  Jacuzzi,
   Activity1,
   Activity2,
   Activity3,
@@ -59,5 +39,26 @@ export {
   Loz3,
   Loz4,
   Loz5,
-  BackgroundCover
+  BackgroundCover,
+  HouseFront1,
+  HouseFront2,
+  HouseFront3,
+  HouseBedRoom1,
+  HouseBedRoom2,
+  HouseBedRoom3,
+  HouseBedRoom1_1,
+  HouseJacuzzi1,
+  HouseJacuzzi2,
+  HouseKitchen1,
+  HouseKitchen2,
+  HouseLivingRoom1,
+  HouseLivingRoom2,
+  HouseLivingRoom3,
+  HouseRoofTop1,
+  HouseRoofTop2,
+  HouseRoofTop3,
+  HouseRoofTop4,
+  HouseRoofTop5,
+  HouseRoofTop6,
+  HouseBathRoom
 }

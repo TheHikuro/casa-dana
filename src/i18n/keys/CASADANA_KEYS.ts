@@ -68,18 +68,24 @@ export const CASADANA_KEYS = {
   },
   reservation: {
     form: {
+      description: 'reservation.form.description',
       email: 'reservation.form.email',
       first_name: 'reservation.form.first_name',
+      guests: 'reservation.form.guests',
       last_name: 'reservation.form.last_name',
+      nights_min: 'reservation.form.nights_min',
       phone: 'reservation.form.phone',
       placeholder: {
         description: 'reservation.form.placeholder.description'
       },
       submit: 'reservation.form.submit'
     },
+    guest: 'reservation.guest',
+    nights: 'reservation.nights',
     toaster: {
       error: 'reservation.toaster.error',
       success: 'reservation.toaster.success'
-    }
+    },
+    total: 'reservation.total'
   }
 }

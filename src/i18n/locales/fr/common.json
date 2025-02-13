@@ -1,7 +1,7 @@
 {
   "activities.title": "Activités",
   "calendar.reservation.pending": "En attente",
-  "calendar.reservation.reserved": "Réservé",
+  "calendar.reservation.reserved": "Réserver",
   "casa_dana.checklist.fifth": "Location hors saison également",
   "casa_dana.checklist.first": "Pour 4 ou 6 personnes",
   "casa_dana.checklist.fourth": "Un quartier calme et bien situé",
@@ -38,12 +38,18 @@
   "los_alcazares.description": "Los Alcazares, charmant village niché au cœur de l'Espagne, séduit par son authenticité et son ambiance chaleureuse. Entouré de paysages pittoresques, ce havre de paix offre un mélange parfait de tradition et de modernité. Avec ses ruelles pittoresques, ses marchés locaux et sa proximité avec la plage (mer mineure), Los Alcazares est une destination idéale pour les amateurs de culture, de nature et de détente.",
   "menu.contact": "Contact",
   "menu.home": "Accueil",
+  "reservation.form.description": "Description",
   "reservation.form.email": "Email",
   "reservation.form.first_name": "Prénom",
+  "reservation.form.guests": "Nombre de personnes",
   "reservation.form.last_name": "Nom",
+  "reservation.form.nights_min": "Minimum de {nights} nuits",
   "reservation.form.phone": "Téléphone",
   "reservation.form.placeholder.description": "Bonjour, je souhaiterais réserver...",
   "reservation.form.submit": "Envoyer",
+  "reservation.guest": "Personne",
+  "reservation.nights": "Nuit(s)",
   "reservation.toaster.error": "Une erreur s’est produite lors de la prise en compte de votre réservation",
-  "reservation.toaster.success": "Votre réservation du {startDate} au {endDate} a bien été prise en compte"
+  "reservation.toaster.success": "Votre réservation du {startDate} au {endDate} a bien été prise en compte",
+  "reservation.total": "Total"
 }
