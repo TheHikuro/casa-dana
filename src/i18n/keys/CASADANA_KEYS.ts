@@ -47,6 +47,21 @@ export const CASADANA_KEYS = {
   footer: {
     description: 'footer.description'
   },
+  gallery: {
+    show_photos: 'gallery.show_photos'
+  },
+  house: {
+    bathroom: 'house.bathroom',
+    bedroom: {
+      first: 'house.bedroom.first',
+      second: 'house.bedroom.second'
+    },
+    exterior: 'house.exterior',
+    kitchen: 'house.kitchen',
+    living_room: 'house.living_room',
+    patio: 'house.patio',
+    rooftop: 'house.rooftop'
+  },
   listing: {
     bbq: 'listing.bbq',
     beach: 'listing.beach',
@@ -68,11 +83,16 @@ export const CASADANA_KEYS = {
   },
   reservation: {
     form: {
+      checkin: 'reservation.form.checkin',
+      checkout: 'reservation.form.checkout',
       description: 'reservation.form.description',
       email: 'reservation.form.email',
       first_name: 'reservation.form.first_name',
       guests: 'reservation.form.guests',
       last_name: 'reservation.form.last_name',
+      modal: {
+        letsgo: 'reservation.form.modal.letsgo'
+      },
       nights_min: 'reservation.form.nights_min',
       phone: 'reservation.form.phone',
       placeholder: {

@@ -17,6 +17,8 @@ import { UseFormSetValue } from 'react-hook-form'
 import { DateRange } from 'react-day-picker'
 import { Button } from '../../../components/ui/button.tsx'
 import { ReservationDto } from '../../../api/models'
+import { CASADANA_KEYS } from '../../../i18n/keys/CASADANA_KEYS.ts'
+import { useTranslation } from 'react-i18next'
 
 export function CalendarModal({
   date,
@@ -27,19 +29,24 @@ export function CalendarModal({
   setValue: UseFormSetValue<FormValues>
   getReservations: ReservationDto[]
 }) {
+  const { t } = useTranslation()
   return (
     <Dialog>
       <DialogTrigger asChild>
         <div className="border rounded-xl divide-y cursor-pointer">
           <div className="grid grid-cols-2 divide-x">
             <div className="p-3 space-y-1">
-              <div className="text-xs font-semibold uppercase">Check-in</div>
+              <div className="text-xs font-semibold uppercase">
+                {t(CASADANA_KEYS.reservation.form.checkin)}
+              </div>
               <div className="text-sm">
                 {date.from ? format(date.from, 'dd/MM/yyyy') : 'Add date'}
               </div>
             </div>
             <div className="p-3 space-y-1">
-              <div className="text-xs font-semibold uppercase">Checkout</div>
+              <div className="text-xs font-semibold uppercase">
+                {t(CASADANA_KEYS.reservation.form.checkout)}
+              </div>
               <div className="text-sm">
                 {date.to ? format(date.to, 'dd/MM/yyyy') : 'Add date'}
               </div>
@@ -68,7 +75,7 @@ export function CalendarModal({
         />
         <DialogFooter>
           <DialogClose asChild>
-            <Button>Let's go 🚀</Button>
+            <Button>{t(CASADANA_KEYS.reservation.form.modal.letsgo)}</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

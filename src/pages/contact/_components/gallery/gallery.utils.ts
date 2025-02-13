@@ -29,32 +29,32 @@ export const rooms = (
 ): { id: string; name: string; images: string[] }[] => [
   {
     id: 'living-room',
-    name: 'Living room',
+    name: t(CASADANA_KEYS.house.living_room),
     images: [HouseLivingRoom1, HouseLivingRoom2, HouseLivingRoom3]
   },
   {
-    id: 'kitchenette',
-    name: 'Kitchenette',
+    id: 'kitchen',
+    name: t(CASADANA_KEYS.house.kitchen),
     images: [HouseKitchen1, HouseKitchen2]
   },
   {
     id: 'bedroom',
-    name: 'Bedroom',
+    name: t(CASADANA_KEYS.house.bedroom.first),
     images: [HouseBedRoom1, HouseBedRoom2, HouseBedRoom3]
   },
   {
     id: 'bedroom2',
-    name: 'Bedroom 2',
+    name: t(CASADANA_KEYS.house.bedroom.second),
     images: [HouseBedRoom1_1]
   },
   {
     id: 'bathroom',
-    name: 'Bathroom',
+    name: t(CASADANA_KEYS.house.bathroom),
     images: [HouseBathRoom]
   },
   {
     id: 'exterior',
-    name: 'Exterior',
+    name: t(CASADANA_KEYS.house.exterior),
     images: [HouseFront1, HouseFront2, HouseFront3]
   },
   {
@@ -64,7 +64,7 @@ export const rooms = (
   },
   {
     id: 'rooftop',
-    name: 'Rooftop',
+    name: t(CASADANA_KEYS.house.rooftop),
     images: [
       HouseRoofTop1,
       HouseRoofTop2,

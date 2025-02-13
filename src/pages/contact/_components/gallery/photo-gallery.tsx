@@ -181,8 +181,7 @@ export function PhotoGallery() {
                 </Button>
                 <div className="absolute bottom-4 left-4 right-4 text-center">
                   <p className="text-white text-sm bg-black/50 inline-block px-4 py-2 rounded-full">
-                    {selectedImage.roomName} - Image {selectedImage.index + 1}{' '}
-                    of{' '}
+                    {selectedImage.roomName} - {selectedImage.index + 1} /
                     {
                       _rooms.find((r) => r.id === selectedImage.roomId)?.images
                         .length
