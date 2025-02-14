@@ -40,7 +40,9 @@ export function CalendarModal({
                 {t(CASADANA_KEYS.reservation.form.checkin)}
               </div>
               <div className="text-sm">
-                {date.from ? format(date.from, 'dd/MM/yyyy') : 'Add date'}
+                {date.from
+                  ? format(date.from, 'dd/MM/yyyy')
+                  : t(CASADANA_KEYS.reservation.form.calendar.add_date)}
               </div>
             </div>
             <div className="p-3 space-y-1">
@@ -48,7 +50,9 @@ export function CalendarModal({
                 {t(CASADANA_KEYS.reservation.form.checkout)}
               </div>
               <div className="text-sm">
-                {date.to ? format(date.to, 'dd/MM/yyyy') : 'Add date'}
+                {date.to
+                  ? format(date.to, 'dd/MM/yyyy')
+                  : t(CASADANA_KEYS.reservation.form.calendar.add_date)}
               </div>
             </div>
           </div>

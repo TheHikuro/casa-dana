@@ -104,7 +104,11 @@ export default function ReservationForm() {
       },
       {
         onSuccess: async ({ data: { firstName } }) => {
-          toast?.success(`Merci ${firstName} pour votre réservation!`)
+          toast?.success(
+            t(CASADANA_KEYS.reservation.form.calendar.reservation_confirmed, {
+              firstName
+            })
+          )
           reset()
         },
         onError: (error) => {

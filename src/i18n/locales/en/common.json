@@ -63,5 +63,7 @@
   "house.rooftop": "Rooftop terrace",
   "reservation.form.checkin": "Check-in date",
   "reservation.form.checkout": "Check-out date",
-  "reservation.form.modal.letsgo": "Let's go 🚀!"
+  "reservation.form.modal.letsgo": "Let's go 🚀!",
+  "reservation.form.calendar.add_date": "Add date",
+  "reservation.form.calendar.reservation_confirmed": "Thank you {firstName} for your reservation!"
 }

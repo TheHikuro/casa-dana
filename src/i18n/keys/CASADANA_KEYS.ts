@@ -83,6 +83,10 @@ export const CASADANA_KEYS = {
   },
   reservation: {
     form: {
+      calendar: {
+        add_date: 'reservation.form.calendar.add_date',
+        reservation_confirmed: 'reservation.form.calendar.reservation_confirmed'
+      },
       checkin: 'reservation.form.checkin',
       checkout: 'reservation.form.checkout',
       description: 'reservation.form.description',

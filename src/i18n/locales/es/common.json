@@ -63,5 +63,7 @@
   "house.rooftop": "Azotea",
   "reservation.form.checkin": "Fecha de llegada",
   "reservation.form.checkout": "Fecha de salida",
-  "reservation.form.modal.letsgo": "¡Vamos allá 🚀!"
+  "reservation.form.modal.letsgo": "¡Vamos allá 🚀!",
+  "reservation.form.calendar.add_date": "Añadir fecha",
+  "reservation.form.calendar.reservation_confirmed": "Gracias {firstName} por tu reserva!"
 }

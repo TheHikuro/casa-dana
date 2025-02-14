@@ -16,14 +16,13 @@ import {
 } from '../../api/endpoints/reservations/reservations.ts'
 import { ReservationStatus } from '../../api/models'
 import { format } from 'date-fns'
+import { useDeleteCalendarId } from '../../api/endpoints/calendar/calendar.ts'
 
 export default function AdminDashboard() {
   const toaster = useToaster()
-  const handleDelete = (id: string) => {
-    console.log(id)
-  }
 
   const { mutate: approuveReservation } = usePatchReservationsId()
+  const { mutate: deleteReservation } = useDeleteCalendarId()
   const { data: { data: reservations = [] } = {}, refetch } =
     useGetReservations()
   const handleUpdate = (id: string, status: ReservationStatus) => {
@@ -43,6 +42,22 @@ export default function AdminDashboard() {
       }
     )
   }
+
+  const handleDelete = (id: string) => {
+    deleteReservation(
+      { id },
+      {
+        onSuccess: async () => {
+          toaster?.success('Reservation supprimée')
+          await refetch()
+        },
+        onError: (error) => {
+          toaster?.error(error.message)
+        }
+      }
+    )
+  }
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">Reservation Requests</h1>
