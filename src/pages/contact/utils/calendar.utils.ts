@@ -20,7 +20,7 @@ export type FormValues = {
 export type PriceDetail = { date: Date; price: number }
 export type APIPriceData = { date: string; price: number | null }
 
-export const DEFAULT_PRICE = 88
+export const DEFAULT_PRICE = 90
 
 export const isDateDisabled = (
   date: Date,

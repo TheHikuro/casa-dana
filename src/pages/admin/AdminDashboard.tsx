@@ -11,18 +11,18 @@ import { Button } from '../../components/ui/button'
 import { useToaster } from '../../utils/providers/toaster.provider.tsx'
 import { Link } from 'react-router-dom'
 import {
+  useDeleteReservationsId,
   useGetReservations,
   usePatchReservationsId
 } from '../../api/endpoints/reservations/reservations.ts'
 import { ReservationStatus } from '../../api/models'
 import { format } from 'date-fns'
-import { useDeleteCalendarId } from '../../api/endpoints/calendar/calendar.ts'
 
 export default function AdminDashboard() {
   const toaster = useToaster()
 
   const { mutate: approuveReservation } = usePatchReservationsId()
-  const { mutate: deleteReservation } = useDeleteCalendarId()
+  const { mutate: deleteReservation } = useDeleteReservationsId()
   const { data: { data: reservations = [] } = {}, refetch } =
     useGetReservations()
   const handleUpdate = (id: string, status: ReservationStatus) => {
