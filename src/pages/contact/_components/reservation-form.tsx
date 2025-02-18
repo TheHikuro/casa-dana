@@ -11,9 +11,7 @@ import {
   DEFAULT_PRICE,
   formatPriceData,
   calculateNights,
-  getNightBreakdown,
   APIPriceData,
-  generateNightlyPrices,
   groupNightsByPrice
 } from '../utils/calendar.utils.ts'
 import { CalendarModal } from './calendar-modal.tsx'
@@ -73,22 +71,10 @@ export default function ReservationForm() {
     DEFAULT_PRICE
   )
 
-  const nightlyPrices = generateNightlyPrices(
-    priceDetails,
-    DEFAULT_PRICE,
-    date.from,
-    date.to
-  )
-
-  const { defaultPriceNights } = getNightBreakdown(nightlyPrices, DEFAULT_PRICE)
-
-  const defaultTotal = DEFAULT_PRICE * defaultPriceNights
-  const customTotal = nightlyPrices.reduce(
-    (sum, { price }) => (price !== DEFAULT_PRICE ? sum + price : sum),
-    0
-  )
-  const total = defaultTotal + customTotal
   const groupedPrices = groupNightsByPrice(priceDetails)
+  const total = groupedPrices
+    .map(({ price, nights }) => price * nights)
+    .reduce((acc, curr) => acc + curr, 0)
 
   const onSubmit = (data: FormValues) => {
     const formatedGuests = Number(data.guests)

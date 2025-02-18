@@ -1,10 +1,4 @@
-import {
-  differenceInDays,
-  eachDayOfInterval,
-  isAfter,
-  isBefore,
-  isWithinInterval
-} from 'date-fns'
+import { differenceInDays, isAfter, isBefore, isWithinInterval } from 'date-fns'
 import { ReservationDto } from '../../../api/models'
 
 export type FormValues = {
@@ -73,36 +67,6 @@ export function formatPriceData(
 
 export function calculateNights(from?: Date, to?: Date): number {
   return from && to ? differenceInDays(to, from) : 0
-}
-
-export function getNightBreakdown(prices: PriceDetail[], defaultPrice: number) {
-  const defaultPriceNights = prices.filter(
-    ({ price }) => price === (defaultPrice || 0)
-  ).length
-
-  return { defaultPriceNights }
-}
-
-export function generateNightlyPrices(
-  prices: PriceDetail[],
-  defaultPrice: number,
-  from?: Date,
-  to?: Date
-): PriceDetail[] {
-  if (!from || !to) return []
-
-  const nights = eachDayOfInterval({ start: from, end: to })
-
-  return nights.map((date) => {
-    const matchingPrice = prices.find(
-      (p) => p.date.getTime() === date.getTime()
-    )
-
-    return {
-      date,
-      price: matchingPrice ? matchingPrice.price : defaultPrice
-    }
-  })
 }
 
 export function groupNightsByPrice(priceDetails: PriceDetail[]) {
