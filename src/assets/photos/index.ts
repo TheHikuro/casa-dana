@@ -5,7 +5,7 @@ import {
   Activity4,
   Activity5
 } from './activities'
-import { Loz1, Loz2, Loz3, Loz4, Loz5 } from './loz_alcasarez'
+import { Loz1, Loz2, Loz3, Loz4, Loz5, Loz6 } from './loz_alcasarez'
 import BackgroundCover from './first_photo.png'
 import HouseFront1 from './house/front1.jpeg'
 import HouseFront2 from './house/front2.jpeg'
@@ -14,6 +14,8 @@ import HouseBedRoom1 from './house/bedroom1.jpeg'
 import HouseBedRoom2 from './house/bedroom2.jpeg'
 import HouseBedRoom3 from './house/bedroom3.jpeg'
 import HouseBedRoom1_1 from './house/bedroom1_1.jpeg'
+import HouseBedRoom1_2 from './house/bedroom1_2.jpg'
+import HouseBedRoom1_3 from './house/bedroom1_3.jpg'
 import HouseJacuzzi1 from './house/jacuzzi1.jpeg'
 import HouseJacuzzi2 from './house/jacuzzi2.jpeg'
 import HouseKitchen1 from './house/kitchen1.jpeg'
@@ -39,6 +41,7 @@ export {
   Loz3,
   Loz4,
   Loz5,
+  Loz6,
   BackgroundCover,
   HouseFront1,
   HouseFront2,
@@ -47,6 +50,8 @@ export {
   HouseBedRoom2,
   HouseBedRoom3,
   HouseBedRoom1_1,
+  HouseBedRoom1_2,
+  HouseBedRoom1_3,
   HouseJacuzzi1,
   HouseJacuzzi2,
   HouseKitchen1,

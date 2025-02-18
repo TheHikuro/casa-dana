@@ -19,7 +19,9 @@ import {
   HouseRoofTop4,
   HouseRoofTop5,
   HouseRoofTop6,
-  HouseBathRoom
+  HouseBathRoom,
+  HouseBedRoom1_2,
+  HouseBedRoom1_3
 } from '../../../../assets/photos'
 import { TFunction } from 'i18next'
 import { CASADANA_KEYS } from '../../../../i18n/keys/CASADANA_KEYS.ts'
@@ -45,7 +47,7 @@ export const rooms = (
   {
     id: 'bedroom2',
     name: t(CASADANA_KEYS.house.bedroom.second),
-    images: [HouseBedRoom1_1]
+    images: [HouseBedRoom1_1, HouseBedRoom1_2, HouseBedRoom1_3]
   },
   {
     id: 'bathroom',

@@ -1,9 +1,9 @@
 import { t } from 'i18next'
 import { CASADANA_KEYS } from '../../../i18n/keys/CASADANA_KEYS'
-import { Loz1, Loz2, Loz3, Loz4, Loz5 } from '../../../assets/photos'
+import { Loz1, Loz2, Loz3, Loz4, Loz5, Loz6 } from '../../../assets/photos'
 
 export function LosAlcazares() {
-  const img = [Loz5, Loz1, Loz2, Loz3, Loz4]
+  const img = [Loz6, Loz5, Loz1, Loz2, Loz3, Loz4]
   return (
     <div className="space-y-3">
       <h2 className="text-xl font-medium">Los Alcazares</h2>

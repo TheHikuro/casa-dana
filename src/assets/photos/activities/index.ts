@@ -1,4 +1,4 @@
-import Activity1 from './acti_1.jpg'
+import Activity1 from './acti_1.jpeg'
 import Activity2 from './acti_2.jpg'
 import Activity3 from './acti_3.jpg'
 import Activity4 from './acti_4.jpg'
