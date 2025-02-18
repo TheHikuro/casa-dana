@@ -19,7 +19,9 @@ import {
   HouseRoofTop4,
   HouseRoofTop5,
   HouseRoofTop6,
-  HouseBathRoom
+  HouseBathRoom,
+  HouseBedRoom1_2,
+  HouseBedRoom1_3
 } from '../assets/photos'
 
 export const img = [
@@ -30,6 +32,8 @@ export const img = [
   HouseBedRoom2,
   HouseBedRoom3,
   HouseBedRoom1_1,
+  HouseBedRoom1_2,
+  HouseBedRoom1_3,
   HouseBathRoom,
   HouseJacuzzi1,
   HouseJacuzzi2,

@@ -23,6 +23,7 @@ import HouseKitchen2 from './house/kitchen2.jpeg'
 import HouseLivingRoom1 from './house/living_room1.jpeg'
 import HouseLivingRoom2 from './house/living_room2.jpeg'
 import HouseLivingRoom3 from './house/living_room3.jpeg'
+import HouseLivingRoom4 from './house/living_room4.jpg'
 import HouseRoofTop1 from './house/rooftop1.jpeg'
 import HouseRoofTop2 from './house/rooftop2.jpeg'
 import HouseRoofTop3 from './house/rooftop3.jpeg'
@@ -59,6 +60,7 @@ export {
   HouseLivingRoom1,
   HouseLivingRoom2,
   HouseLivingRoom3,
+  HouseLivingRoom4,
   HouseRoofTop1,
   HouseRoofTop2,
   HouseRoofTop3,
