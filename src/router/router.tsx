@@ -7,7 +7,7 @@ import { MemoizedLayout } from '@/pages/admin/layout/layout.tsx'
 const Home = lazy(() => import('../pages/home/Home'))
 const LoginPage = lazy(() => import('../pages/admin/Login'))
 const ReservationsAdmin = lazy(
-  () => import('../pages/admin/contents/ReservationsAdmin.tsx')
+  () => import('../pages/admin/contents/reservations/ReservationsAdmin.tsx')
 )
 
 const ProtectedRoute = ({ redirect }: { redirect: string }) => {
