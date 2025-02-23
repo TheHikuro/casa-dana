@@ -6,8 +6,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle
-} from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+} from '@/components/ui/card.tsx'
+import { Button } from '@/components/ui/button.tsx'
 import { useToaster } from '@/utils/providers/toaster.provider.tsx'
 import { Link } from 'react-router'
 import {
@@ -18,7 +18,7 @@ import {
 import { ReservationStatus } from '@/api/models'
 import { format } from 'date-fns'
 
-export default function AdminDashboard() {
+export default function ReservationsAdmin() {
   const toaster = useToaster()
 
   const { mutate: approuveReservation } = usePatchReservationsId()

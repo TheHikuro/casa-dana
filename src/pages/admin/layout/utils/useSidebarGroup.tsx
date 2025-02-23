@@ -13,11 +13,21 @@ export type SingleSidebarGroupType = {
 
 export function useSidebarGroup() {
   const sidebarGroup: SidebarGroupType = {
-    APPLICATION: [
+    CASADANA: [
       {
-        title: 'Dashboard',
-        icon: 'house',
-        url: '/'
+        title: 'Reservations',
+        icon: 'book',
+        url: '/admin'
+      },
+      {
+        title: 'Utilisateurs',
+        icon: 'user',
+        url: '/admin/users'
+      },
+      {
+        title: 'Prix',
+        icon: 'dollar-sign',
+        url: '/admin/prices'
       }
     ]
   }

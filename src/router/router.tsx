@@ -6,7 +6,9 @@ import { MemoizedLayout } from '@/pages/admin/layout/layout.tsx'
 
 const Home = lazy(() => import('../pages/home/Home'))
 const LoginPage = lazy(() => import('../pages/admin/Login'))
-const AdminDashboardPage = lazy(() => import('../pages/admin/AdminDashboard'))
+const ReservationsAdmin = lazy(
+  () => import('../pages/admin/contents/ReservationsAdmin.tsx')
+)
 
 const ProtectedRoute = ({ redirect }: { redirect: string }) => {
   const {
@@ -41,8 +43,8 @@ export const router = createBrowserRouter([
         element: <ProtectedRoute redirect="/login" />,
         children: [
           {
-            path: '/admin',
-            element: <AdminDashboardPage />
+            path: 'admin',
+            element: <ReservationsAdmin />
           }
         ]
       }

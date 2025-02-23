@@ -14,21 +14,19 @@ export function LayoutSidebarContent({
   const redirect = useNavigate()
   return (
     <SidebarMenu>
-      {items
-        .filter((item) => item.visible !== false)
-        .map((item: SingleSidebarGroupType) => {
-          return (
-            <SidebarMenuItem
-              key={item.title}
-              onClick={() => redirect(item.url)}
-              className="cursor-pointer"
-            >
-              <SidebarMenuButton asChild>
-                <span>{item.title}</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          )
-        })}
+      {items.map((item: SingleSidebarGroupType) => {
+        return (
+          <SidebarMenuItem
+            key={item.title}
+            onClick={() => redirect(item.url)}
+            className="cursor-pointer"
+          >
+            <SidebarMenuButton asChild>
+              <span>{item.title}</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        )
+      })}
     </SidebarMenu>
   )
 }
