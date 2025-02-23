@@ -6,7 +6,7 @@ import { Button } from './ui/button.tsx'
 import { cn } from '../../@/lib/utils.ts'
 import { useForm } from 'react-hook-form'
 import { useToaster } from '../utils/providers/toaster.provider.tsx'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { useIdentityStore } from '../pages/admin/admin.utils.ts'
 import { usePostAuthLogin } from '../api/endpoints/auth/auth.ts'
 

@@ -6,16 +6,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle
-} from '../../components/ui/card'
-import { Button } from '../../components/ui/button'
-import { useToaster } from '../../utils/providers/toaster.provider.tsx'
-import { Link } from 'react-router-dom'
+} from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { useToaster } from '@/utils/providers/toaster.provider.tsx'
+import { Link } from 'react-router'
 import {
   useDeleteReservationsId,
   useGetReservations,
   usePatchReservationsId
-} from '../../api/endpoints/reservations/reservations.ts'
-import { ReservationStatus } from '../../api/models'
+} from '@/api/endpoints/reservations/reservations.ts'
+import { ReservationStatus } from '@/api/models'
 import { format } from 'date-fns'
 
 export default function AdminDashboard() {
