@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { createBrowserRouter, Navigate, Outlet } from 'react-router'
 import { HomeSkeleton } from '@/components'
 import { useIdentityStore } from '../pages/admin/admin.utils'
+import { MemoizedLayout } from '@/pages/admin/layout/layout.tsx'
 
 const Home = lazy(() => import('../pages/home/Home'))
 const LoginPage = lazy(() => import('../pages/admin/Login'))
@@ -11,7 +12,13 @@ const ProtectedRoute = ({ redirect }: { redirect: string }) => {
   const {
     identity: { isConnected }
   } = useIdentityStore()
-  return isConnected ? <Outlet /> : <Navigate to={redirect} replace />
+  return isConnected ? (
+    <MemoizedLayout>
+      <Outlet />
+    </MemoizedLayout>
+  ) : (
+    <Navigate to={redirect} replace />
+  )
 }
 
 export const router = createBrowserRouter([
