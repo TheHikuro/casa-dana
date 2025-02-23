@@ -1,12 +1,9 @@
 import { CasaDana } from './_components/casa-dana'
 import { LosAlcazares } from './_components/los-alcazares'
 import { Activities } from './_components/activities'
-import { Footer, FooterMobile } from '../../components'
-import { useState } from 'react'
+import { Footer } from '../../components'
 
 export default function Home() {
-  const [windowSize] = useState(window.innerWidth)
-
   return (
     <>
       <div
@@ -22,7 +19,7 @@ export default function Home() {
           <Activities />
         </section>
       </div>
-      {windowSize < 640 ? <FooterMobile /> : <Footer />}
+      <Footer />
     </>
   )
 }
