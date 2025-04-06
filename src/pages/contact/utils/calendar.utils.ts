@@ -83,3 +83,9 @@ export function groupNightsByPrice(priceDetails: PriceDetail[]) {
     nights
   }))
 }
+
+export const toISODate = (date: Date) => {
+  const fixedDate = new Date(date)
+  fixedDate.setHours(0, 0, 0, 0)
+  return fixedDate.toISOString()
+}

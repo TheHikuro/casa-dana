@@ -12,7 +12,8 @@ import {
   formatPriceData,
   calculateNights,
   APIPriceData,
-  groupNightsByPrice
+  groupNightsByPrice,
+  toISODate
 } from '../utils/calendar.utils.ts'
 import { CalendarModal } from './calendar-modal.tsx'
 import {
@@ -83,8 +84,8 @@ export default function ReservationForm() {
         data: {
           ...data,
           numberOfPersons: formatedGuests,
-          start: date.from!.toISOString(),
-          end: date.to!.toISOString(),
+          start: toISODate(date.from!),
+          end: toISODate(date.to!),
           price: total
         }
       },

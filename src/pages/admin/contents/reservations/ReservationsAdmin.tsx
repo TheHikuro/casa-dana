@@ -50,7 +50,7 @@ export default function ReservationsAdmin() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">Reservation Requests</h1>
+      <h1 className="text-3xl font-bold mb-6">Demande de réservations</h1>
       <DataTable columns={columns} data={reservations} />
     </div>
   )
