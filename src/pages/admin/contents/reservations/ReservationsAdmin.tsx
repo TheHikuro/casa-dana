@@ -1,12 +1,12 @@
-import { useReservationsDataGrid } from '@/pages/admin/contents/reservations/reservation.utils.tsx'
 import {
+  useDeleteReservationsId,
   useGetReservations,
-  usePatchReservationsId,
-  useDeleteReservationsId
+  usePatchReservationsId
 } from '@/api/endpoints/reservations/reservations.ts'
-import { useToaster } from '@/utils/providers/toaster.provider.tsx'
-import { ReservationStatus } from '@/api/models'
+import type { ReservationStatus } from '@/api/models'
 import { DataTable } from '@/components/data-grid.tsx'
+import { useReservationsDataGrid } from '@/pages/admin/contents/reservations/reservation.utils.tsx'
+import { useToaster } from '@/utils/providers/toaster.provider.tsx'
 
 export default function ReservationsAdmin() {
   const toaster = useToaster()
@@ -51,7 +51,7 @@ export default function ReservationsAdmin() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">Demande de réservations</h1>
-      <DataTable columns={columns} data={reservations} />
+      <DataTable columns={columns} data={reservations} hasPagination />
     </div>
   )
 }
